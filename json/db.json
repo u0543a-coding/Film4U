@@ -1,0 +1,152 @@
+{
+    "user": [
+        {
+            "fullname": "Rufus Gerlach",
+            "email": "Kenneth9@yahoo.com",
+            "password": "XfcN9R0yioey6Kq",
+            "phone_number": "1-407-363-3773 x925",
+            "role": "role 1",
+            "create_At": "2025-05-13T09:21:19.697Z",
+            "id": "1"
+        },
+        {
+            "fullname": "Natasha Nitzsche",
+            "email": "Magnolia_Lowe70@yahoo.com",
+            "password": "EqyN76brw9rS4Pb",
+            "phone_number": "1-616-752-1775",
+            "role": "role 2",
+            "create_At": "2025-06-23T05:01:57.790Z",
+            "id": "2"
+        },
+        {
+            "fullname": "Neal West",
+            "email": "Karine_Pouros@yahoo.com",
+            "password": "G5cWj1OmDVSbnpO",
+            "phone_number": "859-364-1952 x28438",
+            "role": "role 3",
+            "create_At": "2025-09-28T08:03:46.369Z",
+            "id": "3"
+        },
+        {
+            "fullname": "Lynne Stokes DVM",
+            "email": "Treva.Hartmann6@hotmail.com",
+            "password": "gen8GbqmLjHtuDA",
+            "phone_number": "664.561.0994 x33082",
+            "role": "role 4",
+            "create_At": "2024-12-04T07:06:18.929Z",
+            "id": "4"
+        },
+        {
+            "fullname": "Kristopher Zieme",
+            "email": "Jovany_Lindgren10@gmail.com",
+            "password": "YqYkfUjHKN51r8R",
+            "phone_number": "1-537-200-2821",
+            "role": "role 5",
+            "create_At": "2025-02-07T02:53:39.727Z",
+            "id": "5"
+        },
+        {
+            "fullname": "Bessie Hegmann",
+            "email": "Kayleigh.Gleason5@hotmail.com",
+            "password": "ZBjdxkhvMW7J_0l",
+            "phone_number": "213.910.1006 x8850",
+            "role": "role 6",
+            "create_At": "2025-05-29T12:11:23.356Z",
+            "id": "6"
+        },
+        {
+            "fullname": "Terrence Crona",
+            "email": "Tierra.Nikolaus46@yahoo.com",
+            "password": "AtFqUXq0SrAUGrw",
+            "phone_number": "363.616.6356 x98464",
+            "role": "role 7",
+            "create_At": "2024-11-30T16:41:37.801Z",
+            "id": "7"
+        },
+        {
+            "fullname": "Darlene McDermott",
+            "email": "Laurel.Leannon@gmail.com",
+            "password": "WIvMjiEqqm5AEch",
+            "phone_number": "(845) 483-7281 x32994",
+            "role": "role 8",
+            "create_At": "2025-06-10T22:51:31.164Z",
+            "id": "8"
+        },
+        {
+            "fullname": "Estelle Ritchie",
+            "email": "Rosella_Strosin@hotmail.com",
+            "password": "EmaNMWNOHAu2kNY",
+            "phone_number": "1-359-223-4399",
+            "role": "role 9",
+            "create_At": "2025-07-29T03:48:16.329Z",
+            "id": "9"
+        },
+        {
+            "fullname": "Amanda Little",
+            "email": "Darlene.Greenholt21@yahoo.com",
+            "password": "m5uGWV5jevfH_sM",
+            "phone_number": "695-866-5184 x6270",
+            "role": "role 10",
+            "create_At": "2025-07-25T22:36:01.957Z",
+            "id": "10"
+        }
+    ],
+    "movies": [
+        {
+            "id": 1,
+            "title": "GIA TÀI CỦA NGOẠI",
+            "description": "M, một sinh viên đại học, quyết định về chăm sóc bà ngoại đang mắc bệnh ung thư giai đoạn cuối, với mục đích bí mật là để thừa kế gia tài hàng triệu baht của bà. Tuy nhiên, khi sống cùng bà, cậu dần khám phá ra những giá trị tình thân còn quý giá hơn cả tiền bạc.",
+            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/l/a/lan_of_heir_main_poster_1_.jpg",
+            "status": "now_showing"
+        },
+        {
+            "id": 2,
+            "title": "NHỮNG MẢNH GHÉP CẢM XÚC 2",
+            "description": "Riley bước vào tuổi dậy thì, và trung tâm điều khiển cảm xúc của cô bé phải đối mặt với một cuộc \"phá dỡ\" lớn để chào đón những cảm xúc hoàn toàn mới, phức tạp hơn như Lo Âu, Ganh Tị, Xấu Hổ và Chán Nản.",
+            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/i/o/io2_main_poster_1__1.jpg",
+            "status": "now_showing"
+        },
+        {
+            "id": 3,
+            "title": "VÙNG ĐẤT CÂM LẶNG: NGÀY ĐẦU TIÊN",
+            "description": "Lấy bối cảnh ngày đầu tiên của cuộc xâm lăng của các sinh vật săn mồi bằng âm thanh, bộ phim theo chân một người phụ nữ phải tìm cách sống sót qua những giờ phút kinh hoàng tại một trong những thành phố ồn ào nhất thế giới - New York.",
+            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/q/p/qp-do_main_poster_1__1.jpg",
+            "status": "now_showing"
+        },
+        {
+            "id": 4,
+            "title": "KẺ TRỘM MẶT TRĂNG 4",
+            "description": "Gru cùng gia đình chào đón thành viên mới, Gru Jr., và cậu bé dường như có mục tiêu duy nhất là làm khổ bố mình. Mọi chuyện trở nên tồi tệ hơn khi gia đình Gru phải đối mặt với kẻ thù mới và buộc phải chạy trốn.",
+            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/d/m/dm4_main_poster_1__1.jpg",
+            "status": "now_showing"
+        },
+        {
+            "id": 5,
+            "title": "DEADPOOL & WOLVERINE",
+            "description": "Wolverine đang hồi phục sau chấn thương thì gặp phải Deadpool lắm lời. Họ hợp sức để chiến đấu chống lại một kẻ thù chung, tạo nên một trong những cặp đôi bất đắc dĩ và hài hước nhất vũ trụ Marvel.",
+            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/d/p/dp3_main_poster_1__1.jpg",
+            "status": "coming_soon"
+        },
+        {
+            "id": 6,
+            "title": "GIẢI MÃ SÂN BAY",
+            "description": "Một bộ phim tài liệu khám phá những bí ẩn và hoạt động phức tạp đằng sau một trong những sân bay bận rộn nhất thế giới, nơi mỗi quyết định đều có thể ảnh hưởng đến hàng ngàn sinh mạng.",
+            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/s/n/snvn_main-poster_1_.jpg",
+            "status": "coming_soon"
+        },
+        {
+            "id": 7,
+            "title": "LỐC XOÁY TỬ THẦN",
+            "description": "Một cặp vợ chồng chuyên săn lốc xoáy liều mạng thử nghiệm một hệ thống cảnh báo thời tiết đột phá, đối mặt với những cơn cuồng phong kinh hoàng nhất từng được ghi nhận ở trung tâm Oklahoma.",
+            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/t/w/twisters_main_poster_1__1.jpg",
+            "status": "coming_soon"
+        },
+        {
+            "id": 8,
+            "title": "BÍ KÍP LUYỆN RỒNG (Live-action)",
+            "description": "Chuyển thể từ bộ phim hoạt hình kinh điển, câu chuyện kể về cậu bé Hiccup yếu ớt, người đã thách thức truyền thống của bộ tộc Viking khi kết bạn với kẻ thù đáng sợ nhất của họ - một con rồng tên Răng Sún.",
+            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/h/t/httyd_teaser_poster_1_.jpg",
+            "status": "coming_soon"
+        }
+    ]
+}
