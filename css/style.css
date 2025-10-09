@@ -1,0 +1,57 @@
+body {
+  background-color: #b1d7e6;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Navbar */
+.navbar-brand {
+  font-size: 1.4rem;
+}
+.navbar .nav-link {
+  font-weight: 500;
+  color: #000 !important;
+}
+.navbar .nav-link.active {
+  color: #007bff !important;
+}
+.search-form input {
+  width: 300px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  padding-left: 15px;
+}
+
+/* Movie Cards */
+.movie-card {
+  border: none;
+  border-radius: 10px;
+  transition: 0.3s;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.movie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.movie-card img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 260px;
+  object-fit: cover;
+}
+.movie-card .card-body {
+  background-color: #d1cfcf;
+  padding: 10px;
+}
+
+/* Footer */
+.footer {
+  background-color: #202020;
+}
+.footer .socials a {
+  font-size: 1.3rem;
+  transition: 0.3s;
+}
+.footer .socials a:hover {
+  color: #ff4747;
+}
