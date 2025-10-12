@@ -50,47 +50,8 @@
   <!-- PHIM ĐANG CHIẾU -->
   <div class="container mt-4">
     <h5 class="fw-bold mb-3 text-dark">Phim Đang Chiếu</h5>
-    <div class="row g-3">
-      <div class="col-md-3 col-6">
-        <div class="card movie-card">
-          <img src="https://vnp.1cdn.vn/2023/03/15/h1_qish.jpeg" class="card-img-top" alt="">
-          <div class="card-body text-center">
-            <h6 class="card-title">Tử Chiến Trên Không</h6>
-            <p class="text-muted small">118 phút | 10/09/2025</p>
-            <button class="btn btn-sm btn-danger">Đặt vé</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-6">
-        <div class="card movie-card">
-          <img src="https://vnp.1cdn.vn/2023/03/15/h1_qish.jpeg" class="card-img-top" alt="">
-          <div class="card-body text-center">
-            <h6 class="card-title">Avatar 3: Dòng Chảy</h6>
-            <p class="text-muted small">156 phút | 10/10/2025</p>
-            <button class="btn btn-sm btn-danger">Đặt vé</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-6">
-        <div class="card movie-card">
-          <img src="https://vnp.1cdn.vn/2023/03/15/h1_qish.jpeg" class="card-img-top" alt="">
-          <div class="card-body text-center">
-            <h6 class="card-title">Chiến Thuật Tối Chiến</h6>
-            <p class="text-muted small">114 phút | 01/10/2025</p>
-            <button class="btn btn-sm btn-danger">Đặt vé</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-6">
-        <div class="card movie-card">
-          <img src="https://vnp.1cdn.vn/2023/03/15/h1_qish.jpeg" class="card-img-top" alt="">
-          <div class="card-body text-center">
-            <h6 class="card-title">Nhân Diện</h6>
-            <p class="text-muted small">102 phút | 10/09/2025</p>
-            <button class="btn btn-sm btn-danger">Đặt vé</button>
-          </div>
-        </div>
-      </div>
+    <div class="row g-3" id="movie-container">
+      <!-- Movie cards sẽ được render ở đây bằng JavaScript -->
     </div>
   </div>
 
@@ -195,5 +156,46 @@
     </div>
   </div>
 </footer>
+
+<script>
+  // Lấy dữ liệu từ JSON Server và hiển thị lên trang
+  fetch('http://localhost:3000/movies')
+    .then(response => response.json())
+    .then(data => {
+      const movieContainer = document.getElementById('movie-container');
+      data.forEach(movie => {
+        const movieCard = document.createElement('div');
+        movieCard.className = 'col-md-3 col-6';
+
+        // Use the property names that exist in json/db.json and provide safe fallbacks
+        const imgSrc = movie.poster_url || movie.image || '';
+        const title = movie.title || movie.name || 'Không có tiêu đề';
+        const duration = movie.duration_minutes ?? movie.duration ?? '';
+        // format release date if available
+        let release = '';
+        const rawDate = movie.release_date || movie.releaseDate || '';
+        if (rawDate) {
+          try {
+            release = new Date(rawDate).toLocaleDateString('vi-VN');
+          } catch (e) {
+            release = rawDate;
+          }
+        }
+
+        movieCard.innerHTML = `
+          <div class="card movie-card">
+            <img src="${imgSrc}" class="card-img-top" alt="${title}">
+            <div class="card-body text-center">
+              <h6 class="card-title">${title}</h6>
+              <p class="text-muted small">${duration ? duration + ' phút' : ''}${duration && release ? ' | ' : ''}${release}</p>
+              <button class="btn btn-sm btn-danger">Đặt vé</button>
+            </div>
+          </div>
+        `;
+        movieContainer.appendChild(movieCard);
+      });
+    })
+    .catch(error => console.error('Error fetching movies:', error));
+</script>
 </body>
 </html>
