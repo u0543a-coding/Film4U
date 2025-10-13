@@ -1,42 +1,64 @@
-// Lấy dữ liệu từ JSON Server
-const fetchData = async () => {
-    try {
-        const response = await fetch ('http://localhost:3000/products')
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+// Homepage script: fetch movies and render into the static .movie-grid containers
+document.addEventListener('DOMContentLoaded', () => {
+    const API = 'http://localhost:3000/movies';
+
+    const fetchMovies = async () => {
+        try {
+            const res = await fetch(API);
+            if (!res.ok) throw new Error('Network response was not ok');
+            return await res.json();
+        } catch (err) {
+            console.error('Fetch movies error:', err);
+            return [];
         }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Fetch error: ', error);
-        return [];
-    }
+    };
 
-};
+    const renderMovieCard = (movie) => {
+        const img = movie.poster_url || movie.image || '';
+        const title = movie.title || movie.name || 'Không có tiêu đề';
+        const duration = movie.duration_minutes ?? movie.duration ?? '';
+        const rawDate = movie.release_date || movie.releaseDate || '';
+        let release = '';
+        if (rawDate) {
+            try { release = new Date(rawDate).toLocaleDateString('vi-VN'); } catch (e) { release = rawDate; }
+        }
 
-// Hiển thị sản phẩm lên trang chủ
-const displayProducts = async () => {
-    const products = await fetchData();
-    const productList = document.getElementById('product-list');
-    productList.innerHTML = '';
-    products.forEach(product => {
-        const productItem = document.createElement('div');
-        productItem.className = 'product-item';
-        productItem.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <p>Price: $${product.price}</p>
-            <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+        const wrapper = document.createElement('div');
+        wrapper.className = 'movie-card';
+        wrapper.innerHTML = `
+            <img src="${img}" alt="${title}">
+            <h4>${title}</h4>
+            <p>${duration ? duration + ' phút' : ''}${duration && release ? ' | ' : ''}${release}</p>
+            <button class="btn red">Đặt vé</button>
         `;
-        productList.appendChild(productItem);
-    });
+        return wrapper;
+    };
 
-    // Thêm sự kiện cho nút "Add to Cart"
-    const addToCartButtons = document.querySelectorAll('.add-to-cart');
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const productId = button.getAttribute('data-id');
-            addToCart(productId);
-        });
-    });
-};
+    (async () => {
+        const movies = await fetchMovies();
+        if (!movies.length) return;
+
+        const nowGrid = document.querySelectorAll('.movie-section')[0]?.querySelector('.movie-grid');
+        const comingGrid = document.querySelectorAll('.movie-section')[1]?.querySelector('.movie-grid');
+
+        // Filter by status if present in JSON
+        const nowShowing = movies.filter(m => m.status === 'now_showing');
+        const comingSoon = movies.filter(m => m.status === 'coming_soon');
+
+        // If no status fields, just split first half/second half to show something
+        if (nowShowing.length === 0 && comingSoon.length === 0) {
+            const half = Math.ceil(movies.length / 2);
+            nowShowing.push(...movies.slice(0, half));
+            comingSoon.push(...movies.slice(half));
+        }
+
+        if (nowGrid) {
+            nowGrid.innerHTML = '';
+            nowShowing.forEach(m => nowGrid.appendChild(renderMovieCard(m)));
+        }
+        if (comingGrid) {
+            comingGrid.innerHTML = '';
+            comingSoon.forEach(m => comingGrid.appendChild(renderMovieCard(m)));
+        }
+    })();
+});
