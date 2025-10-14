@@ -3,17 +3,171 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="" href="/Film4U/css/style.css">
   <title>Đặt vé phim</title>
 
-</head>
-<body>
+  <style>
+    /* ===== RESET ===== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  <div class="container">
-    <h2>Đặt Vé Trực Tuyến</h2>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f7f8fb;
+      color: #222;
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .datve-container {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      padding: 25px 30px;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .datve-title {
+      text-align: center;
+      color: #d32f2f;
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+
+    /* ===== Chọn rạp ===== */
+    .datve-cinema-select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-bottom: 25px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .datve-cinema-select:focus {
+      border-color: #d32f2f;
+      box-shadow: 0 0 0 3px rgba(211,47,47,0.2);
+    }
+
+    /* ===== Danh sách ngày ===== */
+    .datve-date-list {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .datve-date-item {
+      flex: 1;
+      min-width: 90px;
+      text-align: center;
+      padding: 10px 0;
+      background: #eee;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .datve-date-item:hover,
+    .datve-date-item.active {
+      background: #d32f2f;
+      color: #fff;
+    }
+
+    /* ===== Thông tin rạp ===== */
+    .datve-cinema-info {
+      background: #fafafa;
+      border-left: 5px solid #d32f2f;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    /* ===== Thông tin phim ===== */
+    .datve-movie-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .datve-movie-box img {
+      width: 130px;
+      height: 190px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .datve-movie-info {
+      flex: 1;
+    }
+
+    .datve-movie-info h4 {
+      margin-bottom: 8px;
+      color: #333;
+      font-size: 18px;
+    }
+
+    .datve-movie-info p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    /* ===== Giờ chiếu ===== */
+    .datve-showtime {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .datve-showtime button {
+      border: 1px solid #d32f2f;
+      background: #fff;
+      color: #d32f2f;
+      border-radius: 8px;
+      padding: 8px 15px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .datve-showtime button:hover {
+      background: #d32f2f;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .datve-movie-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .datve-movie-box img {
+        width: 60%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="datve-container">
+    <h2 class="datve-title">Đặt Vé Trực Tuyến</h2>
 
     <!-- Chọn rạp -->
-    <select class="cinema-select">
+    <select class="datve-cinema-select">
       <option selected>Chọn rạp</option>
       <option>Metiz Cinema</option>
       <option>CGV Vincom</option>
@@ -23,29 +177,29 @@
     </select>
 
     <!-- Ngày chiếu -->
-    <div class="date-list">
-      <div class="date-item active">13/10<br><small>Th2</small></div>
-      <div class="date-item">14/10<br><small>Th3</small></div>
-      <div class="date-item">15/10<br><small>Th4</small></div>
-      <div class="date-item">16/10<br><small>Th5</small></div>
-      <div class="date-item">17/10<br><small>Th6</small></div>
-      <div class="date-item">18/10<br><small>Th7</small></div>
+    <div class="datve-date-list">
+      <div class="datve-date-item active">13/10<br><small>Th2</small></div>
+      <div class="datve-date-item">14/10<br><small>Th3</small></div>
+      <div class="datve-date-item">15/10<br><small>Th4</small></div>
+      <div class="datve-date-item">16/10<br><small>Th5</small></div>
+      <div class="datve-date-item">17/10<br><small>Th6</small></div>
+      <div class="datve-date-item">18/10<br><small>Th7</small></div>
     </div>
 
     <!-- Thông tin rạp -->
-    <div class="cinema-info">
+    <div class="datve-cinema-info">
       <strong>Metiz Cinema</strong> · Thứ Hai, 13/10/2025<br>
       <small>Tầng 1 Helio Center, Đường 2/9, Hải Châu, Đà Nẵng</small>
     </div>
 
     <!-- Thông tin phim -->
-    <div class="movie-box">
+    <div class="datve-movie-box">
       <img src="https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2017/07/26020212/poster-phim-hanh-dong.jpg" alt="Poster phim">
-      <div class="movie-info">
+      <div class="datve-movie-info">
         <h4>Tee Yod 3: Quỷ Ăn Tạng</h4>
         <p><small>T16 · 1h44’ · Action, Thriller, Horror</small></p>
         <p><strong>2D Phụ đề Việt</strong></p>
-        <div class="showtime">
+        <div class="datve-showtime">
           <button>06:00</button>
           <button>07:00</button>
           <button>08:00</button>
