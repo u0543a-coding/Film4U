@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="" href="/Film4U/css/style.css">
+  <title>Xác nhận thanh toán</title>
+</head>
+<body>
+
+  <div class="container">
+    <div class="left">
+      <div class="card">
+        <h3>Tóm tắt đơn hàng</h3>
+        <table>
+          <tr>
+            <th>Mô tả</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+          </tr>
+          <tr>
+            <td>Standard</td>
+            <td>1</td>
+            <td>50.000 đ</td>
+          </tr>
+          <tr>
+            <td>Phí tiện ích</td>
+            <td></td>
+            <td>2.500 đ</td>
+          </tr>
+          <tr class="total-row">
+            <td>Tổng</td>
+            <td></td>
+            <td>52.500 đ</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>Thông tin cá nhân</h3>
+        <div class="input-group">
+          <input type="text" placeholder="* Họ và tên">
+          <input type="text" placeholder="* Số điện thoại">
+          <input type="email" placeholder="Email">
+        </div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="summary">
+        <strong>Tee Yod 3: Quỷ Ăn Tạng</strong>
+        Rio Đà Nẵng<br>
+        Suất <b>21:40 - 14/10/2025</b><br>
+        Phòng chiếu <b>05</b> – Ghế <b>I04</b>
+      </div>
+
+      <div class="total-box">
+        <h4>Tổng đơn hàng</h4>
+        <p><b>52.500 đ</b></p>
+      </div>
+
+      <div class="note">
+        Vé đã mua không thể đổi hoặc hoàn tiền.<br>
+        Mã vé sẽ được gửi 01 lần qua số điện thoại và email đã nhập.<br>
+        Vui lòng kiểm tra kỹ thông tin trước khi tiếp tục.
+      </div>
+
+      <div class="btns">
+        <button class="btn btn-back">←</button>
+        <button class="btn btn-confirm" onclick="document.querySelector('.popup').style.display='flex'">Xác nhận</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup -->
+  <div class="popup">
+    <div class="popup-box">
+      <h2>Đặt vé thành công!</h2>
+      <p>Bạn sẽ nhận được thông tin vé qua Email và SĐT.</p>
+      <button onclick="document.querySelector('.popup').style.display='none'">Đóng</button>
+    </div>
+  </div>
+</body>
+</html>
