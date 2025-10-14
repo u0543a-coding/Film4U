@@ -6,15 +6,15 @@
   <title>FILM4U - Trang chủ</title>
   <link rel="stylesheet" href="/Film4U/css/style.css">
 </head>
-<body>
+<body class="trangchu-body">
   <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="container nav-container">
-      <a href="#" class="logo">FILM4U</a>
-      <form class="search-form">
+  <nav class="trangchu-navbar">
+    <div class="trangchu-navbar-container">
+      <a href="#" class="trangchu-navbar-logo">FILM4U</a>
+      <form class="trangchu-navbar-search">
         <input type="text" placeholder="Tìm kiếm...">
       </form>
-      <ul class="nav-links">
+      <ul class="trangchu-navbar-links">
         <li><a href="#" class="active">Trang chủ</a></li>
         <li><a href="#">Phim</a></li>
         <li><a href="#">Khuyến mãi</a></li>
@@ -24,87 +24,88 @@
   </nav>
 
   <!-- PHIM HOT TẠI RẠP -->
-  <h2 class="section-title">PHIM HOT TẠI RẠP</h2>
+  <h2 class="trangchu-section-title">PHIM HOT TẠI RẠP</h2>
+
   <!-- BANNER -->
-  <div class="banner">
+  <div class="trangchu-banner">
     <img id="bannerImage" src="https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2017/07/26020212/poster-phim-hanh-dong.jpg" alt="Banner">
-    <button class="banner-btn prev" onclick="prevImage()">❮</button>
-    <button class="banner-btn next" onclick="nextImage()">❯</button>
+    <button class="trangchu-banner-btn prev" onclick="prevImage()">❮</button>
+    <button class="trangchu-banner-btn next" onclick="nextImage()">❯</button>
   </div>
 
   <!-- PHIM ĐANG CHIẾU -->
-  <section class="movie-section">
+  <section class="trangchu-movie-section">
     <h3>Phim Đang Chiếu</h3>
-    <div class="movie-grid">
-      <div class="movie-card">
+    <div class="trangchu-movie-grid">
+      <div class="trangchu-movie-card">
         <img src="https://vnp.1cdn.vn/2023/03/15/h1_qish.jpeg" alt="">
         <h4>Tử Chiến Trên Không</h4>
         <p>118 phút | 10/09/2025</p>
-        <button class="btn red">Đặt vé</button>
+        <button class="trangchu-btn red">Đặt vé</button>
       </div>
-      <div class="movie-card">
+      <div class="trangchu-movie-card">
         <img src="https://vnp.1cdn.vn/2023/03/15/h1_qish.jpeg" alt="">
         <h4>Avatar 3: Dòng Chảy</h4>
         <p>156 phút | 10/10/2025</p>
-        <button class="btn red">Đặt vé</button>
+        <button class="trangchu-btn red">Đặt vé</button>
       </div>
-      <div class="movie-card">
+      <div class="trangchu-movie-card">
         <img src="https://vnp.1cdn.vn/2023/03/15/h1_qish.jpeg" alt="">
         <h4>Chiến Thuật Tối Chiến</h4>
         <p>114 phút | 01/10/2025</p>
-        <button class="btn red">Đặt vé</button>
+        <button class="trangchu-btn red">Đặt vé</button>
       </div>
-      <div class="movie-card">
+      <div class="trangchu-movie-card">
         <img src="https://vnp.1cdn.vn/2023/03/15/h1_qish.jpeg" alt="">
         <h4>Nhân Diện</h4>
         <p>102 phút | 10/09/2025</p>
-        <button class="btn red">Đặt vé</button>
+        <button class="trangchu-btn red">Đặt vé</button>
       </div>
     </div>
   </section>
 
   <!-- PHIM SẮP CHIẾU -->
-  <section class="movie-section">
+  <section class="trangchu-movie-section">
     <h3>Phim Sắp Chiếu</h3>
-    <div class="movie-grid">
-      <div class="movie-card">
+    <div class="trangchu-movie-grid">
+      <div class="trangchu-movie-card">
         <img src="https://vnp.1cdn.vn/2023/03/15/h1_qish.jpeg" alt="">
         <h4>Tử Chiến Trên Không</h4>
         <p>118 phút | 10/09/2025</p>
-        <button class="btn gray">Xem thêm</button>
+        <button class="trangchu-btn gray">Xem thêm</button>
       </div>
-      <div class="movie-card">
+      <div class="trangchu-movie-card">
         <img src="https://vnp.1cdn.vn/2023/03/15/h1_qish.jpeg" alt="">
         <h4>Avatar 3: Dòng Chảy</h4>
         <p>156 phút | 10/10/2025</p>
-        <button class="btn gray">Xem thêm</button>
+        <button class="trangchu-btn gray">Xem thêm</button>
       </div>
-      <div class="movie-card">
+      <div class="trangchu-movie-card">
         <img src="https://vnp.1cdn.vn/2023/03/15/h1_qish.jpeg" alt="">
         <h4>Chiến Thuật Tối Chiến</h4>
         <p>114 phút | 01/10/2025</p>
-        <button class="btn gray">Xem thêm</button>
+        <button class="trangchu-btn gray">Xem thêm</button>
       </div>
-      <div class="movie-card">
+      <div class="trangchu-movie-card">
         <img src="https://vnp.1cdn.vn/2023/03/15/h1_qish.jpeg" alt="">
         <h4>Nhân Diện</h4>
         <p>102 phút | 10/09/2025</p>
-        <button class="btn gray">Xem thêm</button>
+        <button class="trangchu-btn gray">Xem thêm</button>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer-container">
-      <div class="footer-col">
+  <footer class="trangchu-footer">
+    <div class="trangchu-footer-container">
+      <div class="trangchu-footer-col">
         <h3>FILM4U</h3>
         <p>FILM4U là nền tảng xem và chia sẻ phim trực tuyến, được cập nhật liên tục để người dùng có trải nghiệm tốt nhất.</p>
         <p><b>Liên hệ chúng tôi qua:</b></p>
         <p>Support24h@film4u.vn</p>
         <p>Phường Phước Mỹ, TP. Đà Nẵng</p>
       </div>
-      <div class="footer-col">
+      <div class="trangchu-footer-col">
         <h4>Giới thiệu</h4>
         <ul>
           <li><a href="#">Về chúng tôi</a></li>
@@ -112,7 +113,7 @@
           <li><a href="#">Chính sách bảo mật</a></li>
         </ul>
       </div>
-      <div class="footer-col">
+      <div class="trangchu-footer-col">
         <h4>Hỗ trợ</h4>
         <ul>
           <li><a href="#">Câu hỏi thường gặp</a></li>
@@ -123,7 +124,7 @@
       </div>
     </div>
     <hr>
-    <p class="copyright">© 2025 FILM4U. Tất cả các quyền được bảo lưu.</p>
+    <p class="trangchu-footer-copy">© 2025 FILM4U. Tất cả các quyền được bảo lưu.</p>
   </footer>
 
   <script>
