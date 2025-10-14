@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FILM4U - Trang chủ</title>
-  <link rel="stylesheet" href="/Film4U/css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
   <!-- NAVBAR -->
@@ -126,20 +126,6 @@
     <p class="copyright">© 2025 FILM4U. Tất cả các quyền được bảo lưu.</p>
   </footer>
 
-  <script>
-    const images = [
-      "https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2017/07/26020212/poster-phim-hanh-dong.jpg",
-      "https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2017/07/26020157/poster-phim-kinh-di.jpg"
-    ];
-    let current = 0;
-    function nextImage() {
-      current = (current + 1) % images.length;
-      document.getElementById("bannerImage").src = images[current];
-    }
-    function prevImage() {
-      current = (current - 1 + images.length) % images.length;
-      document.getElementById("bannerImage").src = images[current];
-    }
-  </script>
+  <script src="../js/homepage.js"></script>
 </body>
 </html>
