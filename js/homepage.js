@@ -1,64 +1,47 @@
-// Homepage script: fetch movies and render into the static .movie-grid containers
-document.addEventListener('DOMContentLoaded', () => {
-    const API = 'http://localhost:3000/movies';
+// Slide banner
+const images = [
+  "https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2017/07/26020212/poster-phim-hanh-dong.jpg",
+  "https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2017/07/26020157/poster-phim-kinh-di.jpg",
+];
+let current = 0;
+function nextImage() {
+  current = (current + 1) % images.length;
+  document.getElementById("bannerImage").src = images[current];
+}
+function prevImage() {
+  current = (current - 1 + images.length) % images.length;
+  document.getElementById("bannerImage").src = images[current];
+}
 
-    const fetchMovies = async () => {
-        try {
-            const res = await fetch(API);
-            if (!res.ok) throw new Error('Network response was not ok');
-            return await res.json();
-        } catch (err) {
-            console.error('Fetch movies error:', err);
-            return [];
-        }
-    };
-
-    const renderMovieCard = (movie) => {
-        const img = movie.poster_url || movie.image || '';
-        const title = movie.title || movie.name || 'Không có tiêu đề';
-        const duration = movie.duration_minutes ?? movie.duration ?? '';
-        const rawDate = movie.release_date || movie.releaseDate || '';
-        let release = '';
-        if (rawDate) {
-            try { release = new Date(rawDate).toLocaleDateString('vi-VN'); } catch (e) { release = rawDate; }
-        }
-
-        const wrapper = document.createElement('div');
-        wrapper.className = 'movie-card';
-        wrapper.innerHTML = `
-            <img src="${img}" alt="${title}">
-            <h4>${title}</h4>
-            <p>${duration ? duration + ' phút' : ''}${duration && release ? ' | ' : ''}${release}</p>
-            <button class="btn red">Đặt vé</button>
-        `;
-        return wrapper;
-    };
-
-    (async () => {
-        const movies = await fetchMovies();
-        if (!movies.length) return;
-
-        const nowGrid = document.querySelectorAll('.movie-section')[0]?.querySelector('.movie-grid');
-        const comingGrid = document.querySelectorAll('.movie-section')[1]?.querySelector('.movie-grid');
-
-        // Filter by status if present in JSON
-        const nowShowing = movies.filter(m => m.status === 'now_showing');
-        const comingSoon = movies.filter(m => m.status === 'coming_soon');
-
-        // If no status fields, just split first half/second half to show something
-        if (nowShowing.length === 0 && comingSoon.length === 0) {
-            const half = Math.ceil(movies.length / 2);
-            nowShowing.push(...movies.slice(0, half));
-            comingSoon.push(...movies.slice(half));
-        }
-
-        if (nowGrid) {
-            nowGrid.innerHTML = '';
-            nowShowing.forEach(m => nowGrid.appendChild(renderMovieCard(m)));
-        }
-        if (comingGrid) {
-            comingGrid.innerHTML = '';
-            comingSoon.forEach(m => comingGrid.appendChild(renderMovieCard(m)));
-        }
-    })();
-});
+// Lấy dữ liệu từ JSON Server
+// -- Hiển thị mục 
+fetch("http://localhost:3000/movies")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    // Xâu chuỗi dữ liệu thành HTML, đảm bảo chỉ hiển thị tối đa 4 phim
+    const movieGrid = document.querySelector(".movie-grid");
+    let html = "";
+    data.slice(0, 4).forEach((movie) => {
+      html += `
+          <div class="movie-card">
+              <img src="${movie.poster_url}" alt="${movie.title}">
+              <h4>${movie.title}</h4>
+              <p>${movie.duration_minutes} phút | ${movie.release_date}</p>
+              <button class="btn red">Đặt vé</button>
+          </div>
+          `;
+    });
+    movieGrid.innerHTML = html;
+    console.log(data);
+  })
+  .catch((error) => {
+    console.error(
+      "There has been a problem with your fetch operation: ",
+      error
+    );
+  });
