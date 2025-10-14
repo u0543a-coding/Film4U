@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/Film4U/css/style.css">
+  <title>Đặt Ghế Xem Phim</title>
+</head>
+<body>
+  <div class="container">
+    <h2>Mời Bạn Chọn Ghế</h2>
+
+    <div class="legend">
+      <div><span style="background:#4CAF50"></span> Ghế bạn chọn</div>
+      <div><span style="background:#e0e0e0"></span> Còn trống</div>
+      <div><span style="background:#999"></span> Đã bán</div>
+    </div>
+
+    <div class="screen">MÀN HÌNH</div>
+
+    <div class="seat-container" id="seatContainer">
+      <!-- Hàng ghế (tạm để trống, thêm JS sau) -->
+    </div>
+
+    <div class="info" id="ticketInfo">
+      <p><strong>Phim:</strong> Tee Yod 3: Quỷ Ăn Tạng</p>
+      <p><strong>Rạp:</strong> Rio Đà Nẵng | <strong>Suất:</strong> 21:40 - 14/10/2025</p>
+      <p><strong>Phòng chiếu:</strong> 05 | <strong>Ghế đã chọn:</strong> <span id="selectedSeats">0</span></p>
+      <div class="total"><strong>Tổng:</strong> <span id="totalPrice">0</span> đ</div>
+    </div>
+
+    <div class="btns">
+      <button class="btn btn-back">←</button>
+      <button class="btn btn-confirm">Tiếp tục</button>
+    </div>
+  </div>
+</body>
+</html>
