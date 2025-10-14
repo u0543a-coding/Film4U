@@ -1,3 +1,4 @@
+/* Style cho Trang Chủ */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -169,3 +170,485 @@ body {
   color: #bbb;
   font-size: 14px;
 }
+
+
+
+
+
+/* Style cho Trang Đặt vé trực tuyến */
+  * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f7f8fb;
+      color: #222;
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      padding: 25px 30px;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      color: #d32f2f;
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+
+    /* Chọn rạp */
+    .cinema-select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-bottom: 25px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .cinema-select:focus {
+      border-color: #d32f2f;
+      box-shadow: 0 0 0 3px rgba(211,47,47,0.2);
+    }
+
+    /* Danh sách ngày */
+    .date-list {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .date-item {
+      flex: 1;
+      min-width: 90px;
+      text-align: center;
+      padding: 10px 0;
+      background: #eee;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .date-item:hover,
+    .date-item.active {
+      background: #d32f2f;
+      color: #fff;
+    }
+
+    /* Thông tin rạp */
+    .cinema-info {
+      background: #fafafa;
+      border-left: 5px solid #d32f2f;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    /* Phần phim */
+    .movie-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .movie-box img {
+      width: 130px;
+      height: 190px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .movie-info {
+      flex: 1;
+    }
+
+    .movie-info h4 {
+      margin-bottom: 8px;
+      color: #333;
+      font-size: 18px;
+    }
+
+    .movie-info p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    /* Giờ chiếu */
+    .showtime {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .showtime button {
+      border: 1px solid #d32f2f;
+      background: #fff;
+      color: #d32f2f;
+      border-radius: 8px;
+      padding: 8px 15px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .showtime button:hover {
+      background: #d32f2f;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .movie-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .movie-box img {
+        width: 60%;
+      }
+    }
+
+
+
+
+
+
+
+/* =========================================
+    STYLE CHUNG
+========================================= */
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f5f7fa;
+  margin: 0;
+  padding: 40px;
+  color: #333;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* =========================================
+      TRANG CHỌN GHẾ
+========================================= */
+.container-seat {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container-seat h2 {
+  text-align: center;
+  color: #26374d;
+  margin-bottom: 20px;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.legend span {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.screen {
+  text-align: center;
+  background-color: #26374d;
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+  margin: 20px 0;
+}
+
+.seat-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 5px;
+  justify-items: center;
+  margin-bottom: 20px;
+}
+
+.seat {
+  width: 30px;
+  height: 30px;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.seat:hover {
+  background-color: #d3d3d3;
+}
+
+.seat.selected {
+  background-color: #4CAF50;
+}
+
+.seat.sold {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+.info {
+  background: #f9fafc;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.total {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid #b0adad;
+  transition: 0.3s;
+}
+
+.btn-back:hover {
+  background-color: #e00d0d;
+}
+
+.btn-confirm {
+  background-color: #293e5a;
+  color: #fff;
+  border: none;
+}
+
+.btn-confirm:hover {
+  background-color: #811253;
+}
+
+/* =========================================
+      TRANG XÁC NHẬN THANH TOÁN
+========================================= */
+.container-checkout {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.left {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.card h3 {
+  background-color: #eef2f7;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  margin: 0 0 15px;
+  color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+th {
+  color: #666;
+  font-weight: 500;
+}
+
+.total-row td {
+  font-weight: bold;
+  border: none;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.summary,
+.note {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  font-size: 14px;
+}
+
+.summary strong {
+  display: block;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.total-box {
+  text-align: center;
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.total-box h4 {
+  margin: 0;
+  color: #333;
+}
+
+.btns-checkout {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.btns-checkout .btn {
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.btns-checkout .btn-back:hover {
+  background-color: #f0f0f0;
+}
+
+.btns-checkout .btn-confirm {
+  background-color: #26374d;
+  color: #fff;
+  border: none;
+}
+
+.btns-checkout .btn-confirm:hover {
+  background-color: #1e2e42;
+}
+
+/* =========================================
+          POPUP THÀNH CÔNG
+========================================= */
+.popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px 35px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  animation: fadeIn 0.3s ease;
+}
+
+.popup-box h2 {
+  margin: 0;
+  color: #28a745;
+}
+
+.popup-box p {
+  margin: 10px 0 20px;
+  color: #444;
+}
+
+.popup-box button {
+  background-color: #26374d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
