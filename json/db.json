@@ -1,100 +1,71 @@
 {
-    "user": [
+    "users": [
         {
-            "fullname": "Rufus Gerlach",
-            "email": "Kenneth9@yahoo.com",
-            "password": "XfcN9R0yioey6Kq",
-            "phone_number": "1-407-363-3773 x925",
-            "role": "role 1",
-            "create_At": "2025-05-13T09:21:19.697Z",
-            "id": "1"
+            "id": 1,
+            "fullName": "Admin Film4U",
+            "email": "admin@film4u.com",
+            "password": "adminpassword",
+            "phoneNumber": "0901234567",
+            "role": "admin",
+            "createdAt": "2025-10-01T10:00:00.000Z"
         },
         {
-            "fullname": "Natasha Nitzsche",
-            "email": "Magnolia_Lowe70@yahoo.com",
-            "password": "EqyN76brw9rS4Pb",
-            "phone_number": "1-616-752-1775",
-            "role": "role 2",
-            "create_At": "2025-06-23T05:01:57.790Z",
-            "id": "2"
+            "id": 2,
+            "fullName": "Nguyễn Văn A",
+            "email": "nguyenvana@gmail.com",
+            "password": "userpassword",
+            "phoneNumber": "0987654321",
+            "role": "user",
+            "createdAt": "2025-10-02T11:30:00.000Z"
+        }
+    ],
+    "genres": [
+        {
+            "id": 1,
+            "name": "Hành Động"
         },
         {
-            "fullname": "Neal West",
-            "email": "Karine_Pouros@yahoo.com",
-            "password": "G5cWj1OmDVSbnpO",
-            "phone_number": "859-364-1952 x28438",
-            "role": "role 3",
-            "create_At": "2025-09-28T08:03:46.369Z",
-            "id": "3"
+            "id": 2,
+            "name": "Phiêu Lưu"
         },
         {
-            "fullname": "Lynne Stokes DVM",
-            "email": "Treva.Hartmann6@hotmail.com",
-            "password": "gen8GbqmLjHtuDA",
-            "phone_number": "664.561.0994 x33082",
-            "role": "role 4",
-            "create_At": "2024-12-04T07:06:18.929Z",
-            "id": "4"
+            "id": 3,
+            "name": "Hoạt Hình"
         },
         {
-            "fullname": "Kristopher Zieme",
-            "email": "Jovany_Lindgren10@gmail.com",
-            "password": "YqYkfUjHKN51r8R",
-            "phone_number": "1-537-200-2821",
-            "role": "role 5",
-            "create_At": "2025-02-07T02:53:39.727Z",
-            "id": "5"
+            "id": 4,
+            "name": "Gia Đình"
         },
         {
-            "fullname": "Bessie Hegmann",
-            "email": "Kayleigh.Gleason5@hotmail.com",
-            "password": "ZBjdxkhvMW7J_0l",
-            "phone_number": "213.910.1006 x8850",
-            "role": "role 6",
-            "create_At": "2025-05-29T12:11:23.356Z",
-            "id": "6"
+            "id": 5,
+            "name": "Chính Kịch"
         },
         {
-            "fullname": "Terrence Crona",
-            "email": "Tierra.Nikolaus46@yahoo.com",
-            "password": "AtFqUXq0SrAUGrw",
-            "phone_number": "363.616.6356 x98464",
-            "role": "role 7",
-            "create_At": "2024-11-30T16:41:37.801Z",
-            "id": "7"
+            "id": 6,
+            "name": "Kinh Dị"
         },
         {
-            "fullname": "Darlene McDermott",
-            "email": "Laurel.Leannon@gmail.com",
-            "password": "WIvMjiEqqm5AEch",
-            "phone_number": "(845) 483-7281 x32994",
-            "role": "role 8",
-            "create_At": "2025-06-10T22:51:31.164Z",
-            "id": "8"
+            "id": 7,
+            "name": "Hài Kịch"
         },
         {
-            "fullname": "Estelle Ritchie",
-            "email": "Rosella_Strosin@hotmail.com",
-            "password": "EmaNMWNOHAu2kNY",
-            "phone_number": "1-359-223-4399",
-            "role": "role 9",
-            "create_At": "2025-07-29T03:48:16.329Z",
-            "id": "9"
-        },
-        {
-            "fullname": "Amanda Little",
-            "email": "Darlene.Greenholt21@yahoo.com",
-            "password": "m5uGWV5jevfH_sM",
-            "phone_number": "695-866-5184 x6270",
-            "role": "role 10",
-            "create_At": "2025-07-25T22:36:01.957Z",
-            "id": "10"
+            "id": 8,
+            "name": "Khoa Học Viễn Tưởng"
         }
     ],
     "movies": [
         {
             "id": 1,
             "title": "GIA TÀI CỦA NGOẠI",
+            "genreIds": [
+                5,
+                4
+            ],
+            "duration_minutes": 127,
+            "director": "Pat Boonnitipat",
+            "actors": "Putthipong Assaratanakul, Usha Seamkhum",
+            "release_date": "2024-06-07",
+            "trailer_url": "https://www.youtube.com/watch?v=f4rs22gGzMA",
             "description": "M, một sinh viên đại học, quyết định về chăm sóc bà ngoại đang mắc bệnh ung thư giai đoạn cuối, với mục đích bí mật là để thừa kế gia tài hàng triệu baht của bà. Tuy nhiên, khi sống cùng bà, cậu dần khám phá ra những giá trị tình thân còn quý giá hơn cả tiền bạc.",
             "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/l/a/lan_of_heir_main_poster_1_.jpg",
             "status": "now_showing"
@@ -102,6 +73,16 @@
         {
             "id": 2,
             "title": "NHỮNG MẢNH GHÉP CẢM XÚC 2",
+            "genreIds": [
+                3,
+                4,
+                7
+            ],
+            "duration_minutes": 96,
+            "director": "Kelsey Mann",
+            "actors": "Amy Poehler, Maya Hawke, Lewis Black (lồng tiếng)",
+            "release_date": "2024-06-14",
+            "trailer_url": "https://www.youtube.com/watch?v=Vl3V_g5-k0E",
             "description": "Riley bước vào tuổi dậy thì, và trung tâm điều khiển cảm xúc của cô bé phải đối mặt với một cuộc \"phá dỡ\" lớn để chào đón những cảm xúc hoàn toàn mới, phức tạp hơn như Lo Âu, Ganh Tị, Xấu Hổ và Chán Nản.",
             "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/i/o/io2_main_poster_1__1.jpg",
             "status": "now_showing"
@@ -109,6 +90,16 @@
         {
             "id": 3,
             "title": "VÙNG ĐẤT CÂM LẶNG: NGÀY ĐẦU TIÊN",
+            "genreIds": [
+                6,
+                8,
+                5
+            ],
+            "duration_minutes": 100,
+            "director": "Michael Sarnoski",
+            "actors": "Lupita Nyong'o, Joseph Quinn, Djimon Hounsou",
+            "release_date": "2024-06-28",
+            "trailer_url": "https://www.youtube.com/watch?v=YPY7J-flzE8",
             "description": "Lấy bối cảnh ngày đầu tiên của cuộc xâm lăng của các sinh vật săn mồi bằng âm thanh, bộ phim theo chân một người phụ nữ phải tìm cách sống sót qua những giờ phút kinh hoàng tại một trong những thành phố ồn ào nhất thế giới - New York.",
             "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/q/p/qp-do_main_poster_1__1.jpg",
             "status": "now_showing"
@@ -116,6 +107,17 @@
         {
             "id": 4,
             "title": "KẺ TRỘM MẶT TRĂNG 4",
+            "genreIds": [
+                3,
+                7,
+                4,
+                1
+            ],
+            "duration_minutes": 95,
+            "director": "Chris Renaud",
+            "actors": "Steve Carell, Kristen Wiig, Will Ferrell (lồng tiếng)",
+            "release_date": "2024-07-03",
+            "trailer_url": "https://www.youtube.com/watch?v=qQ4b9iB_b8U",
             "description": "Gru cùng gia đình chào đón thành viên mới, Gru Jr., và cậu bé dường như có mục tiêu duy nhất là làm khổ bố mình. Mọi chuyện trở nên tồi tệ hơn khi gia đình Gru phải đối mặt với kẻ thù mới và buộc phải chạy trốn.",
             "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/d/m/dm4_main_poster_1__1.jpg",
             "status": "now_showing"
@@ -123,6 +125,16 @@
         {
             "id": 5,
             "title": "DEADPOOL & WOLVERINE",
+            "genreIds": [
+                1,
+                7,
+                8
+            ],
+            "duration_minutes": 127,
+            "director": "Shawn Levy",
+            "actors": "Ryan Reynolds, Hugh Jackman, Emma Corrin",
+            "release_date": "2024-07-26",
+            "trailer_url": "https://www.youtube.com/watch?v=73_1biulkYk",
             "description": "Wolverine đang hồi phục sau chấn thương thì gặp phải Deadpool lắm lời. Họ hợp sức để chiến đấu chống lại một kẻ thù chung, tạo nên một trong những cặp đôi bất đắc dĩ và hài hước nhất vũ trụ Marvel.",
             "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/d/p/dp3_main_poster_1__1.jpg",
             "status": "coming_soon"
@@ -130,6 +142,14 @@
         {
             "id": 6,
             "title": "GIẢI MÃ SÂN BAY",
+            "genreIds": [
+                5
+            ],
+            "duration_minutes": 90,
+            "director": "Lý Hải",
+            "actors": "Trấn Thành, Hari Won",
+            "release_date": "2024-07-12",
+            "trailer_url": "https://www.youtube.com/watch?v=example_trailer_6",
             "description": "Một bộ phim tài liệu khám phá những bí ẩn và hoạt động phức tạp đằng sau một trong những sân bay bận rộn nhất thế giới, nơi mỗi quyết định đều có thể ảnh hưởng đến hàng ngàn sinh mạng.",
             "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/s/n/snvn_main-poster_1_.jpg",
             "status": "coming_soon"
@@ -137,6 +157,16 @@
         {
             "id": 7,
             "title": "LỐC XOÁY TỬ THẦN",
+            "genreIds": [
+                1,
+                2,
+                5
+            ],
+            "duration_minutes": 122,
+            "director": "Lee Isaac Chung",
+            "actors": "Daisy Edgar-Jones, Glen Powell, Anthony Ramos",
+            "release_date": "2024-07-19",
+            "trailer_url": "https://www.youtube.com/watch?v=wtnkF4I38oI",
             "description": "Một cặp vợ chồng chuyên săn lốc xoáy liều mạng thử nghiệm một hệ thống cảnh báo thời tiết đột phá, đối mặt với những cơn cuồng phong kinh hoàng nhất từng được ghi nhận ở trung tâm Oklahoma.",
             "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/t/w/twisters_main_poster_1__1.jpg",
             "status": "coming_soon"
@@ -144,9 +174,103 @@
         {
             "id": 8,
             "title": "BÍ KÍP LUYỆN RỒNG (Live-action)",
+            "genreIds": [
+                2,
+                4
+            ],
+            "duration_minutes": 105,
+            "director": "Dean DeBlois",
+            "actors": "Mason Thames, Nico Parker, Gerard Butler",
+            "release_date": "2025-06-13",
+            "trailer_url": "https://www.youtube.com/watch?v=example_trailer_8",
             "description": "Chuyển thể từ bộ phim hoạt hình kinh điển, câu chuyện kể về cậu bé Hiccup yếu ớt, người đã thách thức truyền thống của bộ tộc Viking khi kết bạn với kẻ thù đáng sợ nhất của họ - một con rồng tên Răng Sún.",
             "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/h/t/httyd_teaser_poster_1_.jpg",
             "status": "coming_soon"
+        }
+    ],
+    "cinemas": [
+        {
+            "id": 1,
+            "name": "Film4U Gò Vấp",
+            "address": "1 Quang Trung, Phường 3, Quận Gò Vấp",
+            "city": "Hồ Chí Minh"
+        },
+        {
+            "id": 2,
+            "name": "Film4U Quận 7",
+            "address": "101 Tôn Dật Tiên, Tân Phú, Quận 7",
+            "city": "Hồ Chí Minh"
+        },
+        {
+            "id": 4,
+            "name": "Film4U Cầu Giấy",
+            "address": "222 Trần Duy Hưng, Trung Hoà, Quận Cầu Giấy",
+            "city": "Hà Nội"
+        }
+    ],
+    "cinema_rooms": [
+        {
+            "id": 1,
+            "cinemaId": 1,
+            "room_name": "Phòng 1",
+            "seat_layout": {
+                "rows": 8,
+                "seatsPerRow": 12
+            }
+        },
+        {
+            "id": 2,
+            "cinemaId": 1,
+            "room_name": "Phòng 2",
+            "seat_layout": {
+                "rows": 10,
+                "seatsPerRow": 15
+            }
+        },
+        {
+            "id": 13,
+            "cinemaId": 4,
+            "room_name": "Phòng 1",
+            "seat_layout": {
+                "rows": 10,
+                "seatsPerRow": 15
+            }
+        }
+    ],
+    "showtimes": [
+        {
+            "id": 1,
+            "movieId": 1,
+            "roomId": 2,
+            "startTime": "2025-10-25T19:30:00",
+            "price": 110000
+        },
+        {
+            "id": 2,
+            "movieId": 2,
+            "roomId": 13,
+            "startTime": "2025-10-25T20:00:00",
+            "price": 120000
+        },
+        {
+            "id": 3,
+            "movieId": 1,
+            "roomId": 13,
+            "startTime": "2025-10-25T21:00:00",
+            "price": 125000
+        }
+    ],
+    "bookings": [
+        {
+            "id": 1,
+            "userId": 2,
+            "showtimeId": 1,
+            "seats": [
+                "G7",
+                "G8"
+            ],
+            "totalPrice": 220000,
+            "bookingTime": "2025-10-20T14:00:00Z"
         }
     ]
 }
