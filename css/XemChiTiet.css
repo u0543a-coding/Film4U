@@ -262,3 +262,36 @@
         margin-top: 10px;
       }
     }
+
+
+
+    /* Style from phần đánh giá */
+  .xemchitiet-review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.xemchitiet-input-content {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: none;
+  font-size: 14px;
+}
+
+.xemchitiet-submit-btn {
+  align-self: flex-end;
+  background-color: #e50914;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.xemchitiet-submit-btn:hover {
+  background-color: #b0070f;
+}
