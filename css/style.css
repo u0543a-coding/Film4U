@@ -1,4 +1,3 @@
-/* ===== Trang Chủ Style ===== */
 .trangchu-body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -8,12 +7,13 @@
 /* NAVBAR */
 .trangchu-navbar {
   background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: 10px 0;
   position: sticky;
   top: 0;
   z-index: 100;
 }
+
 .trangchu-navbar-container {
   width: 90%;
   margin: auto;
@@ -21,31 +21,37 @@
   align-items: center;
   justify-content: space-between;
 }
+
 .trangchu-navbar-logo {
   font-weight: bold;
   color: #d32f2f;
   text-decoration: none;
   font-size: 20px;
 }
+
 .trangchu-navbar-search input {
   padding: 6px 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
 .trangchu-navbar-links {
   list-style: none;
   display: flex;
   gap: 15px;
   margin: 0;
 }
+
 .trangchu-navbar-links li a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
 }
+
 .trangchu-navbar-links a.active {
   color: #d32f2f;
 }
+
 
 /* SECTION TITLE */
 .trangchu-section-title {
@@ -55,62 +61,77 @@
   font-weight: bold;
 }
 
+
 /* BANNER */
 .trangchu-banner {
   width: 90%;
   margin: 15px auto;
   position: relative;
 }
+
 .trangchu-banner img {
   width: 100%;
   height: 400px;
   object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
+
 .trangchu-banner-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   border: none;
   color: white;
   font-size: 24px;
   padding: 6px 12px;
   cursor: pointer;
 }
-.trangchu-banner-btn.prev { left: 10px; }
-.trangchu-banner-btn.next { right: 10px; }
+
+.trangchu-banner-btn.prev {
+  left: 10px;
+}
+
+.trangchu-banner-btn.next {
+  right: 10px;
+}
 
 /* MOVIES */
 .trangchu-movie-section {
   width: 90%;
   margin: 30px auto;
 }
+
 .trangchu-movie-section h3 {
   color: #111;
   margin-bottom: 15px;
 }
+
 .trangchu-movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
 }
+
 .trangchu-movie-card {
   background: #fff;
   border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   text-align: center;
   padding-bottom: 10px;
 }
+
 .trangchu-movie-card img {
   width: 100%;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
+
 .trangchu-movie-card h4 {
   margin: 10px 0 5px;
 }
+
 .trangchu-movie-card p {
   font-size: 14px;
   color: #666;
@@ -124,9 +145,18 @@
   cursor: pointer;
   color: #fff;
 }
-.trangchu-btn.red { background: #d32f2f; }
-.trangchu-btn.gray { background: #555; }
-.trangchu-btn:hover { opacity: 0.9; }
+
+.trangchu-btn.red {
+  background: #d32f2f;
+}
+
+.trangchu-btn.gray {
+  background: #555;
+}
+
+.trangchu-btn:hover {
+  opacity: 0.9;
+}
 
 
 /* FOOTER */
@@ -135,6 +165,7 @@
   color: #ddd;
   padding: 30px 0;
 }
+
 .trangchu-footer-container {
   width: 90%;
   margin: auto;
@@ -143,34 +174,42 @@
   gap: 30px;
   justify-content: space-between;
 }
+
 .trangchu-footer-col {
   flex: 1 1 250px;
 }
-.trangchu-footer-col h3, .trangchu-footer-col h4 {
+
+.trangchu-footer-col h3,
+.trangchu-footer-col h4 {
   color: #d32f2f;
 }
+
 .trangchu-footer-col ul {
   list-style: none;
   padding: 0;
 }
+
 .trangchu-footer-col ul li {
   margin: 6px 0;
 }
+
 .trangchu-footer-col ul a {
   color: #ddd;
   text-decoration: none;
 }
+
 .trangchu-footer-col ul a:hover {
   color: #fff;
 }
+
 .trangchu-footer hr {
   border: 0.5px solid #444;
   margin: 20px auto;
   width: 90%;
 }
+
 .trangchu-footer-copy {
   text-align: center;
   color: #bbb;
   font-size: 14px;
 }
-

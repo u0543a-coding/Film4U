@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đánh giá Phim</title>
+  <link rel="stylesheet" href="../../css/dat-ve/film-information.css">
+</head>
+
+<body class="xemchitiet-body">
+  <div class="xemchitiet-container">
+    <!-- Banner Section -->
+    <div class="xemchitiet-banner">
+      <div class="xemchitiet-poster-section">
+        <div class="xemchitiet-poster">
+          <img src="https://vnp.1cdn.vn/2023/03/15/h1_qish.jpeg" alt="Poster phim Bố Già 2">
+        </div>
+        <button class="xemchitiet-book-ticket">Đặt vé</button>
+      </div>
+
+      <div class="xemchitiet-movie-info">
+        <h1 class="xemchitiet-movie-title">Bố Già 2</h1>
+        <div class="xemchitiet-movie-genre">Hoạt hình, Hài, Gia đình</div>
+
+        <div class="xemchitiet-movie-details">
+          <div class="xemchitiet-detail-item">
+            <span class="xemchitiet-detail-label">Hài lòng</span>
+            <span class="xemchitiet-detail-value">97%</span>
+          </div>
+          <div class="xemchitiet-detail-item">
+            <span class="xemchitiet-detail-label">Lịch chiếu</span>
+            <span class="xemchitiet-detail-value">19/09/2025</span>
+          </div>
+          <div class="xemchitiet-detail-item">
+            <span class="xemchitiet-detail-label">Thời lượng</span>
+            <span class="xemchitiet-detail-value">118 phút</span>
+          </div>
+          <div class="xemchitiet-detail-item">
+            <span class="xemchitiet-detail-label">Độ tuổi</span>
+            <span class="xemchitiet-detail-value">13+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="xemchitiet-content">
+      <div class="xemchitiet-info-section">
+        <h2 class="xemchitiet-section-title">Thông tin phim</h2>
+        <div class="xemchitiet-info-item">
+          <span class="xemchitiet-info-label">Mô tả:</span>
+          <div class="xemchitiet-info-content">
+            <p>Inside Out 2 tiếp tục hành trình cảm xúc trong tâm trí của Riley khi cô bước vào tuổi thiếu niên. Các cảm
+              xúc quen thuộc như Joy, Sadness, Anger, Fear và Disgust phải đối mặt với những cảm xúc mới đầy phức tạp.
+            </p>
+          </div>
+        </div>
+
+        <div class="xemchitiet-info-item">
+          <span class="xemchitiet-info-label">Đạo diễn:</span>
+          <div class="xemchitiet-info-content">
+            <p>Kelsey Mann</p>
+          </div>
+        </div>
+
+        <div class="xemchitiet-info-item">
+          <span class="xemchitiet-info-label">Diễn viên:</span>
+          <div class="xemchitiet-info-content">
+            <p>Amy Poehler, Maya Hawke, Phyllis Smith, Lewis Black</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews Section -->
+      <div class="xemchitiet-reviews-section">
+        <h2 class="xemchitiet-section-title">Đánh giá</h2>
+        <div class="xemchitiet-review-item">
+          <div class="xemchitiet-review-header">
+            <div class="xemchitiet-avatar">NV</div>
+            <div class="xemchitiet-reviewer-info">
+              <div class="xemchitiet-reviewer-name">Nguyễn Văn A</div>
+              <div class="xemchitiet-review-time">2 giờ trước</div>
+            </div>
+          </div>
+          <div class="xemchitiet-review-content">
+            <div class="xemchitiet-review-text">
+              <p>Phim rất cảm động, phù hợp cho mọi lứa tuổi. Phần hình ảnh và âm thanh cực kỳ xuất sắc!</p>
+            </div>
+            <button class="xemchitiet-like-btn">Like</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  fetch('http://localhost:3000/movies')
+    .then(response => response.json())
+    .then(movieData => {
+
+    })
+</script>
+</html>

@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FILM4U - Trang chủ</title>
-  <link rel="stylesheet" href="/Film4U/css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="trangchu-body">
-  <!-- NAVBAR -->
+  <!-- Navbar -->
   <nav class="trangchu-navbar">
     <div class="trangchu-navbar-container">
       <a href="#" class="trangchu-navbar-logo">FILM4U</a>
@@ -15,18 +15,17 @@
         <input type="text" placeholder="Tìm kiếm...">
       </form>
       <ul class="trangchu-navbar-links">
-        <li><a href="#" class="active">Trang chủ</a></li>
-        <li><a href="#">Phim</a></li>
-        <li><a href="#">Khuyến mãi</a></li>
+        <li><a href="homepage.html" class="active">Trang chủ</a></li>
+        <li><a href="film.html">Phim</a></li>
+        <li><a href="promotion.html">Khuyến mãi</a></li>
         <li><a href="#">Tài khoản</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- PHIM HOT TẠI RẠP -->
   <h2 class="trangchu-section-title">PHIM HOT TẠI RẠP</h2>
 
-  <!-- BANNER -->
+  <!-- Banner -->
   <div class="trangchu-banner">
     <img id="bannerImage" src="https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2017/07/26020212/poster-phim-hanh-dong.jpg" alt="Banner">
     <button class="trangchu-banner-btn prev" onclick="prevImage()">❮</button>
@@ -127,20 +126,6 @@
     <p class="trangchu-footer-copy">© 2025 FILM4U. Tất cả các quyền được bảo lưu.</p>
   </footer>
 
-  <script>
-    const images = [
-      "https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2017/07/26020212/poster-phim-hanh-dong.jpg",
-      "https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2017/07/26020157/poster-phim-kinh-di.jpg"
-    ];
-    let current = 0;
-    function nextImage() {
-      current = (current + 1) % images.length;
-      document.getElementById("bannerImage").src = images[current];
-    }
-    function prevImage() {
-      current = (current - 1 + images.length) % images.length;
-      document.getElementById("bannerImage").src = images[current];
-    }
-  </script>
+  <script src='../js/homepage.js'></script>
 </body>
 </html>

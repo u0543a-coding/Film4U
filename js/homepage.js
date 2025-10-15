@@ -14,7 +14,7 @@ function prevImage() {
 }
 
 // Lấy dữ liệu từ JSON Server
-// -- Hiển thị mục 
+// -- Hiển thị mục
 fetch("http://localhost:3000/movies")
   .then((response) => {
     if (!response.ok) {
@@ -24,10 +24,14 @@ fetch("http://localhost:3000/movies")
   })
   .then((data) => {
     // Xâu chuỗi dữ liệu thành HTML, đảm bảo chỉ hiển thị tối đa 4 phim
-    const movieGrid = document.querySelector(".movie-grid");
-    let html = "";
-    data.slice(0, 4).forEach((movie) => {
-      html += `
+    // Hỗ trợ cả class cũ và class có tiền tố trangchu-
+    const movieGrid = document.querySelector(
+      ".movie-grid, .trangchu-movie-grid"
+    );
+    if (movieGrid) {
+      let html = "";
+      data.slice(0, 4).forEach((movie) => {
+        html += `
           <div class="movie-card">
               <img src="${movie.poster_url}" alt="${movie.title}">
               <h4>${movie.title}</h4>
@@ -35,8 +39,11 @@ fetch("http://localhost:3000/movies")
               <button class="btn red">Đặt vé</button>
           </div>
           `;
-    });
-    movieGrid.innerHTML = html;
+      });
+      movieGrid.innerHTML = html;
+    } else {
+      console.warn("movie grid element not found; skipping render");
+    }
     console.log(data);
   })
   .catch((error) => {
@@ -45,3 +52,4 @@ fetch("http://localhost:3000/movies")
       error
     );
   });
+
