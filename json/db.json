@@ -272,5 +272,19 @@
             "totalPrice": 220000,
             "bookingTime": "2025-10-20T14:00:00Z"
         }
+    ],
+    "banners": [
+        {
+            "id": 1,
+            "imageUrl": "https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2017/07/26020212/poster-phim-hanh-dong.jpg",
+            "altText": "Banner phim hành động",
+            "linkUrl": "#"
+        },
+        {
+            "id": 2,
+            "imageUrl": "https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2017/07/26020157/poster-phim-kinh-di.jpg",
+            "altText": "Banner phim kinh dị",
+            "linkUrl": "#"
+        }
     ]
 }

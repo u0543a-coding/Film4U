@@ -1,11 +1,11 @@
-.trangchu-body {
+.body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #fafafa;
 }
 
 /* NAVBAR */
-.trangchu-navbar {
+.navbar {
   background: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: 10px 0;
@@ -14,7 +14,7 @@
   z-index: 100;
 }
 
-.trangchu-navbar-container {
+.navbar-container {
   width: 90%;
   margin: auto;
   display: flex;
@@ -22,39 +22,58 @@
   justify-content: space-between;
 }
 
-.trangchu-navbar-logo {
+.navbar-logo {
   font-weight: bold;
   color: #d32f2f;
   text-decoration: none;
   font-size: 20px;
 }
 
-.trangchu-navbar-search input {
-  padding: 6px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.navbar-search {
+  display: flex;
 }
 
-.trangchu-navbar-links {
+.navbar-search input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  border-right: none;
+  outline: none;
+}
+
+.search-btn {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  color: #333;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+}
+
+.search-btn:hover {
+  background-color: #e9e9e9;
+}
+
+.navbar-links {
   list-style: none;
   display: flex;
   gap: 15px;
   margin: 0;
 }
 
-.trangchu-navbar-links li a {
+.navbar-links li a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
 }
 
-.trangchu-navbar-links a.active {
+.navbar-links a.active {
   color: #d32f2f;
 }
 
 
 /* SECTION TITLE */
-.trangchu-section-title {
+.section-title {
   text-align: center;
   color: #d32f2f;
   margin-top: 15px;
@@ -63,21 +82,22 @@
 
 
 /* BANNER */
-.trangchu-banner {
+.banner {
   width: 90%;
   margin: 15px auto;
   position: relative;
 }
 
-.trangchu-banner img {
+.banner img {
   width: 100%;
   height: 400px;
-  object-fit: cover;
+  object-fit: contain; /* Thay đổi: Hiển thị toàn bộ ảnh trong khung */
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  background-color: #000; /* Thêm: Nền đen cho các khoảng trống */
 }
 
-.trangchu-banner-btn {
+.banner-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -89,32 +109,37 @@
   cursor: pointer;
 }
 
-.trangchu-banner-btn.prev {
+.banner-btn.prev {
   left: 10px;
 }
 
-.trangchu-banner-btn.next {
+.banner-btn.next {
   right: 10px;
 }
 
 /* MOVIES */
-.trangchu-movie-section {
+.movie-section {
   width: 90%;
   margin: 30px auto;
 }
 
-.trangchu-movie-section h3 {
+.movie-section h3 {
   color: #111;
   margin-bottom: 15px;
 }
 
-.trangchu-movie-grid {
+.movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
 }
 
-.trangchu-movie-card {
+.movie-card-link {
+  text-decoration: none; /* Bỏ gạch chân */
+  color: inherit; /* Kế thừa màu chữ từ thẻ cha */
+}
+
+.movie-card, .trangchu-movie-card {
   background: #fff;
   border-radius: 6px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -122,23 +147,23 @@
   padding-bottom: 10px;
 }
 
-.trangchu-movie-card img {
+.movie-card img, .trangchu-movie-card img {
   width: 100%;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
 
-.trangchu-movie-card h4 {
+.movie-card h4, .trangchu-movie-card h4 {
   margin: 10px 0 5px;
 }
 
-.trangchu-movie-card p {
+.movie-card p, .trangchu-movie-card p {
   font-size: 14px;
   color: #666;
 }
 
 /* BUTTONS */
-.trangchu-btn {
+.btn, .trangchu-btn {
   border: none;
   border-radius: 4px;
   padding: 6px 12px;
@@ -146,27 +171,27 @@
   color: #fff;
 }
 
-.trangchu-btn.red {
+.btn.red, .trangchu-btn.red {
   background: #d32f2f;
 }
 
-.trangchu-btn.gray {
+.btn.gray, .trangchu-btn.gray {
   background: #555;
 }
 
-.trangchu-btn:hover {
+.btn:hover, .trangchu-btn:hover {
   opacity: 0.9;
 }
 
 
 /* FOOTER */
-.trangchu-footer {
+.footer {
   background: #222;
   color: #ddd;
   padding: 30px 0;
 }
 
-.trangchu-footer-container {
+.footer-container {
   width: 90%;
   margin: auto;
   display: flex;
@@ -175,40 +200,40 @@
   justify-content: space-between;
 }
 
-.trangchu-footer-col {
+.footer-col {
   flex: 1 1 250px;
 }
 
-.trangchu-footer-col h3,
-.trangchu-footer-col h4 {
+.footer-col h3,
+.footer-col h4 {
   color: #d32f2f;
 }
 
-.trangchu-footer-col ul {
+.footer-col ul {
   list-style: none;
   padding: 0;
 }
 
-.trangchu-footer-col ul li {
+.footer-col ul li {
   margin: 6px 0;
 }
 
-.trangchu-footer-col ul a {
+.footer-col ul a {
   color: #ddd;
   text-decoration: none;
 }
 
-.trangchu-footer-col ul a:hover {
+.footer-col ul a:hover {
   color: #fff;
 }
 
-.trangchu-footer hr {
+.footer hr {
   border: 0.5px solid #444;
   margin: 20px auto;
   width: 90%;
 }
 
-.trangchu-footer-copy {
+.footer-copy {
   text-align: center;
   color: #bbb;
   font-size: 14px;
