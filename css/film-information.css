@@ -1,0 +1,297 @@
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ }
+
+ .xemchitiet-body {
+   background-color: #f5f5f5;
+   color: #333;
+   line-height: 1.6;
+ }
+
+ .xemchitiet-container {
+   max-width: 1200px;
+   margin: 0 auto;
+   background-color: white;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+ }
+
+ /* Banner Section */
+ .xemchitiet-banner {
+   display: flex;
+   background-color: #1a1a2e;
+   color: white;
+   padding: 30px;
+   gap: 30px;
+ }
+
+ .xemchitiet-poster-section {
+   flex: 0 0 300px;
+ }
+
+ .xemchitiet-poster {
+   width: 100%;
+   height: 400px;
+   border-radius: 8px;
+   overflow: hidden;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+ }
+
+ .xemchitiet-poster img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   display: block;
+ }
+
+ .xemchitiet-book-ticket {
+   width: 100%;
+   background-color: #e63946;
+   color: white;
+   border: none;
+   padding: 12px;
+   border-radius: 4px;
+   font-weight: bold;
+   cursor: pointer;
+   margin-top: 15px;
+   transition: background-color 0.3s;
+   font-size: 16px;
+ }
+
+ .xemchitiet-book-ticket:hover {
+   background-color: #c1121f;
+   transform: translateY(-2px);
+ }
+
+ .xemchitiet-movie-info {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+ }
+
+ .xemchitiet-movie-title {
+   font-size: 32px;
+   margin-bottom: 5px;
+   color: #fff;
+ }
+
+ .xemchitiet-movie-genre {
+   font-size: 18px;
+   color: #ccc;
+   margin-bottom: 25px;
+ }
+
+ .xemchitiet-movie-details {
+   display: flex;
+   justify-content: space-between;
+   gap: 15px;
+ }
+
+ .xemchitiet-detail-item {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+   flex: 1;
+ }
+
+ .xemchitiet-detail-label {
+   font-weight: bold;
+   margin-bottom: 8px;
+   color: #aaa;
+   font-size: 14px;
+ }
+
+ .xemchitiet-detail-value {
+   font-size: 16px;
+   color: #fff;
+ }
+
+ /* Content Section */
+ .xemchitiet-content {
+   display: flex;
+   padding: 30px;
+   gap: 30px;
+ }
+
+ .xemchitiet-info-section,
+ .xemchitiet-reviews-section {
+   flex: 1;
+ }
+
+ .xemchitiet-section-title {
+   font-size: 24px;
+   margin-bottom: 20px;
+   color: #1a1a2e;
+   padding-bottom: 10px;
+   border-bottom: 2px solid #e63946;
+ }
+
+ .xemchitiet-info-item {
+   margin-bottom: 20px;
+ }
+
+ .xemchitiet-info-label {
+   font-weight: bold;
+   display: block;
+   margin-bottom: 8px;
+   color: #1a1a2e;
+   font-size: 18px;
+ }
+
+ .xemchitiet-info-content {
+   line-height: 1.6;
+   color: #555;
+ }
+
+ /* Reviews Section */
+ .xemchitiet-review-item {
+   margin-bottom: 25px;
+   padding-bottom: 20px;
+   border-bottom: 1px solid #eee;
+ }
+
+ .xemchitiet-review-header {
+   display: flex;
+   align-items: center;
+   margin-bottom: 15px;
+ }
+
+ .xemchitiet-avatar {
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   background: linear-gradient(135deg, #e63946, #ff7aa2);
+   margin-right: 15px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-weight: bold;
+   color: white;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+ }
+
+ .xemchitiet-reviewer-info {
+   flex: 1;
+ }
+
+ .xemchitiet-reviewer-name {
+   font-weight: bold;
+   margin-bottom: 5px;
+   color: #1a1a2e;
+ }
+
+ .xemchitiet-review-time {
+   color: #666;
+   font-size: 14px;
+ }
+
+ .xemchitiet-review-content {
+   background-color: #f8f9fa;
+   padding: 15px;
+   border-radius: 8px;
+   position: relative;
+   margin-left: 65px;
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-start;
+ }
+
+ .xemchitiet-review-text {
+   flex: 1;
+   margin-right: 15px;
+ }
+
+ .xemchitiet-like-btn {
+   background: none;
+   border: none;
+   color: #666;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   gap: 5px;
+   font-size: 14px;
+   transition: color 0.3s;
+   padding: 5px 10px;
+   border-radius: 4px;
+ }
+
+ .xemchitiet-like-btn:hover {
+   color: #e63946;
+   background-color: rgba(230, 57, 70, 0.1);
+ }
+
+ @media (max-width: 900px) {
+   .xemchitiet-banner {
+     flex-direction: column;
+   }
+
+   .xemchitiet-content {
+     flex-direction: column;
+   }
+
+   .xemchitiet-movie-details {
+     flex-wrap: wrap;
+   }
+
+   .xemchitiet-detail-item {
+     flex: 0 0 calc(50% - 10px);
+     margin-bottom: 15px;
+   }
+
+   .xemchitiet-poster-section {
+     flex: 0 0 auto;
+   }
+ }
+
+ @media (max-width: 600px) {
+   .xemchitiet-detail-item {
+     flex: 0 0 100%;
+   }
+
+   .xemchitiet-review-content {
+     flex-direction: column;
+     align-items: flex-start;
+   }
+
+   .xemchitiet-like-btn {
+     align-self: flex-end;
+     margin-top: 10px;
+   }
+ }
+
+
+
+ /* Style from phần đánh giá */
+ .xemchitiet-review-form {
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+   margin-bottom: 20px;
+ }
+
+ .xemchitiet-input-content {
+   padding: 10px;
+   border: 1px solid #ccc;
+   border-radius: 8px;
+   resize: none;
+   font-size: 14px;
+ }
+
+ .xemchitiet-submit-btn {
+   align-self: flex-end;
+   background-color: #e50914;
+   color: #fff;
+   border: none;
+   padding: 8px 16px;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: 0.2s;
+ }
+
+ .xemchitiet-submit-btn:hover {
+   background-color: #b0070f;
+ }

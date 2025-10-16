@@ -35,7 +35,6 @@ async function setupBanner() {
 
 
 
-
 /**
  * Hàm để hiển thị danh sách phim vào một container cụ thể
  * @param {Array} movies - Mảng các đối tượng phim
@@ -48,11 +47,15 @@ function renderMovies(movies, container, isComingSoon) {
     return;
   }
 
-  // Giới hạn chỉ 4 phim cho mỗi mục
-  // const moviesToDisplay = movies.slice(0, 4);
   let html = "";
 
-  movies.slice(0, 4).forEach((movie) => {
+  // Nếu không có phim, hiển thị thông báo
+  if (movies.length === 0) {
+    container.innerHTML = "<p>Không tìm thấy phim phù hợp.</p>";
+    return;
+  }
+
+  movies.forEach((movie) => {
     const buttonHTML = isComingSoon
       ? `<button class="btn gray">Xem thêm</button>`
       : `<button class="btn red">Đặt vé</button>`;
@@ -118,105 +121,70 @@ async function fetchAndDisplayMovies() {
 
 
 /**
- * Hiển thị kết quả tìm kiếm
- * @param {Array} movies - Mảng phim tìm được
+ * Xử lý tìm kiếm phim dựa trên tiêu đề hoặc diễn viên.
+ * @param {Event} event - Sự kiện submit của form.
  */
-function renderSearchResults(movies) {
-  const container = document.getElementById("search-results-grid");
-  if (!container) return;
 
-  if (movies.length === 0) {
-    container.innerHTML =
-      "<p>Không tìm thấy phim nào phù hợp với từ khóa của bạn.</p>";
-    return;
-  }
+async function handleSearch(event) {
+  event.preventDefault(); // Ngăn form gửi đi và tải lại trang
 
-  let html = "";
-  movies.forEach((movie) => {
-    // Xác định nút bấm dựa trên trạng thái phim
-    const buttonHTML =
-      movie.status === "coming_soon"
-        ? `<button class="btn gray">Xem thêm</button>`
-        : `<button class="btn red">Đặt vé</button>`;
+  const searchInput = document.getElementById("search-input");
+  const query = searchInput.value.trim().toLowerCase();
 
-    html += `
-      <a href="film-information.html?id=${movie.id}" class="movie-card-link">
-        <div class="movie-card">
-            <img src="${movie.poster_url}" alt="${movie.title}">
-            <h4>${movie.title}</h4>
-            <p>${movie.duration_minutes} phút | ${new Date(movie.release_date).toLocaleDateString("vi-VN")}</p>
-            ${buttonHTML}
-        </div>
-      </a>
-    `;
-  });
-  container.innerHTML = html;
-}
+  const searchResultsSection = document.getElementById("search-results-section");
+  const nowShowingSection = document.getElementById("now-showing-section");
+  const comingSoonSection = document.getElementById("coming-soon-section");
+  const sectionTitle = document.querySelector(".section-title");
 
-/**
- * Thực hiện tìm kiếm phim
- * @param {string} query - Từ khóa tìm kiếm
- */
-async function performSearch(query) {
-  const searchResultsSection = document.getElementById(
-    "search-results-section"
-  );
-  const searchResultsTitle = document.getElementById("search-results-title");
-  const defaultSections = [
-    document.getElementById("now-showing-section"),
-    document.getElementById("coming-soon-section"),
-  ];
-
+  // Nếu ô tìm kiếm trống, hiển thị lại các mục mặc định
   if (!query) {
     searchResultsSection.style.display = "none";
-    defaultSections.forEach((sec) => (sec.style.display = "block"));
+    nowShowingSection.style.display = "block";
+    comingSoonSection.style.display = "block";
+    sectionTitle.style.display = "block";
     return;
   }
 
   try {
-    // Gửi 2 yêu cầu song song: một tìm theo tiêu đề, một tìm theo diễn viên
-    const titlePromise = fetch(
-      `http://localhost:3000/movies?title_like=${encodeURIComponent(query)}`
-    ).then((res) => res.json());
+    const response = await fetch("http://localhost:3000/movies");
+    if (!response.ok) {
+      throw new Error("Lỗi khi tải dữ liệu phim để tìm kiếm.");
+    }
+    const allMovies = await response.json();
 
-    const actorsPromise = fetch(
-      `http://localhost:3000/movies?actors_like=${encodeURIComponent(query)}`
-    ).then((res) => res.json());
-
-    // Chờ cả hai yêu cầu hoàn thành
-    const [titleResults, actorResults] = await Promise.all([
-      titlePromise,
-      actorsPromise,
-    ]);
-
-    // Gộp hai kết quả và loại bỏ các phim trùng lặp
-    const combinedResults = [...titleResults, ...actorResults];
-    const uniqueResults = Array.from(
-      new Map(combinedResults.map((movie) => [movie.id, movie])).values()
+    // Lọc phim dựa trên tiêu đề hoặc diễn viên
+    const filteredMovies = allMovies.filter(
+      (movie) =>
+        movie.title.toLowerCase().includes(query) ||
+        movie.actors.toLowerCase().includes(query)
     );
 
-    searchResultsTitle.innerText = `Kết quả tìm kiếm cho "${query}" (${uniqueResults.length})`;
-    renderSearchResults(uniqueResults);
-
+    // Ẩn các mục phim hot và hiển thị khu vực kết quả tìm kiếm
+    nowShowingSection.style.display = "none";
+    comingSoonSection.style.display = "none";
+    sectionTitle.style.display = "none";
     searchResultsSection.style.display = "block";
-    defaultSections.forEach((sec) => (sec.style.display = "none"));
+
+    // Cập nhật tiêu đề kết quả tìm kiếm
+    const searchResultsTitle = document.getElementById("search-results-title");
+    searchResultsTitle.textContent = `Kết quả tìm kiếm cho "${searchInput.value}"`;
+
+    // Hiển thị phim đã lọc
+    const searchResultsGrid = document.getElementById("search-results-grid");
+    renderMovies(filteredMovies, searchResultsGrid, false); // Giả sử tất cả đều có thể đặt vé
   } catch (error) {
-    console.error("Lỗi khi tìm kiếm: ", error);
+    console.error("Lỗi khi thực hiện tìm kiếm: ", error);
   }
 }
 
-// Chạy hàm khi trang được tải
+// Chạy các hàm khởi tạo khi DOM đã tải xong
 document.addEventListener("DOMContentLoaded", () => {
   setupBanner();
   fetchAndDisplayMovies();
 
+  // Gắn sự kiện cho form tìm kiếm
   const searchForm = document.querySelector(".navbar-search");
-  const searchInput = document.getElementById("search-input");
-
-  searchForm.addEventListener("submit", (event) => {
-    // Ngăn form submit và tải lại trang
-    event.preventDefault();
-    const query = searchInput.value.trim();
-    performSearch(query);
-  });
+  if (searchForm) {
+    searchForm.addEventListener("submit", handleSearch);
+  }
 });
