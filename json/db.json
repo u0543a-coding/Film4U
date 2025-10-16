@@ -67,7 +67,7 @@
             "release_date": "2024-06-07",
             "trailer_url": "https://www.youtube.com/watch?v=f4rs22gGzMA",
             "description": "M, một sinh viên đại học, quyết định về chăm sóc bà ngoại đang mắc bệnh ung thư giai đoạn cuối, với mục đích bí mật là để thừa kế gia tài hàng triệu baht của bà. Tuy nhiên, khi sống cùng bà, cậu dần khám phá ra những giá trị tình thân còn quý giá hơn cả tiền bạc.",
-            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/l/a/lan_of_heir_main_poster_1_.jpg",
+            "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/p/o/poster_opt1_gia_tai_cua_ngoai_3.jpg",
             "status": "now_showing"
         },
         {
@@ -84,7 +84,7 @@
             "release_date": "2024-06-14",
             "trailer_url": "https://www.youtube.com/watch?v=Vl3V_g5-k0E",
             "description": "Riley bước vào tuổi dậy thì, và trung tâm điều khiển cảm xúc của cô bé phải đối mặt với một cuộc \"phá dỡ\" lớn để chào đón những cảm xúc hoàn toàn mới, phức tạp hơn như Lo Âu, Ganh Tị, Xấu Hổ và Chán Nản.",
-            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/i/o/io2_main_poster_1__1.jpg",
+            "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/1/0/1080x1350-insideout.jpg",
             "status": "now_showing"
         },
         {
@@ -101,7 +101,7 @@
             "release_date": "2024-06-28",
             "trailer_url": "https://www.youtube.com/watch?v=YPY7J-flzE8",
             "description": "Lấy bối cảnh ngày đầu tiên của cuộc xâm lăng của các sinh vật săn mồi bằng âm thanh, bộ phim theo chân một người phụ nữ phải tìm cách sống sót qua những giờ phút kinh hoàng tại một trong những thành phố ồn ào nhất thế giới - New York.",
-            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/q/p/qp-do_main_poster_1__1.jpg",
+            "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/a/q/aqpd1_teaser_glass_470x700.jpg",
             "status": "now_showing"
         },
         {
@@ -119,7 +119,7 @@
             "release_date": "2024-07-03",
             "trailer_url": "https://www.youtube.com/watch?v=qQ4b9iB_b8U",
             "description": "Gru cùng gia đình chào đón thành viên mới, Gru Jr., và cậu bé dường như có mục tiêu duy nhất là làm khổ bố mình. Mọi chuyện trở nên tồi tệ hơn khi gia đình Gru phải đối mặt với kẻ thù mới và buộc phải chạy trốn.",
-            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/d/m/dm4_main_poster_1__1.jpg",
+            "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/d/m/dm4_posterminion_700x1000.jpg",
             "status": "now_showing"
         },
         {
@@ -136,24 +136,24 @@
             "release_date": "2024-07-26",
             "trailer_url": "https://www.youtube.com/watch?v=73_1biulkYk",
             "description": "Wolverine đang hồi phục sau chấn thương thì gặp phải Deadpool lắm lời. Họ hợp sức để chiến đấu chống lại một kẻ thù chung, tạo nên một trong những cặp đôi bất đắc dĩ và hài hước nhất vũ trụ Marvel.",
-            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/d/p/dp3_main_poster_1__1.jpg",
+            "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/4/7/470x700-deadpool.jpg",
             "status": "coming_soon"
         },
-        {
-            "id": 6,
-            "title": "GIẢI MÃ SÂN BAY",
-            "genreIds": [
-                5
-            ],
-            "duration_minutes": 90,
-            "director": "Lý Hải",
-            "actors": "Trấn Thành, Hari Won",
-            "release_date": "2024-07-12",
-            "trailer_url": "https://www.youtube.com/watch?v=example_trailer_6",
-            "description": "Một bộ phim tài liệu khám phá những bí ẩn và hoạt động phức tạp đằng sau một trong những sân bay bận rộn nhất thế giới, nơi mỗi quyết định đều có thể ảnh hưởng đến hàng ngàn sinh mạng.",
-            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/s/n/snvn_main-poster_1_.jpg",
-            "status": "coming_soon"
-        },
+        // {
+        //     "id": 6,
+        //     "title": "GIẢI MÃ SÂN BAY",
+        //     "genreIds": [
+        //         5
+        //     ],
+        //     "duration_minutes": 90,
+        //     "director": "Lý Hải",
+        //     "actors": "Trấn Thành, Hari Won",
+        //     "release_date": "2024-07-12",
+        //     "trailer_url": "https://www.youtube.com/watch?v=example_trailer_6",
+        //     "description": "Một bộ phim tài liệu khám phá những bí ẩn và hoạt động phức tạp đằng sau một trong những sân bay bận rộn nhất thế giới, nơi mỗi quyết định đều có thể ảnh hưởng đến hàng ngàn sinh mạng.",
+        //     "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/s/n/snvn_main-poster_1_.jpg",
+        //     "status": "coming_soon"
+        // },
         {
             "id": 7,
             "title": "LỐC XOÁY TỬ THẦN",
@@ -168,7 +168,7 @@
             "release_date": "2024-07-19",
             "trailer_url": "https://www.youtube.com/watch?v=wtnkF4I38oI",
             "description": "Một cặp vợ chồng chuyên săn lốc xoáy liều mạng thử nghiệm một hệ thống cảnh báo thời tiết đột phá, đối mặt với những cơn cuồng phong kinh hoàng nhất từng được ghi nhận ở trung tâm Oklahoma.",
-            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/t/w/twisters_main_poster_1__1.jpg",
+            "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/p/o/poster_payoff_loc_xoay_tu_than_8_1_.jpg",
             "status": "coming_soon"
         },
         {
@@ -184,7 +184,7 @@
             "release_date": "2025-06-13",
             "trailer_url": "https://www.youtube.com/watch?v=example_trailer_8",
             "description": "Chuyển thể từ bộ phim hoạt hình kinh điển, câu chuyện kể về cậu bé Hiccup yếu ớt, người đã thách thức truyền thống của bộ tộc Viking khi kết bạn với kẻ thù đáng sợ nhất của họ - một con rồng tên Răng Sún.",
-            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/h/t/httyd_teaser_poster_1_.jpg",
+            "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/h/d/hdg_payoff_470x700.jpg",
             "status": "coming_soon"
         }
     ],
