@@ -133,5 +133,5 @@ document.querySelector('.xemchitiet-submit-btn').addEventListener('click', funct
 
 // Xử lý nút đặt vé
 document.querySelector('.xemchitiet-book-ticket').addEventListener('click', function() {
-    alert('Chuyển đến trang đặt vé!');
+    alert('Phim chưa được chiếu vui lòng quay lại sau!');
 });
