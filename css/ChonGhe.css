@@ -1,0 +1,135 @@
+   /* ============================
+        RESET & CHUNG
+    ============================ */
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 40px;
+      color: #333;
+      display: flex;
+      justify-content: center;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* ============================
+        TRANG ĐẶT GHẾ
+    ============================ */
+    .datghe-container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+    }
+
+    .datghe-container h2 {
+      text-align: center;
+      color: #26374d;
+      margin-bottom: 20px;
+    }
+
+    .datghe-legend {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .datghe-legend span {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    .datghe-screen {
+      text-align: center;
+      background-color: #26374d;
+      color: white;
+      padding: 8px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+
+    .datghe-seat-container {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 5px;
+      justify-items: center;
+      margin-bottom: 20px;
+    }
+
+    .datghe-seat {
+      width: 30px;
+      height: 30px;
+      background-color: #e0e0e0;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .datghe-seat:hover {
+      background-color: #d3d3d3;
+    }
+
+    .datghe-seat.selected {
+      background-color: #4CAF50;
+    }
+
+    .datghe-seat.sold {
+      background-color: #999;
+      cursor: not-allowed;
+    }
+
+    .datghe-info {
+      background: #f9fafc;
+      border-radius: 8px;
+      padding: 15px;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .datghe-total {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .datghe-btns {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .datghe-btn {
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      border: 1px solid #b0adad;
+      transition: 0.3s;
+    }
+
+    .datghe-btn-back:hover {
+      background-color: #e00d0d;
+      color: #fff;
+    }
+
+    .datghe-btn-confirm {
+      background-color: #293e5a;
+      color: #fff;
+      border: none;
+    }
+
+    .datghe-btn-confirm:hover {
+      background-color: #811253;
+    }
