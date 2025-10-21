@@ -3,8 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quản lý user - Admin</title>
+  <title>Quản lý người dùng - Admin</title>
   <link rel="stylesheet" href="/Film4U/Admin/style/Chung.css">
+  <style>
+    .content {
+      padding: 20px;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    input {
+      padding: 8px;
+      margin-right: 8px;
+    }
+    button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background: #007bff;
+      color: white;
+    }
+    tr:hover {
+      background: #f1f1f1;
+    }
+    .btn-delete {
+      background: #dc3545;
+    }
+    .btn-delete:hover {
+      background: #a71d2a;
+    }
+  </style>
 </head>
 <body>
   <div class="sidebar">
@@ -12,17 +57,42 @@
     <ul class="menu">
       <li><a href="Home.html">Trang chủ</a></li>
       <li><a href="Phim.html">Quản lý phim</a></li>
-      <li><a href="LichChieu.html">Quản lý lịch chiếu</a></li>
-      <li><a href="QuanLyUsers.html">Quản lý giá vé</a></li>
+      <li><a href="doanhThu.html">Quản lý doanh thu</a></li>
       <li><a href="KhuyenMai.html">Khuyến mãi</a></li>
       <li class="active">Quản lý user</li>
+      <li><a href="QuanLyRap.html">Quản lý rạp</a></li>
       <li><a href="CaiDatHeThong.html">Cài đặt hệ thống</a></li>
     </ul>
   </div>
 
   <div class="main">
-    <div class="header"><h1>Quản lý user</h1></div>
-    <div class="content"><p>Quản lý thông tin người dùng, phân quyền, và hoạt động.</p></div>
+    <div class="header"><h1>Quản lý người dùng</h1></div>
+
+    <div class="content">
+      <h2>Thêm người dùng</h2>
+      <form id="userForm">
+        <input type="text" id="name" placeholder="Tên người dùng" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <button type="submit">Thêm người dùng</button>
+      </form>
+
+      <table id="userTable">
+        <thead>
+          <tr>
+            <th>Tên</th>
+            <th>Email</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <br>
+      <button onclick="window.location.href='Home.html'">Quay lại</button>
+    </div>
   </div>
+
+  <!-- Gắn JS ngoài -->
+  <script src="/Film4U/Admin/JS/quanLyUser.js"></script>
 </body>
 </html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý doanh thu - Admin</title>
+  <link rel="stylesheet" href="/Film4U/Admin/style/Chung.css">
+  <style>
+    .content {
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background: #007bff;
+      color: white;
+    }
+    tr:hover {
+      background: #f1f1f1;
+    }
+    .total {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #007bff;
+    }
+    .btn-refresh {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn-refresh:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>ADMIN</h2>
+    <ul class="menu">
+      <li><a href="Home.html">Trang chủ</a></li>
+      <li><a href="Phim.html">Quản lý phim</a></li>
+      <li class="active">Quản lý doanh thu</li>
+      <li><a href="KhuyenMai.html">Khuyến mãi</a></li>
+      <li><a href="QuanLyUsers.html">Quản lý user</a></li>
+      <li><a href="QuanLyRap.html">Quản lý rạp</a></li>
+      <li><a href="CaiDatHeThong.html">Cài đặt hệ thống</a></li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <div class="header">
+      <h1>Quản lý doanh thu các rạp</h1>
+    </div>
+
+    <div class="content">
+      <button class="btn-refresh" id="btnRefresh">Tải lại dữ liệu</button>
+
+      <table id="tableDoanhThu">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Tên rạp</th>
+            <th>Địa chỉ</th>
+            <th>Doanh thu (VNĐ)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div class="total" id="tongDoanhThu">Tổng doanh thu: 0 VNĐ</div>
+    </div>
+  </div>
+
+  <!-- Gắn file JS riêng -->
+  <script src="/Film4U/Admin/JS/doanhthu.js"></script>
+</body>
+</html>

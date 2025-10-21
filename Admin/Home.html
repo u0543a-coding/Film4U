@@ -3,24 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="" href="/Film4U/Admin/style/Home.css">
   <title>Admin - Trang chủ</title>
+  <link rel="stylesheet" href="/Film4U/Admin/style/Home.css">
 </head>
 <body>
+  <!-- SIDEBAR -->
   <div class="sidebar">
     <h2>ADMIN</h2>
     <ul class="menu">
       <li class="active">Trang chủ</li>
       <li><a href="Phim.html">Quản lý phim</a></li>
-      <li><a href="LichChieu.html">Quản lý lịch chiếu</a></li>
-      <li><a href="GiaVe.html">Quản lý giá vé</a></li>
+      <li><a href="doanhThu.html">Quản lý doanh thu</a></li>
       <li><a href="KhuyenMai.html">Khuyến mãi</a></li>
       <li><a href="QuanLyUsers.html">Quản lý user</a></li>
+      <li><a href="QuanLyRap.html">Quản lý rạp</a></li>
       <li><a href="CaiDatHeThong.html">Cài đặt hệ thống</a></li>
     </ul>
-</div>
+  </div>
 
+  <!-- MAIN CONTENT -->
   <div class="main">
+    <!-- HEADER -->
     <div class="topbar">
       <h1>Bảng điều khiển</h1>
       <div class="user">
@@ -29,6 +32,7 @@
       </div>
     </div>
 
+    <!-- DASHBOARD CARDS -->
     <div class="content">
       <div class="cards">
         <div class="card">
@@ -49,6 +53,7 @@
         </div>
       </div>
 
+      <!-- ACTIVITY TABLE -->
       <div class="activity">
         <h2>Hoạt động gần đây</h2>
         <table>
@@ -90,5 +95,8 @@
       </div>
     </div>
   </div>
+
+  <!-- SCRIPT -->
+  <script src="/Film4U/Admin/JS/home.js"></script>
 </body>
 </html>

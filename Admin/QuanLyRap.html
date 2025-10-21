@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý rạp - Admin</title>
+  <link rel="stylesheet" href="/Film4U/Admin/style/Home.css">
+  <style>
+.table-container {
+  margin-top: 20px;
+}
+
+.filter-bar {
+  margin-bottom: 15px;
+}
+
+.status.done {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.status.pending {
+  color: #ca8a04;
+  font-weight: 600;
+}
+
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>ADMIN</h2>
+    <ul class="menu">
+      <li><a href="Home.html">Trang chủ</a></li>
+      <li><a href="Phim.html">Quản lý phim</a></li>
+      <li><a href="doanhThu.html">Quản lý doanh thu</a></li>
+      <li><a href="KhuyenMai.html">Khuyến mãi</a></li>
+      <li><a href="QuanLyUsers.html">Quản lý user</a></li>
+      <li class="active"><a href="QuanLyRap.html">Quản lý rạp</a></li>
+      <li><a href="CaiDatHeThong.html">Cài đặt hệ thống</a></li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <h1>Quản lý rạp Đà Nẵng</h1>
+      <div class="user">
+        <span>Xin chào, Admin</span>
+        <img src="https://i.pinimg.com/1200x/16/b2/e2/16b2e2579118bf6fba3b56523583117f.jpg" alt="Admin">
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="filter-bar">
+        <label for="statusFilter">Lọc theo trạng thái:</label>
+        <select id="statusFilter">
+          <option value="all">Tất cả</option>
+          <option value="Hoạt động">Hoạt động</option>
+          <option value="Tạm ngưng">Tạm ngưng</option>
+        </select>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Tên rạp</th>
+              <th>Địa chỉ</th>
+              <th>Doanh thu (VNĐ)</th>
+              <th>Trạng thái</th>
+            </tr>
+          </thead>
+          <tbody id="rapTable">
+            <!-- Dữ liệu JS thêm vào -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="/Film4U/Admin/js/QuanLyRap.js"></script>
+</body>
+</html>

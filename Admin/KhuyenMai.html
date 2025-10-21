@@ -5,6 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Khuyến mãi - Admin</title>
   <link rel="stylesheet" href="/Film4U/Admin/style/Chung.css">
+  <style>
+    .content {
+      padding: 20px;
+    }
+    form input, form button {
+      padding: 8px;
+      margin: 5px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background: #007bff;
+      color: #fff;
+    }
+    button {
+      cursor: pointer;
+      border-radius: 5px;
+      border: none;
+      padding: 5px 10px;
+    }
+    .edit-btn { background-color: #ffc107; }
+    .delete-btn { background-color: #dc3545; color: white; }
+  </style>
 </head>
 <body>
   <div class="sidebar">
@@ -12,17 +43,42 @@
     <ul class="menu">
       <li><a href="Home.html">Trang chủ</a></li>
       <li><a href="Phim.html">Quản lý phim</a></li>
-      <li><a href="LichChieu.html">Quản lý lịch chiếu</a></li>
-      <li><a href="GiaVe.html">Quản lý giá vé</a></li>
+      <li><a href="doanhThu.html">Quản lý doanh thu</a></li>
       <li class="active">Khuyến mãi</li>
       <li><a href="QuanLyUsers.html">Quản lý user</a></li>
+      <li><a href="QuanLyRap.html">Quản lý rạp</a></li>
       <li><a href="CaiDatHeThong.html">Cài đặt hệ thống</a></li>
     </ul>
   </div>
 
   <div class="main">
     <div class="header"><h1>Khuyến mãi</h1></div>
-    <div class="content"><p>Danh sách và cập nhật chương trình khuyến mãi.</p></div>
+    <div class="content">
+      <h2>Thêm chương trình khuyến mãi</h2>
+      <form id="promoForm">
+        <input type="text" id="promoName" placeholder="Tên chương trình" required>
+        <input type="text" id="discount" placeholder="Phần trăm giảm (%)" required>
+        <input type="date" id="startDate" required>
+        <input type="date" id="endDate" required>
+        <button type="submit">Thêm</button>
+      </form>
+
+      <table id="promoTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tên chương trình</th>
+            <th>Giảm (%)</th>
+            <th>Ngày bắt đầu</th>
+            <th>Ngày kết thúc</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </div>
+
+  <script src="/Film4U/Admin/JS/khuyenMai.js"></script>
 </body>
 </html>
