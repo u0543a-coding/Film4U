@@ -139,7 +139,7 @@
   color: inherit; /* Kế thừa màu chữ từ thẻ cha */
 }
 
-.movie-card, .trangchu-movie-card {
+.movie-card {
   background: #fff;
   border-radius: 6px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -147,23 +147,23 @@
   padding-bottom: 10px;
 }
 
-.movie-card img, .trangchu-movie-card img {
+.movie-card img {
   width: 100%;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
 
-.movie-card h4, .trangchu-movie-card h4 {
+.movie-card h4 {
   margin: 10px 0 5px;
 }
 
-.movie-card p, .trangchu-movie-card p {
+.movie-card p {
   font-size: 14px;
   color: #666;
 }
 
 /* BUTTONS */
-.btn, .trangchu-btn {
+.btn {
   border: none;
   border-radius: 4px;
   padding: 6px 12px;
@@ -171,15 +171,15 @@
   color: #fff;
 }
 
-.btn.red, .trangchu-btn.red {
+.btn.red {
   background: #d32f2f;
 }
 
-.btn.gray, .trangchu-btn.gray {
+.btn.gray {
   background: #555;
 }
 
-.btn:hover, .trangchu-btn:hover {
+.btn:hover {
   opacity: 0.9;
 }
 

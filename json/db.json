@@ -68,7 +68,8 @@
             "trailer_url": "https://www.youtube.com/watch?v=f4rs22gGzMA",
             "description": "M, một sinh viên đại học, quyết định về chăm sóc bà ngoại đang mắc bệnh ung thư giai đoạn cuối, với mục đích bí mật là để thừa kế gia tài hàng triệu baht của bà. Tuy nhiên, khi sống cùng bà, cậu dần khám phá ra những giá trị tình thân còn quý giá hơn cả tiền bạc.",
             "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/l/a/lan_of_heir_main_poster_1_.jpg",
-            "status": "now_showing"
+            "status": "now_showing",
+            "isFeatured": true
         },
         {
             "id": 2,
@@ -85,7 +86,8 @@
             "trailer_url": "https://www.youtube.com/watch?v=Vl3V_g5-k0E",
             "description": "Riley bước vào tuổi dậy thì, và trung tâm điều khiển cảm xúc của cô bé phải đối mặt với một cuộc \"phá dỡ\" lớn để chào đón những cảm xúc hoàn toàn mới, phức tạp hơn như Lo Âu, Ganh Tị, Xấu Hổ và Chán Nản.",
             "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/i/o/io2_main_poster_1__1.jpg",
-            "status": "now_showing"
+            "status": "now_showing",
+            "isFeatured": false
         },
         {
             "id": 3,
@@ -215,7 +217,29 @@
             "room_name": "Phòng 1",
             "seat_layout": {
                 "rows": 8,
-                "seatsPerRow": 12
+                "seatsPerRow": 12,
+                "config": {
+                    "defaultType": "standard",
+                    "defaultPrice": 90000,
+                    "typeMapping": [
+                        {
+                            "type": "premium",
+                            "price": 120000,
+                            "rows": [
+                                "C",
+                                "D",
+                                "E"
+                            ]
+                        },
+                        {
+                            "type": "couple",
+                            "price": 110000,
+                            "rows": [
+                                "H"
+                            ]
+                        }
+                    ]
+                }
             }
         },
         {
@@ -260,17 +284,32 @@
             "price": 125000
         }
     ],
+    "showtimeSeats": [
+        {
+            "showtimeId": 1,
+            "seatId": "2_C5",
+            "status": "occupied",
+            "heldByBooking": null
+        },
+        {
+            "showtimeId": 1,
+            "seatId": "2_C6",
+            "status": "held",
+            "heldByBooking": 42
+        }
+    ],
     "bookings": [
         {
             "id": 1,
             "userId": 2,
             "showtimeId": 1,
-            "seats": [
-                "G7",
-                "G8"
+            "seatIds": [
+                "2_G7",
+                "2_G8"
             ],
             "totalPrice": 220000,
-            "bookingTime": "2025-10-20T14:00:00Z"
+            "bookingTime": "2025-10-20T14:00:00Z",
+            "status": "confirmed"
         }
     ],
     "banners": [
@@ -285,6 +324,16 @@
             "imageUrl": "https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2017/07/26020157/poster-phim-kinh-di.jpg",
             "altText": "Banner phim kinh dị",
             "linkUrl": "#"
+        }
+    ],
+    "promotions": [
+        {
+            "id": 1,
+            "code": "SUMMER2025",
+            "description": "Giảm 15% vé mùa hè",
+            "discountPercentage": 15,
+            "startDate": "2025-06-01T00:00:00Z",
+            "endDate": "2025-08-31T23:59:59Z"
         }
     ]
 }
