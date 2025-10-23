@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const bookTicketButton = document.querySelector('.book-ticket');
       if (bookTicketButton) {
         bookTicketButton.addEventListener('click', () => {
-          window.location.href = `Chonghe.html?movieId=${movieId}`;
+          window.location.href = `seatbooking.html?movieId=${movieId}`;
         });
       }
     }
