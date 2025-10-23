@@ -139,21 +139,22 @@
             "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/4/7/470x700-deadpool.jpg",
             "status": "coming_soon"
         },
-        // {
-        //     "id": 6,
-        //     "title": "GIẢI MÃ SÂN BAY",
-        //     "genreIds": [
-        //         5
-        //     ],
-        //     "duration_minutes": 90,
-        //     "director": "Lý Hải",
-        //     "actors": "Trấn Thành, Hari Won",
-        //     "release_date": "2024-07-12",
-        //     "trailer_url": "https://www.youtube.com/watch?v=example_trailer_6",
-        //     "description": "Một bộ phim tài liệu khám phá những bí ẩn và hoạt động phức tạp đằng sau một trong những sân bay bận rộn nhất thế giới, nơi mỗi quyết định đều có thể ảnh hưởng đến hàng ngàn sinh mạng.",
-        //     "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/s/n/snvn_main-poster_1_.jpg",
-        //     "status": "coming_soon"
-        // },
+        
+        {
+            "id": 6, 
+            "title": "GIẢI MÃ SÂN BAY",
+            "genreIds": [
+                5
+            ],
+            "duration_minutes": 90,
+            "director": "Lý Hải",
+            "actors": "Trấn Thành, Hari Won",
+            "release_date": "2024-07-12",
+            "trailer_url": "https://www.youtube.com/watch?v=example_trailer_6",
+            "description": "Một bộ phim tài liệu khám phá những bí ẩn và hoạt động phức tạp đằng sau một trong những sân bay bận rộn nhất thế giới, nơi mỗi quyết định đều có thể ảnh hưởng đến hàng ngàn sinh mạng.",
+            "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/s/n/snvn_main-poster_1_.jpg",
+            "status": "coming_soon"
+        },
         {
             "id": 7,
             "title": "LỐC XOÁY TỬ THẦN",

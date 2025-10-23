@@ -188,4 +188,3 @@ document.addEventListener("DOMContentLoaded", () => {
     searchForm.addEventListener("submit", handleSearch);
   }
 });
-
