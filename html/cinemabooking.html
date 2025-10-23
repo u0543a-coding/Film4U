@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="" href="../css/cinemabooking.css">
+  <title>Đặt vé phim</title>
+</head>
+
+<body>
+  <div class="datve-container">
+    <h2 class="datve-title">Đặt Vé Trực Tuyến</h2>
+
+    <!-- Chọn rạp -->
+    <select id="cinema-select" class="datve-cinema-select">
+      <option selected>Vui lòng chọn rạp</option>
+    </select>
+
+    <!-- Ngày chiếu -->
+    <div id="date-list" class="datve-date-list">
+      </div>
+
+    <div id="movie-details-container" style="display: none;">
+        <!-- Thông tin rạp -->
+        <div id="cinema-info" class="datve-cinema-info">
+        </div>
+
+        <!-- Thông tin phim -->
+        <div class="datve-movie-box">
+        <img id="movie-poster" src="" alt="Poster phim">
+        <div class="datve-movie-info">
+            <h4 id="movie-title"></h4>
+            <p><small id="movie-details"></small></p>
+            <p><strong id="movie-format"></strong></p>
+            <div id="showtime-list" class="datve-showtime">
+            </div>
+        </div>
+        </div>
+    </div>
+  </div>
+
+  <script src="/Film4U/js/DatVe.js"></script>
+</body>
+</html>
