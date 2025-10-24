@@ -122,4 +122,23 @@ const api = {
         const query = new URLSearchParams(params).toString();
         return fetchJson(`${BASE_URL}/bookings?${query}`);
     },
+
+    /**
+     * Lấy tất cả rạp chiếu phim.
+     */
+    getCinemas: () => fetchJson(`${BASE_URL}/cinemas`),
+
+    /**
+     * Lấy tất cả phòng chiếu.
+     */
+    getCinemaRooms: () => fetchJson(`${BASE_URL}/cinema_rooms`),
+
+    /**
+     * Lấy suất chiếu với các tham số truy vấn.
+     * @param {object} params - Ví dụ: { movieId: 1 }
+     */
+    getShowtimes: (params = {}) => {
+        const query = new URLSearchParams(params).toString();
+        return fetchJson(`${BASE_URL}/showtimes?${query}`);
+    },
 };

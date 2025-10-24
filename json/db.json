@@ -20,47 +20,20 @@
     }
   ],
   "genres": [
-    {
-      "id": "1",
-      "name": "Hành Động"
-    },
-    {
-      "id": "2",
-      "name": "Phiêu Lưu"
-    },
-    {
-      "id": "3",
-      "name": "Hoạt Hình"
-    },
-    {
-      "id": "4",
-      "name": "Gia Đình"
-    },
-    {
-      "id": "5",
-      "name": "Chính Kịch"
-    },
-    {
-      "id": "6",
-      "name": "Kinh Dị"
-    },
-    {
-      "id": "7",
-      "name": "Hài Kịch"
-    },
-    {
-      "id": "8",
-      "name": "Khoa Học Viễn Tưởng"
-    }
+    { "id": "1", "name": "Hành Động" },
+    { "id": "2", "name": "Phiêu Lưu" },
+    { "id": "3", "name": "Hoạt Hình" },
+    { "id": "4", "name": "Gia Đình" },
+    { "id": "5", "name": "Chính Kịch" },
+    { "id": "6", "name": "Kinh Dị" },
+    { "id": "7", "name": "Hài Kịch" },
+    { "id": "8", "name": "Khoa Học Viễn Tưởng" }
   ],
   "movies": [
     {
       "id": "1",
       "title": "GIA TÀI CỦA NGOẠI",
-      "genreIds": [
-        5,
-        4
-      ],
+      "genreIds": [5, 4],
       "duration_minutes": 127,
       "director": "Pat Boonnitipat",
       "actors": "Putthipong Assaratanakul, Usha Seamkhum",
@@ -73,11 +46,7 @@
     {
       "id": "2",
       "title": "NHỮNG MẢNH GHÉP CẢM XÚC 2",
-      "genreIds": [
-        3,
-        4,
-        7
-      ],
+      "genreIds": [3, 4, 7],
       "duration_minutes": 96,
       "director": "Kelsey Mann",
       "actors": "Amy Poehler, Maya Hawke, Lewis Black (lồng tiếng)",
@@ -90,11 +59,7 @@
     {
       "id": "3",
       "title": "VÙNG ĐẤT CÂM LẶNG: NGÀY ĐẦU TIÊN",
-      "genreIds": [
-        6,
-        8,
-        5
-      ],
+      "genreIds": [6, 8, 5],
       "duration_minutes": 100,
       "director": "Michael Sarnoski",
       "actors": "Lupita Nyong'o, Joseph Quinn, Djimon Hounsou",
@@ -107,12 +72,7 @@
     {
       "id": "4",
       "title": "KẺ TRỘM MẶT TRĂNG 4",
-      "genreIds": [
-        3,
-        7,
-        4,
-        1
-      ],
+      "genreIds": [3, 7, 4, 1],
       "duration_minutes": 95,
       "director": "Chris Renaud",
       "actors": "Steve Carell, Kristen Wiig, Will Ferrell (lồng tiếng)",
@@ -125,11 +85,7 @@
     {
       "id": "5",
       "title": "DEADPOOL & WOLVERINE",
-      "genreIds": [
-        1,
-        7,
-        8
-      ],
+      "genreIds": [1, 7, 8],
       "duration_minutes": 127,
       "director": "Shawn Levy",
       "actors": "Ryan Reynolds, Hugh Jackman, Emma Corrin",
@@ -140,117 +96,17 @@
       "status": "coming_soon"
     },
     {
-      "id": "6",
-      "title": "GIẢI MÃ SÂN BAY",
-      "genreIds": [
-        5
-      ],
-      "duration_minutes": 90,
-      "director": "Lý Hải",
-      "actors": "Trấn Thành, Hari Won",
-      "release_date": "2024-07-12",
-      "trailer_url": "https://www.youtube.com/watch?v=example_trailer_6",
-      "description": "Một bộ phim tài liệu khám phá những bí ẩn và hoạt động phức tạp đằng sau một trong những sân bay bận rộn nhất thế giới, nơi mỗi quyết định đều có thể ảnh hưởng đến hàng ngàn sinh mạng.",
-      "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/s/n/snvn_main-poster_1_.jpg",
-      "status": "coming_soon"
-    },
-    {
-      "id": "7",
-      "title": "LỐC XOÁY TỬ THẦN",
-      "genreIds": [
-        1,
-        2,
-        5
-      ],
-      "duration_minutes": 122,
-      "director": "Lee Isaac Chung",
-      "actors": "Daisy Edgar-Jones, Glen Powell, Anthony Ramos",
-      "release_date": "2024-07-19",
-      "trailer_url": "https://www.youtube.com/watch?v=wtnkF4I38oI",
-      "description": "Một cặp vợ chồng chuyên săn lốc xoáy liều mạng thử nghiệm một hệ thống cảnh báo thời tiết đột phá, đối mặt với những cơn cuồng phong kinh hoàng nhất từng được ghi nhận ở trung tâm Oklahoma.",
-      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/p/o/poster_payoff_loc_xoay_tu_than_8_1_.jpg",
-      "status": "coming_soon"
-    },
-    {
-      "id": "8",
-      "title": "BÍ KÍP LUYỆN RỒNG (Live-action)",
-      "genreIds": [
-        2,
-        4
-      ],
-      "duration_minutes": 105,
-      "director": "Dean DeBlois",
-      "actors": "Mason Thames, Nico Parker, Gerard Butler",
-      "release_date": "2025-06-13",
-      "trailer_url": "https://www.youtube.com/watch?v=example_trailer_8",
-      "description": "Chuyển thể từ bộ phim hoạt hình kinh điển, câu chuyện kể về cậu bé Hiccup yếu ớt, người đã thách thức truyền thống của bộ tộc Viking khi kết bạn với kẻ thù đáng sợ nhất của họ - một con rồng tên Răng Sún.",
-      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/h/d/hdg_payoff_470x700.jpg",
-      "status": "coming_soon"
-    },
-    {
-      "id": "9",
-      "title": "ĐIỆN THOẠI ĐEN",
-      "genreIds": [
-        1,
-        7,
-        8
-      ],
-      "duration_minutes": 114,
-      "director": "Scott Derrickson",
-      "actors": "Ethan Hawke, Mason Thames, Madeleine McGraw",
-      "release_date": "2025-10-31",
-      "trailer_url": "https://www.youtube.com/watch?v=73_1biulkYk",
-      "description": "2 anh em buộc phải đối đầu với một kẻ sát nhân không chỉ mạnh mẽ hơn sau khi chết, mà còn có mối liên hệ sâu sắc với họ hơn những gì họ từng tưởng tượng.",
-      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/4/7/470x700-tbp2.jpg",
+      "id": "13",
+      "title": "Tee Yod 3: Quỷ Ăn Tạng",
+      "genreIds": [1, 6],
+      "duration_minutes": 104,
+      "director": "Napat Jitweerapat",
+      "actors": "Nadech Kugimiya",
+      "release_date": "2025-10-10",
+      "trailer_url": "https://www.youtube.com/watch?v=example_trailer_13",
+      "description": "Phần tiếp theo của loạt phim kinh dị Thái Lan nổi tiếng, tiếp tục theo chân gia đình nọ đối mặt với những thế lực ma quỷ tàn ác hơn.",
+      "poster_url": "https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2017/07/26020212/poster-phim-hanh-dong.jpg",
       "status": "now_showing"
-    },
-    {
-      "id": "10",
-      "title": "CỤC VÀNG CỦA NGOẠI",
-      "genreIds": [
-        5
-      ],
-      "duration_minutes": 119,
-      "director": "Khương Ngọc",
-      "actors": "Việt Hương, Hồng Đào, Lê Khánh, Băng Di",
-      "release_date": "2025-10-17",
-      "trailer_url": "https://www.youtube.com/watch?v=example_trailer_6",
-      "description": "Lấy cảm hứng từ những ký ức tuổi thơ ngọt ngào, “Cục Vàng Của Ngoại” mang đến câu chuyện ấm áp về tình bà cháu trong một xóm nhỏ chan chứa nghĩa tình.",
-      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/4/7/470wx700h-cvcn_1.jpg",
-      "status": "now_showing"
-    },
-    {
-      "id": "11",
-      "title": "CẢI MÃ",
-      "genreIds": [
-        1,
-        2,
-        5
-      ],
-      "duration_minutes": 115,
-      "director": "Thắng Vũ",
-      "actors": "Rima Thanh Vy, Hoàng Phúc, Thúy Hạnh",
-      "release_date": "2025-10-31",
-      "trailer_url": "https://www.youtube.com/watch?v=wtnkF4I38oI",
-      "description": "Khi đại gia đình ông Quang trở về quê để thực hiện nghi lễ cải táng đã bị trì hoãn quá lâu, họ không chỉ đối diện với những nghi thức tâm linh, mà còn vô tình khơi dậy vòng xoáy nghiệp báo truyền đời.",
-      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/6/7/675wx1000h_1.jpg",
-      "status": "coming_soon"
-    },
-    {
-      "id": "12",
-      "title": "BỊT MẮT BẮT NAI",
-      "genreIds": [
-        2,
-        4
-      ],
-      "duration_minutes": 92,
-      "director": "Hoàng Thơ",
-      "actors": "Lương Gia Huy, Thái Trà My, Dũng Bino, Bích Ngọc",
-      "release_date": "2025-10-31",
-      "trailer_url": "https://www.youtube.com/watch?v=example_trailer_8",
-      "description": "Trang - một nhân viên bất động sản bị cưỡng bức. Cô lo sợ bạn trai Hiệp sẽ chia tay nên đã “dụ” anh đến một homestay để cầu hôn. Tại đây, cô hoảng loạn khi gặp Long - chủ homestay, người giống hệt kẻ đã hãm hại mình; bên cạnh đó Ngọc - vợ của Long cũng là nạn nhân của tên này. Khi Trang âm thầm tìm hiểu sự thật, thì mọi thứ càng lại càng phức tạp hơn và có một âm mưu đen tối đang chờ đợi tất cả bọn họ.",
-      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/t/m/tmdb-poster-2000x3000.jpg",
-      "status": "coming_soon"
     }
   ],
   "cinemas": [
@@ -271,6 +127,36 @@
       "name": "Film4U Cầu Giấy",
       "address": "222 Trần Duy Hưng, Trung Hoà, Quận Cầu Giấy",
       "city": "Hà Nội"
+    },
+    {
+      "id": "5",
+      "name": "Metiz Cinema",
+      "address": "Tầng 1 Helio Center, Đường 2/9, Hải Châu",
+      "city": "Đà Nẵng"
+    },
+    {
+      "id": "6",
+      "name": "CGV Vincom",
+      "address": "Tầng 4, TTTM Vincom, Ngô Quyền",
+      "city": "Đà Nẵng"
+    },
+    {
+      "id": "7",
+      "name": "Lotte Cinema",
+      "address": "Tầng 5, Lotte Mart, Nại Nam",
+      "city": "Đà Nẵng"
+    },
+    {
+      "id": "8",
+      "name": "Galaxy CGV",
+      "address": "Tầng 3, TTTM Go!, Nguyễn Hữu Thọ",
+      "city": "Đà Nẵng"
+    },
+    {
+      "id": "9",
+      "name": "Kixta Cinema",
+      "address": "455-457 Tôn Đức Thắng, Liên Chiểu",
+      "city": "Đà Nẵng"
     }
   ],
   "cinema_rooms": [
@@ -278,34 +164,32 @@
       "id": "1",
       "cinemaId": 1,
       "room_name": "Phòng 1",
-      "seat_layout": {
-        "rows": 8,
-        "seatsPerRow": 12
-      }
+      "seat_layout": { "rows": 8, "seatsPerRow": 12 }
     },
     {
       "id": "2",
       "cinemaId": 1,
       "room_name": "Phòng 2",
-      "seat_layout": {
-        "rows": 10,
-        "seatsPerRow": 15
-      }
+      "seat_layout": { "rows": 10, "seatsPerRow": 15 }
     },
     {
       "id": "13",
       "cinemaId": 4,
       "room_name": "Phòng 1",
-      "seat_layout": {
-        "rows": 10,
-        "seatsPerRow": 15
-      }
+      "seat_layout": { "rows": 10, "seatsPerRow": 15 }
+    },
+    {
+      "id": "14",
+      "cinemaId": 5,
+      "room_name": "Phòng 3",
+      "seat_layout": { "rows": 9, "seatsPerRow": 14 }
     }
   ],
   "showtimes": [
     {
       "id": "1",
       "movieId": 1,
+      "cinemaId": 1,
       "roomId": 2,
       "startTime": "2025-10-25T19:30:00",
       "price": 110000
@@ -313,6 +197,7 @@
     {
       "id": "2",
       "movieId": 2,
+      "cinemaId": 4,
       "roomId": 13,
       "startTime": "2025-10-25T20:00:00",
       "price": 120000
@@ -320,10 +205,25 @@
     {
       "id": "3",
       "movieId": 1,
+      "cinemaId": 4,
       "roomId": 13,
       "startTime": "2025-10-25T21:00:00",
       "price": 125000
-    }
+    },
+    { "id": "4", "movieId": 13, "cinemaId": 5, "roomId": 14, "startTime": "2025-10-13T06:00:00", "price": 90000 },
+    { "id": "5", "movieId": 13, "cinemaId": 5, "roomId": 14, "startTime": "2025-10-13T07:00:00", "price": 90000 },
+    { "id": "6", "movieId": 13, "cinemaId": 5, "roomId": 14, "startTime": "2025-10-13T08:00:00", "price": 90000 },
+    { "id": "7", "movieId": 13, "cinemaId": 5, "roomId": 14, "startTime": "2025-10-13T09:00:00", "price": 90000 },
+    { "id": "8", "movieId": 13, "cinemaId": 5, "roomId": 14, "startTime": "2025-10-13T11:10:00", "price": 100000 },
+    { "id": "9", "movieId": 13, "cinemaId": 5, "roomId": 14, "startTime": "2025-10-13T12:00:00", "price": 100000 },
+    { "id": "10", "movieId": 13, "cinemaId": 5, "roomId": 14, "startTime": "2025-10-13T13:00:00", "price": 100000 },
+    { "id": "11", "movieId": 13, "cinemaId": 5, "roomId": 14, "startTime": "2025-10-13T14:00:00", "price": 100000 },
+    { "id": "12", "movieId": 13, "cinemaId": 5, "roomId": 14, "startTime": "2025-10-13T16:10:00", "price": 100000 },
+    { "id": "13", "movieId": 13, "cinemaId": 5, "roomId": 14, "startTime": "2025-10-13T18:10:00", "price": 115000 },
+    { "id": "14", "movieId": 13, "cinemaId": 5, "roomId": 14, "startTime": "2025-10-13T20:10:00", "price": 115000 },
+    { "id": "15", "movieId": 13, "cinemaId": 5, "roomId": 14, "startTime": "2025-10-13T20:35:00", "price": 115000 },
+    { "id": "16", "movieId": 13, "cinemaId": 5, "roomId": 14, "startTime": "2025-10-13T22:10:00", "price": 115000 },
+    { "id": "17", "movieId": 13, "cinemaId": 5, "roomId": 14, "startTime": "2025-10-13T22:30:00", "price": 115000 }
   ],
   "showtimeSeats": [
     {

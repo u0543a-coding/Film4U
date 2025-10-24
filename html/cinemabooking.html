@@ -1,44 +1,58 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="" href="../css/cinemabooking.css">
+  <link rel="stylesheet" href="../css/homepage.css">
+  <link rel="stylesheet" href="../css/cinemabooking.css">
   <title>Đặt vé phim</title>
 </head>
 
-<body>
+<body class="body">
+  <!-- header -->
+  <div id="header-placeholder"></div>
+  <!-- !header -->
+
+  <!-- body -->
   <div class="datve-container">
     <h2 class="datve-title">Đặt Vé Trực Tuyến</h2>
 
     <!-- Chọn rạp -->
-    <select id="cinema-select" class="datve-cinema-select">
-      <option selected>Vui lòng chọn rạp</option>
+    <select class="datve-cinema-select">
+      <option selected>Đang tải rạp...</option>
     </select>
 
     <!-- Ngày chiếu -->
-    <div id="date-list" class="datve-date-list">
-      </div>
-
-    <div id="movie-details-container" style="display: none;">
-        <!-- Thông tin rạp -->
-        <div id="cinema-info" class="datve-cinema-info">
-        </div>
-
-        <!-- Thông tin phim -->
-        <div class="datve-movie-box">
-        <img id="movie-poster" src="" alt="Poster phim">
-        <div class="datve-movie-info">
-            <h4 id="movie-title"></h4>
-            <p><small id="movie-details"></small></p>
-            <p><strong id="movie-format"></strong></p>
-            <div id="showtime-list" class="datve-showtime">
-            </div>
-        </div>
-        </div>
+    <div class="datve-date-list">
+      <div class="datve-date-item active" data-date="2025-10-13">13/10<br><small>Th2</small></div>
+      <div class="datve-date-item" data-date="2025-10-14">14/10<br><small>Th3</small></div>
+      <div class="datve-date-item" data-date="2025-10-15">15/10<br><small>Th4</small></div>
+      <div class="datve-date-item" data-date="2025-10-16">16/10<br><small>Th5</small></div>
+      <div class="datve-date-item" data-date="2025-10-17">17/10<br><small>Th6</small></div>
+      <div class="datve-date-item" data-date="2025-10-18">18/10<br><small>Th7</small></div>
     </div>
-  </div>
 
-  <script src="/Film4U/js/DatVe.js"></script>
+    <!-- Thông tin rạp (JS sẽ điền vào đây) -->
+    <div class="datve-cinema-info">
+      <p>Vui lòng chọn rạp và ngày xem...</p>
+    </div>
+
+    <!-- Thông tin phim (JS sẽ điền vào đây) -->
+    <div class="datve-movie-box">
+        <p>Đang tải thông tin phim và suất chiếu...</p>
+    </div>
+
+  </div>
+  <!-- !!body -->
+
+  <!-- footer -->
+  <div id="footer-placeholder"></div>
+  <!-- !footer -->
+
+  <script src="../js/api.js"></script>
+  <script src="../js/cinemabooking.js"></script>
+  <script src="../js/layout.js"></script>
 </body>
+
 </html>
