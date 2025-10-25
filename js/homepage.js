@@ -152,3 +152,48 @@ document.addEventListener("DOMContentLoaded", () => {
     searchForm.addEventListener("submit", handleSearch);
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+// Toggle dropdown tài khoản
+const accountLink = document.getElementById("accountLink");
+const accountMenu = document.getElementById("accountMenu");
+const loginOption = document.getElementById("loginOption");
+const registerOption = document.getElementById("registerOption");
+const loginModal = document.getElementById("loginModal");
+
+accountLink.addEventListener("click", (e) => {
+  e.preventDefault();
+  accountMenu.style.display = accountMenu.style.display === "block" ? "none" : "block";
+});
+
+// Click ngoài menu thì ẩn menu
+document.addEventListener("click", (e) => {
+  if (!accountLink.contains(e.target) && !accountMenu.contains(e.target)) {
+    accountMenu.style.display = "none";
+  }
+});
+
+// Khi chọn "Đăng nhập" thì mở modal
+loginOption.addEventListener("click", (e) => {
+  e.preventDefault();
+  accountMenu.style.display = "none";
+  loginModal.style.display = "block";
+});
+
+// Khi chọn "Đăng ký" thì chuyển hướng sang trang đăng ký (hoặc modal khác)
+registerOption.addEventListener("click", (e) => {
+  e.preventDefault();
+  accountMenu.style.display = "none";
+  window.location.href = "registerUser.html"; // đổi đường dẫn nếu cần
+});
+
+

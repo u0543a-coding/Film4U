@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Film4U Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/_admin.css">
+  <style>
+    body { margin:0; font-family: Arial,sans-serif; background:#f0f2f5; }
+    .navbar { background:#343a40; color:#fff; padding:10px 20px; display:flex; justify-content:space-between; align-items:center; }
+    .navbar a { color:#fff; text-decoration:none; font-weight:bold; }
+    .navbar-user { position:relative; cursor:pointer; display:flex; align-items:center; gap:10px; }
+    .user-menu { display:none; position:absolute; right:0; top:40px; background:#fff; color:#000; border:1px solid #ccc; border-radius:5px; }
+    .user-menu a { display:block; padding:10px 20px; color:#000; text-decoration:none; }
+    .user-menu a:hover { background:#f1f1f1; }
+    .admin-layout { display:flex; }
+    .sidebar { width:220px; background:#2c3e50; color:#fff; height:100vh; }
+    .sidebar-nav { display:flex; flex-direction:column; }
+    .sidebar-nav a { color:#fff; padding:15px 20px; text-decoration:none; display:flex; align-items:center; gap:10px; }
+    .sidebar-nav a:hover, .sidebar-nav a.active { background:#1abc9c; }
+    .main-content { flex:1; padding:20px; }
+    .content-section { display:none; }
+    .content-section.active { display:block; }
+    .table-container table { width:100%; border-collapse:collapse; margin-top:10px; }
+    .table-container th, .table-container td { border:1px solid #ccc; padding:8px; text-align:left; }
+    .btn { cursor:pointer; padding:5px 10px; border:none; border-radius:5px; }
+    .form-container { background:#fff; padding:15px; border-radius:5px; margin-top:10px; }
+    input, select { padding:5px; width:100%; margin-bottom:10px; }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="#" class="navbar-logo">Film4U <strong>Admin</strong></a>
+    <div class="navbar-user" id="user-dropdown">
+      <span id="admin-name">Admin</span>
+      <div id="user-menu" class="user-menu">
+        <a href="#" id="logout-btn-dropdown">Đăng xuất</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="admin-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-section="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="#" class="nav-item" data-section="users"><i class="fas fa-users"></i> Quản lý Người dùng</a>
+        <a href="#" class="nav-item" data-section="cinemas"><i class="fas fa-university"></i> Quản lý Rạp</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <!-- Dashboard -->
+      <section id="dashboard-section" class="content-section active">
+        <h2>Dashboard</h2>
+        <div style="display:flex; gap:15px; margin-top:10px;">
+          <div style="background:#fff; padding:15px; border-radius:5px; flex:1;">
+            <p>Tổng số người dùng</p><span id="total-users">0</span>
+          </div>
+          <div style="background:#fff; padding:15px; border-radius:5px; flex:1;">
+            <p>Tổng số rạp</p><span id="total-cinemas">0</span>
+          </div>
+          <div style="background:#fff; padding:15px; border-radius:5px; flex:1;">
+            <p>Doanh thu</p><span id="total-revenue">0 ₫</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- User Management -->
+      <section id="users-section" class="content-section">
+        <h2>Quản lý Người dùng</h2>
+        <button id="add-user-btn" class="btn" style="background:#1abc9c;color:#fff;margin-bottom:10px;">Thêm Người dùng</button>
+        <div id="user-form-container" class="form-container" style="display:none;">
+          <h3 id="user-form-title">Thêm Người dùng</h3>
+          <form id="user-form">
+            <input type="text" id="user-fullName" placeholder="Họ và tên" required>
+            <input type="email" id="user-email" placeholder="Email" required>
+            <input type="password" id="user-password" placeholder="Mật khẩu" required>
+            <select id="user-role">
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+            <button type="submit" class="btn" style="background:#1abc9c;color:#fff;">Lưu</button>
+            <button type="button" id="cancel-user-btn" class="btn" style="background:#e74c3c;color:#fff;">Hủy</button>
+          </form>
+        </div>
+        <div class="table-container">
+          <table id="users-table">
+            <thead>
+              <tr><th>ID</th><th>Họ và tên</th><th>Email</th><th>Role</th><th>Thao tác</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Cinema Management -->
+      <section id="cinemas-section" class="content-section">
+        <h2>Quản lý Rạp</h2>
+        <div class="table-container">
+          <table id="cinemas-table">
+            <thead>
+              <tr><th>ID</th><th>Tên Rạp</th><th>Địa chỉ</th><th>Thành phố</th><th>Doanh thu</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/adminDashboard.js"></script>
+</body>
+</html>
