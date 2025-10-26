@@ -30,21 +30,37 @@
     </aside>
 
     <main class="main-content">
-      <!-- Dashboard -->
-      <section id="dashboard-section" class="content-section active">
-        <h2>Dashboard</h2>
-        <div style="display:flex; gap:15px; margin-top:10px;">
-          <div style="background:#fff; padding:15px; border-radius:5px; flex:1;">
-            <p>Tổng số người dùng</p><span id="total-users">0</span>
-          </div>
-          <div style="background:#fff; padding:15px; border-radius:5px; flex:1;">
-            <p>Tổng số rạp</p><span id="total-cinemas">0</span>
-          </div>
-          <div style="background:#fff; padding:15px; border-radius:5px; flex:1;">
-            <p>Doanh thu</p><span id="total-revenue">0 ₫</span>
-          </div>
+    <!-- Dashboard -->
+    <section id="dashboard-section" class="content-section active">
+      <h2>Dashboard</h2>
+      <div class="dashboard-cards">
+        <div class="dashboard-card">
+          <i class="fas fa-users fa-2x"></i>
+          <p>Tổng Người dùng</p>
+          <span id="total-users">0</span>
         </div>
-      </section>
+        <div class="dashboard-card">
+          <i class="fas fa-university fa-2x"></i>
+          <p>Tổng Rạp</p>
+          <span id="total-cinemas">0</span>
+        </div>
+        <div class="dashboard-card">
+          <i class="fas fa-film fa-2x"></i>
+          <p>Tổng Phim</p>
+          <span id="total-movies">0</span>
+        </div>
+        <div class="dashboard-card">
+          <i class="fas fa-tags fa-2x"></i>
+          <p>Tổng Khuyến mãi</p>
+          <span id="total-promotions">0</span>
+        </div>
+        <div class="dashboard-card">
+          <i class="fas fa-dollar-sign fa-2x"></i>
+          <p>Doanh thu</p>
+          <span id="total-revenue">0 ₫</span>
+        </div>
+      </div>
+    </section>
 
       <!-- User Management -->
       <section id="users-section" class="content-section">

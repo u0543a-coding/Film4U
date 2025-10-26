@@ -28,18 +28,24 @@ navItems.forEach(item => {
 // ====== Dashboard ======
 async function loadDashboard() {
   try {
-    const [usersRes, cinemasRes, bookingsRes] = await Promise.all([
+    const [usersRes, cinemasRes, moviesRes, promosRes, bookingsRes] = await Promise.all([
       fetch(`${apiUrl}/users`),
       fetch(`${apiUrl}/cinemas`),
+      fetch(`${apiUrl}/movies`),
+      fetch(`${apiUrl}/promotions`),
       fetch(`${apiUrl}/bookings`)
     ]);
 
     const users = await usersRes.json();
     const cinemas = await cinemasRes.json();
+    const movies = await moviesRes.json();
+    const promotions = await promosRes.json();
     const bookings = await bookingsRes.json();
 
     document.getElementById('total-users').textContent = users.length;
     document.getElementById('total-cinemas').textContent = cinemas.length;
+    document.getElementById('total-movies').textContent = movies.length;
+    document.getElementById('total-promotions').textContent = promotions.length;
 
     const totalRevenue = bookings.reduce((sum, b) => sum + (b.totalPrice || 0), 0);
     document.getElementById('total-revenue').textContent = totalRevenue.toLocaleString('vi-VN') + ' ₫';
