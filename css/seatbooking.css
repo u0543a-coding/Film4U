@@ -6,9 +6,7 @@
       background-color: #f5f7fa;
       margin: 0;
       padding: 40px;
-      color: #333;
-      display: flex;
-      justify-content: center;
+      display: block;
     }
 
     button {
@@ -116,11 +114,12 @@
 
 #seat-map-container {
     display: grid;
-    grid-template-columns: repeat(var(--seats-per-row, 12), 1fr);
+    grid-template-columns: repeat(var(--total-cols, 12), 1fr);
+    grid-template-rows: repeat(var(--total-rows, 10), auto);
     gap: 8px;
     padding: 20px;
     max-width: 900px;
-    margin: 20px auto;
+    margin: 0 auto 20px auto; /* Bỏ margin-top */
     background-color: #f0f2f5;
     border-radius: 10px;
     border: 1px solid #e0e0e0;
@@ -142,19 +141,30 @@
 
 .seat.standard { background-color: #B9F6CA; border-top-color: #69F0AE; }
 .seat.premium { background-color: #81D4FA; border-top-color: #40C4FF; }
-.seat.couple { background-color: #F48FB1; border-top-color: #F06292; }
+.seat.couple { 
+    background-color: #F48FB1; 
+    border-top-color: #F06292; 
+    aspect-ratio: 2 / 1; /* Tỷ lệ chiều rộng gấp đôi chiều cao */
+}
+.seat.vip { background-color: #FFD700; border-top-color: #FFC700; } /* Ví dụ màu vàng cho VIP */
 
 .seat.occupied {
-    background-color: #E0E0E0;
+    background-color: #777373;
     border-top-color: #BDBDBD;
     cursor: not-allowed;
+    /* Thêm họa tiết sọc chéo */
+    background-image: linear-gradient(
+        45deg, 
+        rgba(0, 0, 0, 0.15) 25%, 
+        transparent 25%, 
+        transparent 50%, 
+        rgba(0, 0, 0, 0.15) 50%, 
+        rgba(0, 0, 0, 0.15) 75%, 
+        transparent 75%, 
+        transparent
+    );
+    background-size: 15px 15px; /* Kích thước của họa tiết sọc */
     color: #9E9E9E;
-}
-
-.seat.held {
-    background-color: #FFD54F;
-    border-top-color: #FFC107;
-    cursor: not-allowed;
 }
 
 .seat.selected {
@@ -166,15 +176,14 @@
 }
 
 /* Chỉ báo màn hình */
-#seat-map-container::before {
-    content: 'MÀN HÌNH';
-    grid-column: 1 / -1;
+.seat-map-screen {
     text-align: center;
     padding: 10px;
     background-color: #424242;
     color: white;
     border-radius: 3px;
-    margin-bottom: 20px;
+    margin: 0 auto 20px auto; /* Canh giữa và tạo khoảng cách dưới */
     letter-spacing: 2px;
     font-weight: bold;
+    max-width: 900px; /* Đồng bộ với container ghế */
 }

@@ -29,6 +29,13 @@
       font-weight: 700;
     }
 
+    .datve-error-message {
+      text-align: center;
+      color: #d32f2f; /* Sử dụng màu chủ đạo */
+      padding: 20px;
+      font-weight: 500;
+    }
+
     /* ===== Chọn rạp ===== */
     .datve-cinema-select {
       width: 100%;

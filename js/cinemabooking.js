@@ -6,22 +6,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   const dateList = document.querySelector(".datve-date-list");
   const movieBox = document.querySelector(".datve-movie-box");
   const cinemaInfoContainer = document.querySelector(".datve-cinema-info");
-  const showtimeContainer = document.querySelector(".datve-showtime");
 
   if (!movieId) {
-    document.querySelector(".datve-container").innerHTML = 
+    document.querySelector(".datve-container").innerHTML =
       `<p style="text-align: center; color: red;">Lỗi: Không tìm thấy ID phim trong URL.</p>`;
     return;
   }
 
-  // --- STATE --- 
+  // --- STATE ---
   let state = {
     selectedCinemaId: null,
     selectedDate: null, // YYYY-MM-DD
     movie: null,
     cinemas: [],
-    rooms: [],
-    showtimes: [],
+    allShowtimesForMovie: [], // Chỉ lưu các suất chiếu cho phim đang chọn
     genres: {},
   };
 
@@ -29,16 +27,56 @@ document.addEventListener("DOMContentLoaded", async () => {
    * Cập nhật và render lại giao diện dựa trên state mới
    */
   function updateAndRender() {
-    if (!state.selectedCinemaId && state.cinemas.length > 0) {
-      state.selectedCinemaId = state.cinemas[0].id;
-    }
-    if (!state.selectedDate) {
-      const today = new Date();
-      state.selectedDate = today.toISOString().split('T')[0];
-    }
-
     renderCinemaInfo();
     renderShowtimes();
+  }
+
+  /**
+   * Tạo và hiển thị danh sách các ngày có suất chiếu.
+   */
+  function renderDateList() {
+    if (!dateList) return;
+    dateList.innerHTML = ''; // Xóa nội dung cũ
+
+    const weekdays = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+    const today = new Date();
+
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() + i);
+
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const weekday = weekdays[date.getDay()];
+      const formattedDate = `${day}/${month}`;
+      const dateString = date.toISOString().split('T')[0]; // YYYY-MM-DD
+
+      const dateItem = document.createElement('div');
+      dateItem.classList.add('datve-date-item');
+      if (i === 0) {
+        dateItem.classList.add('active'); // Kích hoạt ngày đầu tiên (hôm nay)
+        state.selectedDate = dateString; // Set ngày mặc định là hôm nay
+      }
+      dateItem.dataset.date = dateString;
+      dateItem.innerHTML = `${formattedDate}<br><small>${weekday}</small>`;
+      dateList.appendChild(dateItem);
+    }
+    
+    addDateClickHandlers();
+  }
+
+  /**
+   * Thêm trình xử lý sự kiện click cho các ngày
+   */
+  function addDateClickHandlers() {
+      dateList.querySelectorAll('.datve-date-item').forEach(item => {
+        item.addEventListener('click', (event) => {
+            state.selectedDate = event.currentTarget.dataset.date;
+            dateList.querySelectorAll('.datve-date-item').forEach(i => i.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            updateAndRender();
+        });
+      });
   }
 
   /**
@@ -46,9 +84,7 @@ document.addEventListener("DOMContentLoaded", async () => {
    */
   function renderMovieInfo() {
     if (!movieBox || !state.movie) return;
-
     const movieGenres = state.movie.genreIds.map(id => state.genres[id] || '').join(', ');
-
     movieBox.innerHTML = `
       <img src="${state.movie.poster_url}" alt="Poster phim">
       <div class="datve-movie-info">
@@ -63,12 +99,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   /**
-   * Hiển thị các lựa chọn rạp
+   * Hiển thị các lựa chọn rạp có chiếu phim này
    */
   function renderCinemaOptions() {
     if (!cinemaSelect) return;
     cinemaSelect.innerHTML = '<option value="">Chọn rạp</option>';
-    state.cinemas.forEach(cinema => {
+    
+    const cinemaIdsWithShowtimes = [...new Set(state.allShowtimesForMovie.map(st => st.cinemaId))];
+    const cinemasWithShowtimes = state.cinemas.filter(c => cinemaIdsWithShowtimes.includes(c.id));
+
+    if (cinemasWithShowtimes.length === 0) {
+        cinemaSelect.innerHTML = '<option value="">Không có rạp nào chiếu phim này</option>';
+        return;
+    }
+
+    cinemasWithShowtimes.forEach(cinema => {
       const option = document.createElement('option');
       option.value = cinema.id;
       option.textContent = cinema.name;
@@ -76,9 +121,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     // Tự động chọn rạp đầu tiên nếu có
-    if (state.cinemas.length > 0) {
-        cinemaSelect.value = state.cinemas[0].id;
-        state.selectedCinemaId = state.cinemas[0].id;
+    if (cinemasWithShowtimes.length > 0) {
+        cinemaSelect.value = cinemasWithShowtimes[0].id;
+        state.selectedCinemaId = cinemasWithShowtimes[0].id;
     }
   }
 
@@ -86,15 +131,17 @@ document.addEventListener("DOMContentLoaded", async () => {
    * Hiển thị thông tin rạp đang chọn
    */
   function renderCinemaInfo() {
-    if (!cinemaInfoContainer) return;
-    const selectedCinema = state.cinemas.find(c => c.id == state.selectedCinemaId);
-    if (!selectedCinema) {
+    if (!cinemaInfoContainer || !state.selectedCinemaId) {
         cinemaInfoContainer.innerHTML = '';
         return;
-    }
+    };
+    const selectedCinema = state.cinemas.find(c => c.id == state.selectedCinemaId);
+    if (!selectedCinema) return;
 
-    const date = new Date(state.selectedDate);
-    const formattedDate = `Thứ ${date.getDay() + 1}, ${date.toLocaleDateString('vi-VN')}`;
+    const parts = state.selectedDate.split('-');
+    const date = new Date(parts[0], parts[1] - 1, parts[2]); 
+    const weekdays = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+    const formattedDate = `${weekdays[date.getDay()]}, ${date.toLocaleDateString('vi-VN')}`;
 
     cinemaInfoContainer.innerHTML = `
       <strong>${selectedCinema.name}</strong> · ${formattedDate}<br>
@@ -109,7 +156,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const showtimeContainer = movieBox.querySelector('.datve-showtime');
     if (!showtimeContainer) return;
 
-    const filteredShowtimes = state.showtimes.filter(st => 
+    const filteredShowtimes = state.allShowtimesForMovie.filter(st =>
         st.cinemaId == state.selectedCinemaId &&
         st.startTime.startsWith(state.selectedDate)
     );
@@ -123,8 +170,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     showtimeContainer.innerHTML = filteredShowtimes.map(st => {
         const time = new Date(st.startTime).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
-        return `<button>${time}</button>`;
+        const url = `seatbooking.html?showtimeId=${st.id}`;
+        return `<a href="${url}" class="showtime-button">${time}</a>`;
+        return `<a href="${url}" class="showtime-link">${time}</a>`;
     }).join('');
+  }
+  
+  /**
+   * Thêm hàm getShowtimes vào api.js nếu chưa có
+   */
+  function ensureApiFunction() {
+      if (typeof api.getShowtimes !== 'function') {
+          api.getShowtimes = (params = {}) => {
+              const query = new URLSearchParams(params).toString();
+              return fetchJson(`${BASE_URL}/showtimes?${query}`);
+          }
+      }
   }
 
   /**
@@ -132,53 +193,38 @@ document.addEventListener("DOMContentLoaded", async () => {
    */
   async function initializePage() {
     try {
-      const [movieDetails, allCinemas, allShowtimes, allGenres, allRooms] = await Promise.all([
+      ensureApiFunction();
+
+      // --- 1. Tải dữ liệu từ API ---
+      // Chuyển sang dùng api.getShowtimes thay vì getShowtimePatterns
+      const [movieDetails, allCinemas, allShowtimesForMovie, allGenres] = await Promise.all([
         api.getMovieDetails(movieId),
         api.getCinemas(),
-        api.getShowtimes({ movieId: movieId }),
+        api.getShowtimes({ movieId: movieId }), // Lấy các suất chiếu tĩnh cho phim
         api.getGenres(),
-        api.getCinemaRooms()
       ]);
 
-      // Chuyển đổi mảng thành đối tượng map để tra cứu nhanh
+      // --- 2. Xử lý và lưu dữ liệu vào state ---
       state.genres = allGenres.reduce((acc, genre) => { acc[genre.id] = genre.name; return acc; }, {});
-      state.rooms = allRooms.reduce((acc, room) => { acc[room.id] = room; return acc; }, {});
-
-      // Lọc ra các rạp có chiếu phim này
-      const cinemaIdsWithShowtimes = [...new Set(allShowtimes.map(st => st.cinemaId))];
-      state.cinemas = allCinemas.filter(c => cinemaIdsWithShowtimes.includes(parseInt(c.id)));
-
+      state.cinemas = allCinemas;
       state.movie = movieDetails;
-      state.showtimes = allShowtimes;
+      state.allShowtimesForMovie = allShowtimesForMovie;
 
-      // Render
+      // --- 3. Render giao diện ---
       renderMovieInfo();
       renderCinemaOptions();
-      updateAndRender();
+      renderDateList(); // Phải chạy sau khi có allShowtimesForMovie
+      updateAndRender(); // Render thông tin rạp và suất chiếu lần đầu
 
-      // Thêm Event Listeners
+      // --- 4. Thêm Event Listeners ---
       cinemaSelect.addEventListener('change', (e) => {
         state.selectedCinemaId = e.target.value;
         updateAndRender();
       });
 
-      dateList.querySelectorAll('.datve-date-item').forEach(item => {
-        item.addEventListener('click', (event) => {
-            // Lấy ngày từ thuộc tính data-date
-            state.selectedDate = event.currentTarget.dataset.date;
-
-            // Bỏ active ở tất cả các item khác
-            dateList.querySelectorAll('.datve-date-item').forEach(i => i.classList.remove('active'));
-            // Thêm active cho item được click
-            event.currentTarget.classList.add('active');
-
-            updateAndRender();
-        });
-      });
-
     } catch (error) {
       console.error("Lỗi khi khởi tạo trang đặt vé:", error);
-      document.querySelector(".datve-container").innerHTML = 
+      document.querySelector(".datve-container").innerHTML =
         `<p style="text-align: center; color: red;">Tải dữ liệu trang không thành công.</p>`;
     }
   }

@@ -91,10 +91,70 @@
             <section id="showtimes-section" class="content-section">
                 <div class="section-header">
                     <h2>Quản lý Lịch chiếu</h2>
-                     <button class="btn btn-primary"><i class="fas fa-plus"></i> Thêm Lịch chiếu</button>
+                     <button id="add-showtime-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Thêm Lịch chiếu</button>
                 </div>
-                <div class="table-container">
-                    <p>Bảng danh sách các lịch chiếu sẽ được hiển thị ở đây...</p>
+
+                <!-- Form for adding/editing a showtime -->
+                <div id="showtime-form-container" class="form-container" style="display: none;">
+                    <h3 id="showtime-form-title">Thêm Lịch chiếu Mới</h3>
+                    <form id="showtime-form">
+                        <input type="hidden" id="showtime-id" name="id">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="showtime-movie">Phim</label>
+                                <select id="showtime-movie" name="movieId" required></select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="showtime-cinema">Rạp</label>
+                                <select id="showtime-cinema" name="cinemaId" required></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="showtime-room">Phòng</label>
+                                <select id="showtime-room" name="roomId" required disabled></select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="showtime-date">Ngày chiếu</label>
+                                <input type="date" id="showtime-date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="showtime-start-time">Giờ bắt đầu</label>
+                                <input type="time" id="showtime-start-time" name="startTime" required>
+                            </div>
+                             <div class="form-group">
+                                <label for="showtime-price">Giá vé (VND)</label>
+                                <input type="number" id="showtime-price" name="price" required min="0">
+                            </div>
+                        </div>
+                        <div id="timeline-info" class="timeline-info"></div>
+                        <div id="conflict-warning" class="conflict-warning"></div>
+                        <div class="form-actions">
+                            <button type="submit" id="save-showtime-btn" class="btn btn-success">Lưu Lịch chiếu</button>
+                            <button type="button" id="cancel-showtime-btn" class="btn btn-secondary">Hủy</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Table for listing showtimes -->
+                <div id="showtimes-table-container" class="table-container">
+                    <table id="showtimes-table">
+                        <thead>
+                            <tr>
+                                <th>Phim</th>
+                                <th>Rạp</th>
+                                <th>Phòng</th>
+                                <th>Thời gian bắt đầu</th>
+                                <th>Giá vé</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="showtimes-table-body">
+                            <!-- Showtime rows will be injected here by JavaScript -->
+                        </tbody>
+                    </table>
                 </div>
             </section>
 
