@@ -5,32 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Film4U Admin</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="../css/_admin.css">
-  <style>
-    body { margin:0; font-family: Arial,sans-serif; background:#f0f2f5; }
-    .navbar { background:#343a40; color:#fff; padding:10px 20px; display:flex; justify-content:space-between; align-items:center; }
-    .navbar a { color:#fff; text-decoration:none; font-weight:bold; }
-    .navbar-user { position:relative; cursor:pointer; display:flex; align-items:center; gap:10px; }
-    .user-menu { display:none; position:absolute; right:0; top:40px; background:#fff; color:#000; border:1px solid #ccc; border-radius:5px; }
-    .user-menu a { display:block; padding:10px 20px; color:#000; text-decoration:none; }
-    .user-menu a:hover { background:#f1f1f1; }
-    .admin-layout { display:flex; }
-    .sidebar { width:220px; background:#2c3e50; color:#fff; height:100vh; }
-    .sidebar-nav { display:flex; flex-direction:column; }
-    .sidebar-nav a { color:#fff; padding:15px 20px; text-decoration:none; display:flex; align-items:center; gap:10px; }
-    .sidebar-nav a:hover, .sidebar-nav a.active { background:#1abc9c; }
-    .main-content { flex:1; padding:20px; }
-    .content-section { display:none; }
-    .content-section.active { display:block; }
-    .table-container table { width:100%; border-collapse:collapse; margin-top:10px; }
-    .table-container th, .table-container td { border:1px solid #ccc; padding:8px; text-align:left; }
-    .btn { cursor:pointer; padding:5px 10px; border:none; border-radius:5px; }
-    .form-container { background:#fff; padding:15px; border-radius:5px; margin-top:10px; }
-    input, select { padding:5px; width:100%; margin-bottom:10px; }
-  </style>
+  <link rel="stylesheet" href="../css/AdminVTi.css">
 </head>
 <body>
-
   <header class="navbar">
     <a href="#" class="navbar-logo">Film4U <strong>Admin</strong></a>
     <div class="navbar-user" id="user-dropdown">
