@@ -24,6 +24,7 @@
         <a href="#" class="nav-item active" data-section="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
         <a href="#" class="nav-item" data-section="users"><i class="fas fa-users"></i> Quản lý Người dùng</a>
         <a href="#" class="nav-item" data-section="cinemas"><i class="fas fa-university"></i> Quản lý Rạp</a>
+        <a href="#" class="nav-item" data-section="movies"><i class="fas fa-film"></i> Quản lý Phim</a>
       </nav>
     </aside>
 
@@ -79,6 +80,36 @@
           <table id="cinemas-table">
             <thead>
               <tr><th>ID</th><th>Tên Rạp</th><th>Địa chỉ</th><th>Thành phố</th><th>Doanh thu</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+      <!-- Movies Management -->
+      <section id="movies-section" class="content-section">
+        <h2>Quản lý Phim</h2>
+        <button id="add-movie-btn" class="btn" style="background:#1abc9c;color:#fff;margin-bottom:10px;">Thêm Phim</button>
+        <div id="movie-form-container" class="form-container" style="display:none;">
+          <h3 id="movie-form-title">Thêm Phim</h3>
+          <form id="movie-form">
+            <input type="text" id="movie-title" placeholder="Tên Phim" required>
+            <input type="text" id="movie-director" placeholder="Đạo diễn" required>
+            <input type="text" id="movie-actors" placeholder="Diễn viên" required>
+            <input type="date" id="movie-release-date" placeholder="Ngày phát hành" required>
+            <select id="movie-status">
+              <option value="now_showing">Đang chiếu</option>
+              <option value="coming_soon">Sắp chiếu</option>
+            </select>
+            <input type="url" id="movie-poster-url" placeholder="URL Poster" required>
+            <textarea id="movie-description" placeholder="Mô tả" rows="4" required></textarea>
+            <button type="submit" class="btn" style="background:#1abc9c;color:#fff;">Lưu</button>
+            <button type="button" id="cancel-movie-btn" class="btn" style="background:#e74c3c;color:#fff;">Hủy</button>
+          </form>
+        </div>
+        <div class="table-container">
+          <table id="movies-table">
+            <thead>
+              <tr><th>ID</th><th>Tên Phim</th><th>Đạo diễn</th><th>Diễn viên</th><th>Ngày phát hành</th><th>Trạng thái</th><th>Thao tác</th></tr>
             </thead>
             <tbody></tbody>
           </table>

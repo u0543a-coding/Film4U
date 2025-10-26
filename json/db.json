@@ -1,6 +1,7 @@
-{ "admins": [
+{
+  "admins": [
     {
-      "id": 1,
+      "id": "1",
       "fullName": "Admin Film4U",
       "email": "admin@film4u.com",
       "password": "adminpassword"
@@ -32,6 +33,13 @@
       "password": "tietvan",
       "role": "user",
       "createdAt": "2025-10-24T16:31:28.503Z"
+    },
+    {
+      "id": "645c",
+      "fullName": "DatNguyen",
+      "email": "dat.nguyen27@gmail.com",
+      "password": "datnguyen",
+      "role": "user"
     }
   ],
   "genres": [

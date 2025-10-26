@@ -1,46 +1,306 @@
-// Kiểm tra login
-if (!localStorage.getItem('adminLogged')) {
-  window.location.href = 'admin-login.html';
-}
+// adminDashboard.js
+const apiUrl = "http://localhost:3000";
 
-// Hiển thị tên admin
+// ====== Admin Name & Logout ======
 const adminNameSpan = document.getElementById('admin-name');
-adminNameSpan.textContent = localStorage.getItem('adminName');
+adminNameSpan.textContent = localStorage.getItem('adminName') || 'Admin';
 
-// Toggle dropdown
-const userDropdown = document.getElementById('user-dropdown');
-const userMenu = document.getElementById('user-menu');
-userDropdown.addEventListener('click', () => {
-  userMenu.style.display = userMenu.style.display === 'block' ? 'none' : 'block';
-});
-
-// Logout
 document.getElementById('logout-btn-dropdown').addEventListener('click', () => {
-  localStorage.removeItem('adminLogged');
   localStorage.removeItem('adminName');
-  alert('Đăng xuất thành công!');
+  localStorage.removeItem('adminLogged');
   window.location.href = 'admin-login.html';
 });
 
-// Dashboard stats
-const totalUsersSpan = document.getElementById('total-users');
-const totalCinemasSpan = document.getElementById('total-cinemas');
-const totalRevenueSpan = document.getElementById('total-revenue');
+// ====== Sidebar Navigation ======
+const navItems = document.querySelectorAll('.nav-item');
+const sections = document.querySelectorAll('.content-section');
 
-async function loadDashboardStats() {
+navItems.forEach(item => {
+  item.addEventListener('click', () => {
+    navItems.forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+    const section = item.dataset.section;
+    sections.forEach(sec => sec.classList.remove('active'));
+    document.getElementById(`${section}-section`).classList.add('active');
+  });
+});
+
+// ====== Dashboard ======
+async function loadDashboard() {
   try {
-    const users = await getData('users');
-    const cinemas = await getData('cinemas');
-    const bookings = await getData('bookings');
+    const [usersRes, cinemasRes, bookingsRes] = await Promise.all([
+      fetch(`${apiUrl}/users`),
+      fetch(`${apiUrl}/cinemas`),
+      fetch(`${apiUrl}/bookings`)
+    ]);
 
-    totalUsersSpan.textContent = users.length;
-    totalCinemasSpan.textContent = cinemas.length;
+    const users = await usersRes.json();
+    const cinemas = await cinemasRes.json();
+    const bookings = await bookingsRes.json();
 
-    const revenue = bookings.reduce((sum, b) => sum + (b.totalPrice || 0), 0);
-    totalRevenueSpan.textContent = revenue.toLocaleString('vi-VN') + ' ₫';
+    document.getElementById('total-users').textContent = users.length;
+    document.getElementById('total-cinemas').textContent = cinemas.length;
+
+    const totalRevenue = bookings.reduce((sum, b) => sum + (b.totalPrice || 0), 0);
+    document.getElementById('total-revenue').textContent = totalRevenue.toLocaleString('vi-VN') + ' ₫';
   } catch (err) {
-    console.error(err);
+    console.error("Error loading dashboard:", err);
   }
 }
 
-loadDashboardStats();
+// ====== Users Management ======
+const usersTableBody = document.querySelector('#users-table tbody');
+const userFormContainer = document.getElementById('user-form-container');
+const userForm = document.getElementById('user-form');
+const addUserBtn = document.getElementById('add-user-btn');
+const cancelUserBtn = document.getElementById('cancel-user-btn');
+let editingUserId = null;
+
+async function loadUsers() {
+  try {
+    const res = await fetch(`${apiUrl}/users`);
+    const users = await res.json();
+    usersTableBody.innerHTML = '';
+    users.forEach(user => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${user.id}</td>
+        <td>${user.fullName}</td>
+        <td>${user.email}</td>
+        <td>${user.role}</td>
+        <td>
+          <button class="edit-btn" data-id="${user.id}"><i class="fas fa-edit"></i>Sửa</button>
+          <button class="delete-btn" data-id="${user.id}"><i class="fas fa-trash"></i>Block</button>
+        </td>
+      `;
+      usersTableBody.appendChild(tr);
+    });
+
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+      btn.addEventListener('click', () => editUser(btn.dataset.id));
+    });
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.addEventListener('click', () => deleteUser(btn.dataset.id));
+    });
+  } catch (err) {
+    console.error("Error loading users:", err);
+  }
+}
+
+addUserBtn.addEventListener('click', () => {
+  editingUserId = null;
+  userFormContainer.style.display = 'block';
+  userForm.reset();
+  document.getElementById('user-form-title').textContent = 'Thêm Người dùng';
+});
+
+cancelUserBtn.addEventListener('click', () => {
+  userFormContainer.style.display = 'none';
+});
+
+userForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const userData = {
+    fullName: document.getElementById('user-fullName').value,
+    email: document.getElementById('user-email').value,
+    password: document.getElementById('user-password').value,
+    role: document.getElementById('user-role').value
+  };
+  try {
+    if (editingUserId) {
+      await fetch(`${apiUrl}/users/${editingUserId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData)
+      });
+    } else {
+      await fetch(`${apiUrl}/users`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData)
+      });
+    }
+    userFormContainer.style.display = 'none';
+    loadUsers();
+    loadDashboard();
+  } catch (err) {
+    console.error("Error saving user:", err);
+  }
+});
+
+async function editUser(id) {
+  const res = await fetch(`${apiUrl}/users/${id}`);
+  const user = await res.json();
+  editingUserId = id;
+  document.getElementById('user-form-title').textContent = 'Chỉnh sửa Người dùng';
+  document.getElementById('user-fullName').value = user.fullName;
+  document.getElementById('user-email').value = user.email;
+  document.getElementById('user-password').value = user.password;
+  document.getElementById('user-role').value = user.role;
+  userFormContainer.style.display = 'block';
+}
+
+async function deleteUser(id) {
+  if (!confirm("Bạn có chắc muốn xóa người dùng này?")) return;
+  await fetch(`${apiUrl}/users/${id}`, { method: 'DELETE' });
+  loadUsers();
+  loadDashboard();
+}
+
+// ====== Cinemas Management ======
+const cinemasTableBody = document.querySelector('#cinemas-table tbody');
+
+async function loadCinemas() {
+  try {
+    const [cinemasRes, roomsRes, showtimesRes, bookingsRes] = await Promise.all([
+      fetch(`${apiUrl}/cinemas`),
+      fetch(`${apiUrl}/cinema_rooms`),
+      fetch(`${apiUrl}/showtimes`),
+      fetch(`${apiUrl}/bookings`)
+    ]);
+
+    const cinemas = await cinemasRes.json();
+    const rooms = await roomsRes.json();
+    const showtimes = await showtimesRes.json();
+    const bookings = await bookingsRes.json();
+
+    cinemasTableBody.innerHTML = '';
+    cinemas.forEach(cinema => {
+      const cinemaRooms = rooms.filter(r => r.cinemaId === cinema.id);
+      let cinemaRevenue = 0;
+
+      cinemaRooms.forEach(room => {
+        const roomShowtimes = showtimes.filter(s => s.roomId === room.id);
+        roomShowtimes.forEach(st => {
+          const stBookings = bookings.filter(b => b.showtimeId === st.id);
+          stBookings.forEach(b => cinemaRevenue += (b.totalPrice || 0));
+        });
+      });
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${cinema.id}</td>
+        <td>${cinema.name}</td>
+        <td>${cinema.address}</td>
+        <td>${cinema.city}</td>
+        <td>${cinemaRevenue.toLocaleString('vi-VN')} ₫</td>
+      `;
+      cinemasTableBody.appendChild(tr);
+    });
+  } catch (err) {
+    console.error("Error loading cinemas:", err);
+  }
+}
+
+// ====== Movies Management ======
+const moviesTableBody = document.querySelector('#movies-table tbody');
+const movieFormContainer = document.getElementById('movie-form-container');
+const movieForm = document.getElementById('movie-form');
+const addMovieBtn = document.getElementById('add-movie-btn');
+const cancelMovieBtn = document.getElementById('cancel-movie-btn');
+let editingMovieId = null;
+
+async function loadMovies() {
+  try {
+    const res = await fetch(`${apiUrl}/movies`);
+    const movies = await res.json();
+    moviesTableBody.innerHTML = '';
+    movies.forEach(movie => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${movie.id}</td>
+        <td>${movie.title}</td>
+        <td>${movie.director}</td>
+        <td>${movie.actors}</td>
+        <td>${movie.release_date}</td>
+        <td>${movie.status === 'now_showing' ? 'Đang chiếu' : 'Sắp chiếu'}</td>
+        <td>
+          <button class="edit-movie-btn" data-id="${movie.id}"><i class="fas fa-edit"></i>Sửa</button>
+          <button class="delete-movie-btn" data-id="${movie.id}"><i class="fas fa-trash"></i>Xóa</button>
+        </td>
+      `;
+      moviesTableBody.appendChild(tr);
+    });
+
+    document.querySelectorAll('.edit-movie-btn').forEach(btn => {
+      btn.addEventListener('click', () => editMovie(btn.dataset.id));
+    });
+    document.querySelectorAll('.delete-movie-btn').forEach(btn => {
+      btn.addEventListener('click', () => deleteMovie(btn.dataset.id));
+    });
+  } catch (err) {
+    console.error("Error loading movies:", err);
+  }
+}
+
+addMovieBtn.addEventListener('click', () => {
+  editingMovieId = null;
+  movieFormContainer.style.display = 'block';
+  movieForm.reset();
+  document.getElementById('movie-form-title').textContent = 'Thêm Phim';
+});
+
+cancelMovieBtn.addEventListener('click', () => {
+  movieFormContainer.style.display = 'none';
+});
+
+movieForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const movieData = {
+    title: document.getElementById('movie-title').value,
+    director: document.getElementById('movie-director').value,
+    actors: document.getElementById('movie-actors').value,
+    release_date: document.getElementById('movie-release-date').value,
+    status: document.getElementById('movie-status').value,
+    poster_url: document.getElementById('movie-poster-url').value,
+    description: document.getElementById('movie-description').value
+  };
+
+  try {
+    if (editingMovieId) {
+      await fetch(`${apiUrl}/movies/${editingMovieId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(movieData)
+      });
+    } else {
+      await fetch(`${apiUrl}/movies`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(movieData)
+      });
+    }
+    movieFormContainer.style.display = 'none';
+    loadMovies();
+  } catch (err) {
+    console.error("Error saving movie:", err);
+  }
+});
+
+async function editMovie(id) {
+  const res = await fetch(`${apiUrl}/movies/${id}`);
+  const movie = await res.json();
+  editingMovieId = id;
+  document.getElementById('movie-form-title').textContent = 'Chỉnh sửa Phim';
+  document.getElementById('movie-title').value = movie.title;
+  document.getElementById('movie-director').value = movie.director;
+  document.getElementById('movie-actors').value = movie.actors;
+  document.getElementById('movie-release-date').value = movie.release_date;
+  document.getElementById('movie-status').value = movie.status;
+  document.getElementById('movie-poster-url').value = movie.poster_url;
+  document.getElementById('movie-description').value = movie.description;
+  movieFormContainer.style.display = 'block';
+}
+
+async function deleteMovie(id) {
+  if (!confirm("Bạn có chắc muốn xóa phim này?")) return;
+  await fetch(`${apiUrl}/movies/${id}`, { method: 'DELETE' });
+  loadMovies();
+}
+
+// ====== Initialize ======
+loadDashboard();
+loadUsers();
+loadCinemas();
+loadMovies();
+
