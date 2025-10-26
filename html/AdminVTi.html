@@ -25,6 +25,7 @@
         <a href="#" class="nav-item" data-section="users"><i class="fas fa-users"></i> Quản lý Người dùng</a>
         <a href="#" class="nav-item" data-section="cinemas"><i class="fas fa-university"></i> Quản lý Rạp</a>
         <a href="#" class="nav-item" data-section="movies"><i class="fas fa-film"></i> Quản lý Phim</a>
+        <a href="#" class="nav-item" data-section="promotions"><i class="fas fa-tags"></i> Quản lý Khuyến mãi</a>
       </nav>
     </aside>
 
@@ -115,7 +116,33 @@
           </table>
         </div>
       </section>
-
+      <!-- Promotions Management -->
+      <section id="promotions-section" class="content-section">
+        <h2>Quản lý Khuyến mãi</h2>
+        <button id="add-promo-btn" class="btn" style="background:#1abc9c;color:#fff;margin-bottom:10px;">Thêm Khuyến mãi</button>
+        <div id="promo-form-container" class="form-container" style="display:none;">
+          <h3 id="promo-form-title">Thêm Khuyến mãi</h3>
+          <form id="promo-form">
+            <input type="text" id="promo-code" placeholder="Mã khuyến mãi" required>
+            <input type="text" id="promo-description" placeholder="Mô tả" required>
+            <input type="number" id="promo-discount" placeholder="% giảm giá" min="0" max="100" required>
+            <label>Bắt đầu:</label>
+            <input type="date" id="promo-start-date" required>
+            <label>Kết thúc:</label>
+            <input type="date" id="promo-end-date" required>
+            <button type="submit" class="btn" style="background:#1abc9c;color:#fff;">Lưu</button>
+            <button type="button" id="cancel-promo-btn" class="btn" style="background:#e74c3c;color:#fff;">Hủy</button>
+          </form>
+        </div>
+        <div class="table-container">
+          <table id="promotions-table">
+            <thead>
+              <tr><th>ID</th><th>Mã</th><th>Mô tả</th><th>% Giảm</th><th>Bắt đầu</th><th>Kết thúc</th><th>Thao tác</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
     </main>
   </div>
 

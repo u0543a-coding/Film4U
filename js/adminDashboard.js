@@ -298,9 +298,112 @@ async function deleteMovie(id) {
   loadMovies();
 }
 
+// ====== Promotions Management ======
+const promotionsTableBody = document.querySelector('#promotions-table tbody');
+const promoFormContainer = document.getElementById('promo-form-container');
+const promoForm = document.getElementById('promo-form');
+const addPromoBtn = document.getElementById('add-promo-btn');
+const cancelPromoBtn = document.getElementById('cancel-promo-btn');
+let editingPromoId = null;
+
+async function loadPromotions() {
+  try {
+    const res = await fetch(`${apiUrl}/promotions`);
+    const promos = await res.json();
+    promotionsTableBody.innerHTML = '';
+    promos.forEach(promo => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${promo.id}</td>
+        <td>${promo.code}</td>
+        <td>${promo.description}</td>
+        <td>${promo.discountPercentage}%</td>
+        <td>${new Date(promo.startDate).toLocaleDateString('vi-VN')}</td>
+        <td>${new Date(promo.endDate).toLocaleDateString('vi-VN')}</td>
+        <td>
+          <button class="edit-promo-btn" data-id="${promo.id}"><i class="fas fa-edit"></i>Sửa</button>
+          <button class="delete-promo-btn" data-id="${promo.id}"><i class="fas fa-trash"></i>Xóa</button>
+        </td>
+      `;
+      promotionsTableBody.appendChild(tr);
+    });
+
+    document.querySelectorAll('.edit-promo-btn').forEach(btn => {
+      btn.addEventListener('click', () => editPromo(btn.dataset.id));
+    });
+    document.querySelectorAll('.delete-promo-btn').forEach(btn => {
+      btn.addEventListener('click', () => deletePromo(btn.dataset.id));
+    });
+  } catch (err) {
+    console.error("Error loading promotions:", err);
+  }
+}
+
+addPromoBtn.addEventListener('click', () => {
+  editingPromoId = null;
+  promoFormContainer.style.display = 'block';
+  promoForm.reset();
+  document.getElementById('promo-form-title').textContent = 'Thêm Khuyến mãi';
+});
+
+cancelPromoBtn.addEventListener('click', () => {
+  promoFormContainer.style.display = 'none';
+});
+
+promoForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const promoData = {
+    code: document.getElementById('promo-code').value,
+    description: document.getElementById('promo-description').value,
+    discountPercentage: parseInt(document.getElementById('promo-discount').value),
+    startDate: document.getElementById('promo-start-date').value,
+    endDate: document.getElementById('promo-end-date').value
+  };
+
+  try {
+    if (editingPromoId) {
+      await fetch(`${apiUrl}/promotions/${editingPromoId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(promoData)
+      });
+    } else {
+      await fetch(`${apiUrl}/promotions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(promoData)
+      });
+    }
+    promoFormContainer.style.display = 'none';
+    loadPromotions();
+  } catch (err) {
+    console.error("Error saving promotion:", err);
+  }
+});
+
+async function editPromo(id) {
+  const res = await fetch(`${apiUrl}/promotions/${id}`);
+  const promo = await res.json();
+  editingPromoId = id;
+  document.getElementById('promo-form-title').textContent = 'Chỉnh sửa Khuyến mãi';
+  document.getElementById('promo-code').value = promo.code;
+  document.getElementById('promo-description').value = promo.description;
+  document.getElementById('promo-discount').value = promo.discountPercentage;
+  document.getElementById('promo-start-date').value = promo.startDate.split('T')[0];
+  document.getElementById('promo-end-date').value = promo.endDate.split('T')[0];
+  promoFormContainer.style.display = 'block';
+}
+
+async function deletePromo(id) {
+  if (!confirm("Bạn có chắc muốn xóa khuyến mãi này?")) return;
+  await fetch(`${apiUrl}/promotions/${id}`, { method: 'DELETE' });
+  loadPromotions();
+}
+
 // ====== Initialize ======
 loadDashboard();
 loadUsers();
 loadCinemas();
 loadMovies();
+loadPromotions();
 
