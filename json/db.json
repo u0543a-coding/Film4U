@@ -1,5 +1,14 @@
 {
-  "users": [
+    "admins": [
+    {
+      "id": "1",
+      "fullName": "Admin Film4U",
+      "email": "admin@film4u.com",
+      "password": "adminpassword",
+      "phoneNumber": "+84 33532152",
+      "role": "admin"
+    }],
+    "users": [
     {
       "id": "1",
       "fullName": "Admin Film4U",
