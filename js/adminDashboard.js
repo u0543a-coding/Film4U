@@ -24,7 +24,48 @@ navItems.forEach(item => {
     document.getElementById(`${section}-section`).classList.add('active');
   });
 });
+// ====== Kiểm tra đăng nhập ======
+function checkAdminLogin() {
+  const isLoggedIn = localStorage.getItem('adminLogged');
+  const adminName = localStorage.getItem('adminName');
+  
+  if (!isLoggedIn || !adminName) {
+    window.location.href = 'admin-login.html';
+    return false;
+  }
+  
+  document.getElementById('admin-name').textContent = adminName;
+  return true;
+}
 
+// ====== Đăng xuất ======
+function logout() {
+  localStorage.removeItem('adminName');
+  localStorage.removeItem('adminLogged');
+  localStorage.removeItem('adminToken'); // Nếu có token
+  window.location.href = 'admin-login.html';
+}
+
+// Sửa sự kiện đăng xuất
+document.getElementById('logout-btn-dropdown').addEventListener('click', (e) => {
+  e.preventDefault();
+  logout();
+});
+
+// Thêm sự kiện click ngoài để đóng dropdown
+document.addEventListener('click', (e) => {
+  const userDropdown = document.getElementById('user-dropdown');
+  if (!userDropdown.contains(e.target)) {
+    document.getElementById('user-menu').style.display = 'none';
+  }
+});
+
+// Sự kiện mở dropdown
+document.getElementById('user-dropdown').addEventListener('click', (e) => {
+  e.stopPropagation();
+  const userMenu = document.getElementById('user-menu');
+  userMenu.style.display = userMenu.style.display === 'block' ? 'none' : 'block';
+});
 // ====== Dashboard ======
 async function loadDashboard() {
   try {
@@ -833,6 +874,11 @@ async function deletePromo(id) {
 
 // ====== Initialize ======
 document.addEventListener('DOMContentLoaded', () => {
+  // Kiểm tra đăng nhập trước
+  if (!checkAdminLogin()) {
+    return;
+  }
+  
   loadDashboard();
   loadUsers();
   loadCinemas();

@@ -1,52 +1,110 @@
-const togglePassBtn = document.getElementById('toggleAdminPass');
-const adminPassword = document.getElementById('adminPassword');
-const alertMsg = document.getElementById('alertMsg');
+// adminDN.js - Xử lý đăng nhập admin
+const apiUrl = "http://localhost:3000";
 
-// Toggle show/ẩn mật khẩu
-togglePassBtn.addEventListener('click', () => {
-  if (adminPassword.type === 'password') {
-    adminPassword.type = 'text';
-    togglePassBtn.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
-  } else {
-    adminPassword.type = 'password';
-    togglePassBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
-  }
+// Kiểm tra nếu đã đăng nhập thì chuyển hướng
+document.addEventListener('DOMContentLoaded', function() {
+    if (localStorage.getItem('adminLogged') === 'true') {
+        window.location.href = 'admin.html';
+    }
 });
 
-// Submit form
-document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = document.getElementById('adminEmail').value.trim();
-  const password = adminPassword.value.trim();
-
-  try {
-    const admins = await getData('admins'); // lấy dữ liệu từ db.json
-    const admin = admins.find(a => a.email === email && a.password === password);
-
-    if (admin) {
-      alertMsg.classList.remove('alert-danger');
-      alertMsg.classList.add('alert-success');
-      alertMsg.textContent = `Đăng nhập thành công! Chào ${admin.fullName}`;
-      alertMsg.style.display = 'block';
-
-      localStorage.setItem('adminLogged', 'true');
-      localStorage.setItem('adminName', admin.fullName);
-
-      setTimeout(() => {
-        window.location.href = 'AdminVTi.html';
-      }, 1500);
-
+// Hiển thị/ẩn mật khẩu
+document.getElementById('toggleAdminPass').addEventListener('click', function() {
+    const passwordInput = document.getElementById('adminPassword');
+    const icon = this.querySelector('i');
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
     } else {
-      alertMsg.classList.remove('alert-success');
-      alertMsg.classList.add('alert-danger');
-      alertMsg.textContent = 'Email hoặc mật khẩu không đúng!';
-      alertMsg.style.display = 'block';
+        passwordInput.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
     }
-  } catch (error) {
-    console.error(error);
-    alertMsg.classList.remove('alert-success');
-    alertMsg.classList.add('alert-danger');
-    alertMsg.textContent = 'Không thể tải dữ liệu admin!';
+});
+
+// Xử lý đăng nhập
+document.getElementById('adminLoginForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('adminEmail').value;
+    const password = document.getElementById('adminPassword').value;
+    const alertMsg = document.getElementById('alertMsg');
+    
+    // Reset thông báo
+    alertMsg.style.display = 'none';
+    alertMsg.className = 'alert text-center';
+    
+    // Validate cơ bản
+    if (!email || !password) {
+        showAlert('Vui lòng nhập đầy đủ thông tin!', 'danger');
+        return;
+    }
+    
+    try {
+        // Hiển thị loading
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang đăng nhập...';
+        submitBtn.disabled = true;
+        
+        // Gọi API đăng nhập
+        const response = await fetch(`${apiUrl}/admin/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
+            // Lưu thông tin đăng nhập
+            localStorage.setItem('adminLogged', 'true');
+            localStorage.setItem('adminName', result.admin.name || result.admin.fullName || 'Admin');
+            localStorage.setItem('adminEmail', result.admin.email);
+            localStorage.setItem('adminId', result.admin.id);
+            
+            showAlert('Đăng nhập thành công! Đang chuyển hướng...', 'success');
+            
+            // Chuyển hướng sau 1 giây
+            setTimeout(() => {
+                window.location.href = 'admin.html';
+            }, 1000);
+            
+        } else {
+            showAlert(result.message || 'Đăng nhập thất bại!', 'danger');
+        }
+        
+    } catch (error) {
+        console.error('Login error:', error);
+        showAlert('Lỗi kết nối! Vui lòng thử lại sau.', 'danger');
+    } finally {
+        // Khôi phục button
+        const submitBtn = document.querySelector('button[type="submit"]');
+        submitBtn.innerHTML = 'Đăng nhập';
+        submitBtn.disabled = false;
+    }
+});
+
+// Hiển thị thông báo
+function showAlert(message, type) {
+    const alertMsg = document.getElementById('alertMsg');
+    alertMsg.textContent = message;
+    alertMsg.className = `alert alert-${type} text-center`;
     alertMsg.style.display = 'block';
-  }
+    
+    // Tự động ẩn thông báo sau 5 giây
+    setTimeout(() => {
+        alertMsg.style.display = 'none';
+    }, 5000);
+}
+
+// Xử lý phím Enter
+document.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        document.getElementById('adminLoginForm').dispatchEvent(new Event('submit'));
+    }
 });
