@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/seatbooking.css">
+  <link rel="stylesheet" href="../css/homepage.css">
+  <title>Đặt Ghế Xem Phim</title>
+</head>
+
+<body>
+    <!-- header -->
+  <div id="header-placeholder"></div>
+  <!-- !header -->
+
+
+  <div class="datghe-container">
+    <h2>Mời Bạn Chọn Ghế</h2>
+
+    <div class="datghe-legend">
+        <!-- Chú thích được viết bằng HTML thuần -->
+        <div><span class="seat standard"></span>Ghế thường</div>
+        <div><span class="seat premium"></span>Ghế Premium</div>
+        <div><span class="seat vip"></span>Ghế VIP</div>
+        <div><span class="seat couple"></span>Ghế đôi</div>
+        <div><span class="seat selected"></span>Ghế đang chọn</div>
+        <div><span class="seat occupied"></span>Ghế đã bán</div>
+    </div>
+
+    <div id="seat-map-container">
+      <!-- Sơ đồ ghế sẽ được tạo bởi JavaScript -->
+    </div>
+
+    <div class="datghe-info" id="ticketInfo">
+      <p><strong>Phim:</strong> <span id="movie-title">Đang tải...</span></p>
+      <p><strong>Rạp:</strong> <span id="cinema-name"></span> | <strong>Suất:</strong> <span id="showtime-time"></span></p>
+      <p><strong>Phòng chiếu:</strong> <span id="room-name"></span> | <strong>Ghế đã chọn:</strong> <span id="selected-seats-list">Chưa có</span></p>
+      <div class="datghe-total"><strong>Tổng:</strong> <span id="total-price">0</span> đ</div>
+    </div>
+
+    <div class="datghe-btns">
+      <button class="datghe-btn datghe-btn-back" onclick="history.back()">← Quay Lại</button>
+      <button class="datghe-btn datghe-btn-confirm" id="continue-btn">Tiếp tục</button>
+    </div>
+  </div>
+
+    <!-- footer -->
+  <div id="footer-placeholder"></div>
+  <!-- !footer -->
+
+  <script src="../js/seatbooking.js" defer></script>
+    <script src="../js/api.js"></script>
+  <script src="../js/layout.js"></script>
+</body>
+</html>

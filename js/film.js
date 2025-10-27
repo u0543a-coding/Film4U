@@ -55,6 +55,7 @@ async function fetchAndDisplayAllMovies() {
   }
 }
 
+<<<<<<< HEAD
 // Kiểm tra trạng thái đăng nhập và xử lý nút đặt vé
 function handleBookingButtons() {
   const loggedInUser = sessionStorage.getItem('loggedInUser');
@@ -76,4 +77,9 @@ function handleBookingButtons() {
 document.addEventListener("DOMContentLoaded", async () => {
   await fetchAndDisplayAllMovies();
   handleBookingButtons();
+=======
+// Chạy các hàm khởi tạo khi DOM đã tải xong
+document.addEventListener("DOMContentLoaded", () => {
+  fetchAndDisplayAllMovies();
+>>>>>>> VanTiet
 });

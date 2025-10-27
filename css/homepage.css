@@ -6,71 +6,103 @@
 
 /* NAVBAR */
 .navbar {
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  padding: 10px 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  background-color: #111;
+  color: white;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-container {
-  width: 90%;
-  margin: auto;
+  width: 100%;
+  max-width: 1200px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 .navbar-logo {
+  color: #ff4444;
+  font-size: 1.5em;
   font-weight: bold;
-  color: #d32f2f;
   text-decoration: none;
-  font-size: 20px;
 }
 
 .navbar-search {
   display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .navbar-search input {
   padding: 6px 10px;
+  border-radius: 4px;
   border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
-  border-right: none;
-  outline: none;
+  width: 250px;
 }
 
 .search-btn {
+  background-color: #ff4444;
+  border: none;
+  color: white;
   padding: 6px 12px;
-  border: 1px solid #ccc;
-  background-color: #f8f8f8;
-  color: #333;
+  border-radius: 4px;
   cursor: pointer;
-  border-radius: 0 4px 4px 0;
-}
-
-.search-btn:hover {
-  background-color: #e9e9e9;
 }
 
 .navbar-links {
   list-style: none;
   display: flex;
-  gap: 15px;
-  margin: 0;
+  align-items: center;
+  gap: 20px;
 }
 
-.navbar-links li a {
+.navbar-links a {
+  color: white;
   text-decoration: none;
+  font-weight: 500;
+}
+
+.navbar-links a:hover,
+.navbar-links .active {
+  color: #ff4444;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: white;
+  color: black;
+  list-style: none;
+  padding: 8px 0;
+  border-radius: 6px;
+  top: 30px;
+  right: 0;
+  min-width: 180px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 8px 16px;
   color: #333;
-  font-weight: bold;
 }
 
-.navbar-links a.active {
-  color: #d32f2f;
+.dropdown-menu li a:hover {
+  background-color: #f0f0f0;
+  color: #ff4444;
 }
 
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
 
 /* SECTION TITLE */
 .section-title {
@@ -139,7 +171,7 @@
   color: inherit; /* Kế thừa màu chữ từ thẻ cha */
 }
 
-.movie-card, .trangchu-movie-card {
+.movie-card {
   background: #fff;
   border-radius: 6px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -147,39 +179,49 @@
   padding-bottom: 10px;
 }
 
-.movie-card img, .trangchu-movie-card img {
+.movie-card img {
   width: 100%;
+  height: 420px;
+  object-fit: cover;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
 
-.movie-card h4, .trangchu-movie-card h4 {
-  margin: 10px 0 5px;
+.movie-card h4 {
+  margin: 10px 10px 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.movie-card p, .trangchu-movie-card p {
+.movie-card p {
   font-size: 14px;
   color: #666;
+  margin: 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* BUTTONS */
-.btn, .trangchu-btn {
+.btn {
   border: none;
   border-radius: 4px;
   padding: 6px 12px;
   cursor: pointer;
   color: #fff;
+  margin-top: 10px;
 }
 
-.btn.red, .trangchu-btn.red {
+.btn.red {
   background: #d32f2f;
 }
 
-.btn.gray, .trangchu-btn.gray {
+.btn.gray {
   background: #555;
 }
 
-.btn:hover, .trangchu-btn:hover {
+.btn:hover {
   opacity: 0.9;
 }
 
@@ -238,3 +280,58 @@
   color: #bbb;
   font-size: 14px;
 }
+
+
+<<<<<<< HEAD
+=======
+.genre-filter-section {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.genre-filter-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border: 2px solid #1a1a2e;
+    background: white;
+    color: #1a1a2e;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.filter-btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: #e63946;
+    color: white;
+    border-color: #e63946;
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .genre-filter-container {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+    .filter-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+}
+>>>>>>> origin/feature/dan

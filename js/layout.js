@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     });
                 }
                 document.dispatchEvent(new Event('headerLoaded'));
+<<<<<<< HEAD
 
                 // Handle user login status
                 const accountLink = document.getElementById("account-link");
@@ -54,6 +55,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     accountLink.href = "login.html";
                     myTicketsLink.style.display = 'none'; // Hide the link
                 }
+=======
+>>>>>>> VanTiet
             })
             .catch(error => {
                 console.error('There has been a problem with your fetch operation for the header:', error);

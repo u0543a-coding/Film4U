@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Film4U Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/AdminVTi.css">
+</head>
+<body>
+<header class="navbar">
+  <a href="#" class="navbar-logo">Film4U <strong>Admin</strong></a>
+  <div class="navbar-user" id="user-dropdown">
+    <span id="admin-name">Admin</span>
+    <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 12px;"></i>
+    <div id="user-menu" class="user-menu">
+      <a href="#" id="logout-btn-dropdown">
+        <i class="fas fa-sign-out-alt"></i> Đăng xuất
+      </a>
+    </div>
+  </div>
+</header>
+
+  <div class="admin-layout">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-section="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="#" class="nav-item" data-section="users"><i class="fas fa-users"></i> Quản lý Người dùng</a>
+        <a href="#" class="nav-item" data-section="cinemas"><i class="fas fa-university"></i> Quản lý Rạp</a>
+        <a href="#" class="nav-item" data-section="movies"><i class="fas fa-film"></i> Quản lý Phim</a>
+        <a href="#" class="nav-item" data-section="promotions"><i class="fas fa-tags"></i> Quản lý Khuyến mãi</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <!-- Dashboard -->
+      <section id="dashboard-section" class="content-section active">
+        <h2>Dashboard</h2>
+        <div class="dashboard-cards">
+          <div class="dashboard-card">
+            <i class="fas fa-users fa-2x"></i>
+            <p>Tổng Người dùng</p>
+            <span id="total-users">0</span>
+          </div>
+          <div class="dashboard-card">
+            <i class="fas fa-university fa-2x"></i>
+            <p>Tổng Rạp</p>
+            <span id="total-cinemas">0</span>
+          </div>
+          <div class="dashboard-card">
+            <i class="fas fa-film fa-2x"></i>
+            <p>Tổng Phim</p>
+            <span id="total-movies">0</span>
+          </div>
+          <div class="dashboard-card">
+            <i class="fas fa-tags fa-2x"></i>
+            <p>Tổng Khuyến mãi</p>
+            <span id="total-promotions">0</span>
+          </div>
+          <div class="dashboard-card">
+            <i class="fas fa-dollar-sign fa-2x"></i>
+            <p>Doanh thu</p>
+            <span id="total-revenue">0 ₫</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- User Management -->
+      <section id="users-section" class="content-section">
+        <h2>Quản lý Người dùng</h2>
+        <button id="add-user-btn" class="btn" style="background:#1abc9c;color:#fff;margin-bottom:10px;">Thêm Người dùng</button>
+        <div id="user-form-container" class="form-container" style="display:none;">
+          <h3 id="user-form-title">Thêm Người dùng</h3>
+          <form id="user-form">
+            <input type="text" id="user-fullName" placeholder="Họ và tên" required>
+            <input type="email" id="user-email" placeholder="Email" required>
+            <input type="password" id="user-password" placeholder="Mật khẩu" required>
+            <select id="user-role">
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+            <button type="submit" class="btn" style="background:#1abc9c;color:#fff;">Lưu</button>
+            <button type="button" id="cancel-user-btn" class="btn" style="background:#e74c3c;color:#fff;">Hủy</button>
+          </form>
+        </div>
+        <div class="table-container">
+          <table id="users-table">
+            <thead>
+              <tr><th>ID</th><th>Họ và tên</th><th>Email</th><th>Role</th><th>Thao tác</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Cinema Management -->
+      <section id="cinemas-section" class="content-section">
+        <h2>Quản lý Rạp</h2>
+        <button id="add-cinema-btn" class="btn" style="background:#1abc9c;color:#fff;margin-bottom:10px;">Thêm Rạp</button>
+        <div id="cinema-form-container" class="form-container" style="display:none;">
+          <h3 id="cinema-form-title">Thêm Rạp</h3>
+          <form id="cinema-form">
+            <input type="text" id="cinema-name" placeholder="Tên rạp" required>
+            <input type="text" id="cinema-address" placeholder="Địa chỉ" required>
+            <input type="text" id="cinema-city" placeholder="Thành phố" required>
+            <button type="submit" class="btn" style="background:#1abc9c;color:#fff;">Lưu</button>
+            <button type="button" id="cancel-cinema-btn" class="btn" style="background:#e74c3c;color:#fff;">Hủy</button>
+          </form>
+        </div>
+        <div class="table-container">
+          <table id="cinemas-table">
+            <thead>
+              <tr><th>ID</th><th>Tên Rạp</th><th>Địa chỉ</th><th>Thành phố</th><th>Doanh thu</th><th>Thao tác</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Movies Management -->
+      <section id="movies-section" class="content-section">
+        <h2>Quản lý Phim</h2>
+        <button id="add-movie-btn" class="btn" style="background:#1abc9c;color:#fff;margin-bottom:10px;">Thêm Phim</button>
+        <div id="movie-form-container" class="form-container" style="display:none;">
+          <h3 id="movie-form-title">Thêm Phim</h3>
+          <form id="movie-form">
+            <input type="text" id="movie-title" placeholder="Tên Phim" required>
+            <input type="text" id="movie-director" placeholder="Đạo diễn" required>
+            <input type="text" id="movie-actors" placeholder="Diễn viên" required>
+            <input type="date" id="movie-release-date" placeholder="Ngày phát hành" required>
+            <select id="movie-status">
+              <option value="now_showing">Đang chiếu</option>
+              <option value="coming_soon">Sắp chiếu</option>
+            </select>
+            <input type="url" id="movie-poster-url" placeholder="URL Poster" required>
+            <textarea id="movie-description" placeholder="Mô tả" rows="4" required></textarea>
+            <button type="submit" class="btn" style="background:#1abc9c;color:#fff;">Lưu</button>
+            <button type="button" id="cancel-movie-btn" class="btn" style="background:#e74c3c;color:#fff;">Hủy</button>
+          </form>
+        </div>
+        <div class="table-container">
+          <table id="movies-table">
+            <thead>
+              <tr><th>ID</th><th>Tên Phim</th><th>Đạo diễn</th><th>Diễn viên</th><th>Ngày phát hành</th><th>Trạng thái</th><th>Thao tác</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Promotions Management -->
+      <section id="promotions-section" class="content-section">
+        <h2>Quản lý Khuyến mãi</h2>
+        <button id="add-promo-btn" class="btn" style="background:#1abc9c;color:#fff;margin-bottom:10px;">Thêm Khuyến mãi</button>
+        <div id="promo-form-container" class="form-container" style="display:none;">
+          <h3 id="promo-form-title">Thêm Khuyến mãi</h3>
+          <form id="promo-form">
+            <input type="text" id="promo-code" placeholder="Mã khuyến mãi" required>
+            <input type="text" id="promo-description" placeholder="Mô tả" required>
+            <input type="number" id="promo-discount" placeholder="% giảm giá" min="0" max="100" required>
+            <label>Bắt đầu:</label>
+            <input type="date" id="promo-start-date" required>
+            <label>Kết thúc:</label>
+            <input type="date" id="promo-end-date" required>
+            <button type="submit" class="btn" style="background:#1abc9c;color:#fff;">Lưu</button>
+            <button type="button" id="cancel-promo-btn" class="btn" style="background:#e74c3c;color:#fff;">Hủy</button>
+          </form>
+        </div>
+        <div class="table-container">
+          <table id="promotions-table">
+            <thead>
+              <tr><th>ID</th><th>Mã</th><th>Mô tả</th><th>% Giảm</th><th>Bắt đầu</th><th>Kết thúc</th><th>Thao tác</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal quản lý phòng -->
+  <div id="rooms-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="rooms-modal-title">Quản lý Phòng - <span id="cinema-name-title"></span></h3>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <button id="add-room-btn" class="btn" style="background:#1abc9c;color:#fff;margin-bottom:10px;">Thêm Phòng</button>
+        <div id="room-form-container" class="form-container" style="display:none;">
+          <h4 id="room-form-title">Thêm Phòng</h4>
+          <form id="room-form">
+            <input type="text" id="room-name" placeholder="Tên phòng" required>
+            <input type="number" id="room-rows" placeholder="Số hàng ghế" min="1" required>
+            <input type="number" id="room-cols" placeholder="Số ghế mỗi hàng" min="1" required>
+            <button type="submit" class="btn" style="background:#1abc9c;color:#fff;">Lưu</button>
+            <button type="button" id="cancel-room-btn" class="btn" style="background:#e74c3c;color:#fff;">Hủy</button>
+          </form>
+        </div>
+        <div class="table-container">
+          <table id="rooms-table">
+            <thead>
+              <tr><th>ID</th><th>Tên Phòng</th><th>Số ghế</th><th>Thao tác</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal quản lý ghế và suất chiếu -->
+  <div id="room-detail-modal" class="modal">
+    <div class="modal-content large-modal">
+      <div class="modal-header">
+        <h3 id="room-detail-modal-title">Quản lý Phòng - <span id="room-name-title"></span></h3>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="seats">Quản lý Ghế</button>
+          <button class="tab-btn" data-tab="screenings">Quản lý Suất chiếu</button>
+        </div>
+        
+        <!-- Tab Quản lý Ghế -->
+        <div id="seats-tab" class="tab-content active">
+          <div class="seats-container">
+            <h4>Sơ đồ ghế</h4>
+            <div id="seats-grid"></div>
+          </div>
+        </div>
+        
+        <!-- Tab Quản lý Suất chiếu -->
+        <div id="screenings-tab" class="tab-content">
+          <button id="add-screening-btn" class="btn" style="background:#1abc9c;color:#fff;margin-bottom:10px;">Thêm Suất chiếu</button>
+          <div id="screening-form-container" class="form-container" style="display:none;">
+            <h4 id="screening-form-title">Thêm Suất chiếu</h4>
+            <form id="screening-form">
+              <select id="screening-movie" required>
+                <option value="">Chọn phim</option>
+              </select>
+              <input type="datetime-local" id="screening-time" required>
+              <input type="number" id="screening-price" placeholder="Giá vé" min="0" required>
+              <button type="submit" class="btn" style="background:#1abc9c;color:#fff;">Lưu</button>
+              <button type="button" id="cancel-screening-btn" class="btn" style="background:#e74c3c;color:#fff;">Hủy</button>
+            </form>
+          </div>
+          <div class="table-container">
+            <table id="screenings-table">
+              <thead>
+                <tr><th>ID</th><th>Phim</th><th>Thời gian</th><th>Giá vé</th><th>Thao tác</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/adminDashboard.js"></script>
+</body>
+</html>
