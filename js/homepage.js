@@ -21,15 +21,67 @@ window.changeImage = function (direction) {
 
 async function setupBanner() {
   try {
-    const response = await fetch("http://localhost:3000/banners");
-    if (!response.ok) throw new Error("Lỗi khi tải dữ liệu banner.");
-    banners = await response.json();
+    banners = await api.getBanners();
     changeImage(0); // Hiển thị banner đầu tiên
 
     // Bắt đầu tự động chạy banner
     bannerInterval = setInterval(() => changeImage(1), 5000);
   } catch (error) {
     console.error("Đã có lỗi xảy ra với banner: ", error);
+  }
+}
+
+
+
+/**
+ * Xử lý tìm kiếm phim dựa trên tiêu đề hoặc diễn viên.
+ * @param {Event} event - Sự kiện submit của form.
+ */
+async function handleSearch(event) {
+  event.preventDefault(); // Ngăn form gửi đi và tải lại trang
+
+  const searchInput = document.getElementById("search-input");
+  const query = searchInput.value.trim();
+
+  const searchResultsSection = document.getElementById("search-results-section");
+  const nowShowingSection = document.getElementById("now-showing-section");
+  const comingSoonSection = document.getElementById("coming-soon-section");
+  const sectionTitle = document.querySelector(".section-title");
+
+  // Nếu ô tìm kiếm trống, hiển thị lại các mục mặc định
+  if (!query) {
+    searchResultsSection.style.display = "none";
+    nowShowingSection.style.display = "block";
+    comingSoonSection.style.display = "block";
+    sectionTitle.style.display = "block";
+    return;
+  }
+
+  try {
+    // Lấy phim dựa trên query
+    const filteredMovies = await api.getMovies({}); // Lấy tất cả phim
+
+    // Ẩn các mục phim hot và hiển thị khu vực kết quả tìm kiếm
+    nowShowingSection.style.display = "none";
+    comingSoonSection.style.display = "none";
+    sectionTitle.style.display = "none";
+    searchResultsSection.style.display = "block";
+
+    // Cập nhật tiêu đề kết quả tìm kiếm
+    const searchResultsTitle = document.getElementById("search-results-title");
+    searchResultsTitle.textContent = `Kết quả tìm kiếm cho "${searchInput.value}"`;
+
+    // Hiển thị phim đã lọc
+    const searchResultsGrid = document.getElementById("search-results-grid"); 
+    
+    // Lọc phim dựa trên query từ input
+    const moviesMatchingQuery = filteredMovies.filter(movie => 
+      movie.title.toLowerCase().includes(query.toLowerCase()) || 
+      movie.actors.toLowerCase().includes(query.toLowerCase())
+    );
+    renderMovies(moviesMatchingQuery, searchResultsGrid, false); // Giả sử tất cả đều có thể đặt vé
+  } catch (error) {
+    console.error("Lỗi khi thực hiện tìm kiếm: ", error);
   }
 }
 
@@ -78,113 +130,46 @@ function renderMovies(movies, container, isComingSoon) {
 }
 
 async function fetchAndDisplayMovies() {
+  const nowShowingGrid = document.getElementById("now-showing-grid");
+  const comingSoonGrid = document.getElementById("coming-soon-grid");
+
   try {
-    // Tạo các promise để gọi API song song
-    const nowShowingPromise = fetch(
-      "http://localhost:3000/movies?status=now_showing&_limit=4"
-    ).then((res) => {
-      if (!res.ok)
-        throw new Error(`Lỗi khi tải phim đang chiếu: ${res.statusText}`);
-      return res.json();
-    });
-
-    const comingSoonPromise = fetch(
-      "http://localhost:3000/movies?status=coming_soon&_limit=4"
-    ).then((res) => {
-      if (!res.ok)
-        throw new Error(`Lỗi khi tải phim sắp chiếu: ${res.statusText}`);
-      return res.json();
-    });
-
-    // Chờ cả hai promise hoàn thành
+    // Gọi API song song bằng api.js
     const [nowShowingMovies, comingSoonMovies] = await Promise.all([
-      nowShowingPromise,
-      comingSoonPromise,
+      api.getMovies({ status: "now_showing", _limit: 4 }),
+      api.getMovies({ status: "coming_soon", _limit: 4 }),
     ]);
 
     // Hiển thị phim lên giao diện
-    renderMovies(
-      nowShowingMovies,
-      document.getElementById("now-showing-grid"),
-      false
-    );
-    renderMovies(
-      comingSoonMovies,
-      document.getElementById("coming-soon-grid"),
-      true
-    );
+    renderMovies(nowShowingMovies, nowShowingGrid, false);
+    renderMovies(comingSoonMovies, comingSoonGrid, true);
+
   } catch (error) {
     console.error("Đã có lỗi xảy ra với tác vụ fetch: ", error);
+    if (nowShowingGrid) nowShowingGrid.innerHTML = "<p>Lỗi tải phim.</p>";
+    if (comingSoonGrid) comingSoonGrid.innerHTML = "<p>Lỗi tải phim.</p>";
   }
 }
 
-
-
-/**
- * Xử lý tìm kiếm phim dựa trên tiêu đề hoặc diễn viên.
- * @param {Event} event - Sự kiện submit của form.
- */
-
-async function handleSearch(event) {
-  event.preventDefault(); // Ngăn form gửi đi và tải lại trang
-
-  const searchInput = document.getElementById("search-input");
-  const query = searchInput.value.trim().toLowerCase();
-
-  const searchResultsSection = document.getElementById("search-results-section");
-  const nowShowingSection = document.getElementById("now-showing-section");
-  const comingSoonSection = document.getElementById("coming-soon-section");
-  const sectionTitle = document.querySelector(".section-title");
-
-  // Nếu ô tìm kiếm trống, hiển thị lại các mục mặc định
-  if (!query) {
-    searchResultsSection.style.display = "none";
-    nowShowingSection.style.display = "block";
-    comingSoonSection.style.display = "block";
-    sectionTitle.style.display = "block";
-    return;
-  }
-
-  try {
-    const response = await fetch("http://localhost:3000/movies");
-    if (!response.ok) {
-      throw new Error("Lỗi khi tải dữ liệu phim để tìm kiếm.");
-    }
-    const allMovies = await response.json();
-
-    // Lọc phim dựa trên tiêu đề hoặc diễn viên
-    const filteredMovies = allMovies.filter(
-      (movie) =>
-        movie.title.toLowerCase().includes(query) ||
-        movie.actors.toLowerCase().includes(query)
-    );
-
-    // Ẩn các mục phim hot và hiển thị khu vực kết quả tìm kiếm
-    nowShowingSection.style.display = "none";
-    comingSoonSection.style.display = "none";
-    sectionTitle.style.display = "none";
-    searchResultsSection.style.display = "block";
-
-    // Cập nhật tiêu đề kết quả tìm kiếm
-    const searchResultsTitle = document.getElementById("search-results-title");
-    searchResultsTitle.textContent = `Kết quả tìm kiếm cho "${searchInput.value}"`;
-
-    // Hiển thị phim đã lọc
-    const searchResultsGrid = document.getElementById("search-results-grid");
-    renderMovies(filteredMovies, searchResultsGrid, false); // Giả sử tất cả đều có thể đặt vé
-  } catch (error) {
-    console.error("Lỗi khi thực hiện tìm kiếm: ", error);
-  }
-}
 
 // Chạy các hàm khởi tạo khi DOM đã tải xong
 document.addEventListener("DOMContentLoaded", () => {
   setupBanner();
   fetchAndDisplayMovies();
 
-  // Gắn sự kiện cho form tìm kiếm
-  const searchForm = document.querySelector(".navbar-search");
-  if (searchForm) {
-    searchForm.addEventListener("submit", handleSearch);
-  }
+  // Lắng nghe sự kiện header đã được tải
+  document.addEventListener('headerLoaded', () => {
+    // Xử lý tìm kiếm từ URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('search');
+
+    if (searchQuery) {
+      const searchInput = document.getElementById('search-input');
+      if (searchInput) {
+        searchInput.value = decodeURIComponent(searchQuery);
+        // Gọi hàm handleSearch để hiển thị kết quả
+        handleSearch({ preventDefault: () => {} });
+      }
+    }
+  });
 });

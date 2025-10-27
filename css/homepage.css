@@ -139,7 +139,7 @@
   color: inherit; /* Kế thừa màu chữ từ thẻ cha */
 }
 
-.movie-card, .trangchu-movie-card {
+.movie-card {
   background: #fff;
   border-radius: 6px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -147,39 +147,49 @@
   padding-bottom: 10px;
 }
 
-.movie-card img, .trangchu-movie-card img {
+.movie-card img {
   width: 100%;
+  height: 420px;
+  object-fit: cover;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
 
-.movie-card h4, .trangchu-movie-card h4 {
-  margin: 10px 0 5px;
+.movie-card h4 {
+  margin: 10px 10px 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.movie-card p, .trangchu-movie-card p {
+.movie-card p {
   font-size: 14px;
   color: #666;
+  margin: 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* BUTTONS */
-.btn, .trangchu-btn {
+.btn {
   border: none;
   border-radius: 4px;
   padding: 6px 12px;
   cursor: pointer;
   color: #fff;
+  margin-top: 10px;
 }
 
-.btn.red, .trangchu-btn.red {
+.btn.red {
   background: #d32f2f;
 }
 
-.btn.gray, .trangchu-btn.gray {
+.btn.gray {
   background: #555;
 }
 
-.btn:hover, .trangchu-btn:hover {
+.btn:hover {
   opacity: 0.9;
 }
 
@@ -237,4 +247,56 @@
   text-align: center;
   color: #bbb;
   font-size: 14px;
+}
+
+
+.genre-filter-section {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.genre-filter-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border: 2px solid #1a1a2e;
+    background: white;
+    color: #1a1a2e;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.filter-btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: #e63946;
+    color: white;
+    border-color: #e63946;
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .genre-filter-container {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+    .filter-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
 }
