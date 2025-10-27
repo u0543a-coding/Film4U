@@ -287,18 +287,24 @@ document.querySelector('#rooms-modal .close').addEventListener('click', () => {
   roomsModal.style.display = 'none';
 });
 
-// Tải danh sách phòng
+// Tải danh sách phòng - SỬA LẠI ĐỂ PHÙ HỢP VỚI JSON
 async function loadRooms() {
   try {
-    const res = await fetch(`${apiUrl}/rooms?cinemaId=${currentCinemaId}`);
+    const res = await fetch(`${apiUrl}/cinema_rooms`);
     const rooms = await res.json();
+    // Lọc phòng theo cinemaId
+    const filteredRooms = rooms.filter(room => room.cinemaId == currentCinemaId);
+    
     roomsTableBody.innerHTML = '';
-    rooms.forEach(room => {
+    filteredRooms.forEach(room => {
+      const seatLayout = room.seat_layout || { rows: 0, seatsPerRow: 0 };
+      const totalSeats = seatLayout.rows * seatLayout.seatsPerRow;
+      
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td>${room.id}</td>
-        <td>${room.name}</td>
-        <td>${room.rows * room.cols}</td>
+        <td>${room.room_name}</td>
+        <td>${totalSeats}</td>
         <td>
           <button class="view-room-btn" data-id="${room.id}"><i class="fas fa-eye"></i>Xem</button>
           <button class="edit-room-btn" data-id="${room.id}"><i class="fas fa-edit"></i>Sửa</button>
@@ -337,21 +343,23 @@ cancelRoomBtn.addEventListener('click', () => {
 roomForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const roomData = {
-    name: document.getElementById('room-name').value,
-    rows: parseInt(document.getElementById('room-rows').value),
-    cols: parseInt(document.getElementById('room-cols').value),
-    cinemaId: parseInt(currentCinemaId)
+    room_name: document.getElementById('room-name').value,
+    cinemaId: parseInt(currentCinemaId),
+    seat_layout: {
+      rows: parseInt(document.getElementById('room-rows').value),
+      seatsPerRow: parseInt(document.getElementById('room-cols').value)
+    }
   };
   
   try {
     if (editingRoomId) {
-      await fetch(`${apiUrl}/rooms/${editingRoomId}`, {
+      await fetch(`${apiUrl}/cinema_rooms/${editingRoomId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(roomData)
       });
     } else {
-      await fetch(`${apiUrl}/rooms`, {
+      await fetch(`${apiUrl}/cinema_rooms`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(roomData)
@@ -366,20 +374,20 @@ roomForm.addEventListener('submit', async (e) => {
 
 // Sửa phòng
 async function editRoom(id) {
-  const res = await fetch(`${apiUrl}/rooms/${id}`);
+  const res = await fetch(`${apiUrl}/cinema_rooms/${id}`);
   const room = await res.json();
   editingRoomId = id;
   document.getElementById('room-form-title').textContent = 'Chỉnh sửa Phòng';
-  document.getElementById('room-name').value = room.name;
-  document.getElementById('room-rows').value = room.rows;
-  document.getElementById('room-cols').value = room.cols;
+  document.getElementById('room-name').value = room.room_name;
+  document.getElementById('room-rows').value = room.seat_layout?.rows || 0;
+  document.getElementById('room-cols').value = room.seat_layout?.seatsPerRow || 0;
   roomFormContainer.style.display = 'block';
 }
 
 // Xóa phòng
 async function deleteRoom(id) {
   if (!confirm("Bạn có chắc muốn xóa phòng này?")) return;
-  await fetch(`${apiUrl}/rooms/${id}`, { method: 'DELETE' });
+  await fetch(`${apiUrl}/cinema_rooms/${id}`, { method: 'DELETE' });
   loadRooms();
 }
 
@@ -392,9 +400,9 @@ async function viewRoomDetails(roomId) {
   currentRoomId = roomId;
   
   // Lấy thông tin phòng
-  const roomRes = await fetch(`${apiUrl}/rooms/${roomId}`);
+  const roomRes = await fetch(`${apiUrl}/cinema_rooms/${roomId}`);
   const room = await roomRes.json();
-  document.getElementById('room-name-title').textContent = room.name;
+  document.getElementById('room-name-title').textContent = room.room_name;
   
   // Đóng modal phòng và mở modal chi tiết
   roomsModal.style.display = 'none';
@@ -435,40 +443,24 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 // ====== Seats Management ======
 async function loadSeats() {
   try {
-    const res = await fetch(`${apiUrl}/seats?roomId=${currentRoomId}`);
-    const seats = await res.json();
-    
     // Lấy thông tin phòng để biết số hàng và cột
-    const roomRes = await fetch(`${apiUrl}/rooms/${currentRoomId}`);
+    const roomRes = await fetch(`${apiUrl}/cinema_rooms/${currentRoomId}`);
     const room = await roomRes.json();
     
+    const seatLayout = room.seat_layout || { rows: 0, seatsPerRow: 0 };
     const seatsGrid = document.getElementById('seats-grid');
     seatsGrid.innerHTML = '';
     
-    // Tạo sơ đồ ghế
-    for (let row = 1; row <= room.rows; row++) {
+    // Tạo sơ đồ ghế dựa trên layout
+    for (let row = 1; row <= seatLayout.rows; row++) {
       const rowDiv = document.createElement('div');
       rowDiv.className = 'seat-row';
       
-      for (let col = 1; col <= room.cols; col++) {
+      for (let col = 1; col <= seatLayout.seatsPerRow; col++) {
         const seatDiv = document.createElement('div');
-        seatDiv.className = 'seat';
-        
-        // Tìm ghế tương ứng
-        const seat = seats.find(s => s.row === row && s.col === col);
-        
-        if (seat) {
-          seatDiv.classList.add(seat.status);
-          seatDiv.dataset.id = seat.id;
-          seatDiv.dataset.row = row;
-          seatDiv.dataset.col = col;
-        } else {
-          // Nếu không có ghế trong DB, tạo mới
-          seatDiv.classList.add('available');
-          seatDiv.dataset.row = row;
-          seatDiv.dataset.col = col;
-        }
-        
+        seatDiv.className = 'seat available';
+        seatDiv.dataset.row = row;
+        seatDiv.dataset.col = col;
         seatDiv.textContent = `${row}-${col}`;
         seatDiv.addEventListener('click', toggleSeatStatus);
         rowDiv.appendChild(seatDiv);
@@ -481,51 +473,16 @@ async function loadSeats() {
   }
 }
 
-// Chuyển đổi trạng thái ghế
+// Chuyển đổi trạng thái ghế - ĐƠN GIẢN HÓA
 async function toggleSeatStatus(e) {
   const seat = e.target;
-  const row = parseInt(seat.dataset.row);
-  const col = parseInt(seat.dataset.col);
-  const seatId = seat.dataset.id;
   
-  let newStatus;
   if (seat.classList.contains('available')) {
-    newStatus = 'unavailable';
+    seat.classList.remove('available');
+    seat.classList.add('unavailable');
   } else {
-    newStatus = 'available';
-  }
-  
-  const seatData = {
-    row: row,
-    col: col,
-    status: newStatus,
-    roomId: parseInt(currentRoomId)
-  };
-  
-  try {
-    if (seatId) {
-      // Cập nhật ghế đã tồn tại
-      await fetch(`${apiUrl}/seats/${seatId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(seatData)
-      });
-    } else {
-      // Tạo ghế mới
-      const res = await fetch(`${apiUrl}/seats`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(seatData)
-      });
-      const newSeat = await res.json();
-      seat.dataset.id = newSeat.id;
-    }
-    
-    // Cập nhật giao diện
-    seat.classList.remove('available', 'unavailable');
-    seat.classList.add(newStatus);
-  } catch (err) {
-    console.error("Error updating seat:", err);
+    seat.classList.remove('unavailable');
+    seat.classList.add('available');
   }
 }
 
@@ -556,14 +513,18 @@ async function loadMoviesForScreenings() {
   }
 }
 
-// Tải danh sách suất chiếu
+// Tải danh sách suất chiếu - SỬA LẠI ĐỂ PHÙ HỢP VỚI JSON
 async function loadScreenings() {
   try {
-    const res = await fetch(`${apiUrl}/screenings?roomId=${currentRoomId}`);
+    const res = await fetch(`${apiUrl}/showtimes`);
     const screenings = await res.json();
+    
+    // Lọc suất chiếu theo roomId
+    const filteredScreenings = screenings.filter(screening => screening.roomId == currentRoomId);
+    
     screeningsTableBody.innerHTML = '';
     
-    for (const screening of screenings) {
+    for (const screening of filteredScreenings) {
       // Lấy thông tin phim
       const movieRes = await fetch(`${apiUrl}/movies/${screening.movieId}`);
       const movie = await movieRes.json();
@@ -572,7 +533,7 @@ async function loadScreenings() {
       tr.innerHTML = `
         <td>${screening.id}</td>
         <td>${movie.title}</td>
-        <td>${new Date(screening.time).toLocaleString('vi-VN')}</td>
+        <td>${new Date(screening.startTime).toLocaleString('vi-VN')}</td>
         <td>${screening.price.toLocaleString('vi-VN')} ₫</td>
         <td>
           <button class="edit-screening-btn" data-id="${screening.id}"><i class="fas fa-edit"></i>Sửa</button>
@@ -609,20 +570,20 @@ screeningForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const screeningData = {
     movieId: parseInt(screeningMovieSelect.value),
-    time: document.getElementById('screening-time').value,
-    price: parseInt(document.getElementById('screening-price').value),
-    roomId: parseInt(currentRoomId)
+    roomId: parseInt(currentRoomId),
+    startTime: document.getElementById('screening-time').value,
+    price: parseInt(document.getElementById('screening-price').value)
   };
   
   try {
     if (editingScreeningId) {
-      await fetch(`${apiUrl}/screenings/${editingScreeningId}`, {
+      await fetch(`${apiUrl}/showtimes/${editingScreeningId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(screeningData)
       });
     } else {
-      await fetch(`${apiUrl}/screenings`, {
+      await fetch(`${apiUrl}/showtimes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(screeningData)
@@ -637,7 +598,7 @@ screeningForm.addEventListener('submit', async (e) => {
 
 // Sửa suất chiếu
 async function editScreening(id) {
-  const res = await fetch(`${apiUrl}/screenings/${id}`);
+  const res = await fetch(`${apiUrl}/showtimes/${id}`);
   const screening = await res.json();
   editingScreeningId = id;
   
@@ -645,7 +606,7 @@ async function editScreening(id) {
   screeningMovieSelect.value = screening.movieId;
   
   // Định dạng thời gian cho input datetime-local
-  const time = new Date(screening.time);
+  const time = new Date(screening.startTime);
   const timeString = time.toISOString().slice(0, 16);
   document.getElementById('screening-time').value = timeString;
   
@@ -656,7 +617,7 @@ async function editScreening(id) {
 // Xóa suất chiếu
 async function deleteScreening(id) {
   if (!confirm("Bạn có chắc muốn xóa suất chiếu này?")) return;
-  await fetch(`${apiUrl}/screenings/${id}`, { method: 'DELETE' });
+  await fetch(`${apiUrl}/showtimes/${id}`, { method: 'DELETE' });
   loadScreenings();
 }
 
@@ -680,7 +641,7 @@ async function loadMovies() {
         <td>${movie.title}</td>
         <td>${movie.director}</td>
         <td>${movie.actors}</td>
-        <td>${movie.releaseDate}</td>
+        <td>${movie.release_date}</td>
         <td>${movie.status === 'now_showing' ? 'Đang chiếu' : 'Sắp chiếu'}</td>
         <td>
           <button class="edit-movie-btn" data-id="${movie.id}"><i class="fas fa-edit"></i>Sửa</button>
@@ -718,9 +679,9 @@ movieForm.addEventListener('submit', async (e) => {
     title: document.getElementById('movie-title').value,
     director: document.getElementById('movie-director').value,
     actors: document.getElementById('movie-actors').value,
-    releaseDate: document.getElementById('movie-release-date').value,
+    release_date: document.getElementById('movie-release-date').value,
     status: document.getElementById('movie-status').value,
-    posterUrl: document.getElementById('movie-poster-url').value,
+    poster_url: document.getElementById('movie-poster-url').value,
     description: document.getElementById('movie-description').value
   };
   try {
@@ -753,9 +714,9 @@ async function editMovie(id) {
   document.getElementById('movie-title').value = movie.title;
   document.getElementById('movie-director').value = movie.director;
   document.getElementById('movie-actors').value = movie.actors;
-  document.getElementById('movie-release-date').value = movie.releaseDate;
+  document.getElementById('movie-release-date').value = movie.release_date;
   document.getElementById('movie-status').value = movie.status;
-  document.getElementById('movie-poster-url').value = movie.posterUrl;
+  document.getElementById('movie-poster-url').value = movie.poster_url;
   document.getElementById('movie-description').value = movie.description;
   movieFormContainer.style.display = 'block';
 }
@@ -786,9 +747,9 @@ async function loadPromotions() {
         <td>${promo.id}</td>
         <td>${promo.code}</td>
         <td>${promo.description}</td>
-        <td>${promo.discount}%</td>
-        <td>${promo.startDate}</td>
-        <td>${promo.endDate}</td>
+        <td>${promo.discountPercentage}%</td>
+        <td>${new Date(promo.startDate).toLocaleDateString('vi-VN')}</td>
+        <td>${new Date(promo.endDate).toLocaleDateString('vi-VN')}</td>
         <td>
           <button class="edit-promo-btn" data-id="${promo.id}"><i class="fas fa-edit"></i>Sửa</button>
           <button class="delete-promo-btn" data-id="${promo.id}"><i class="fas fa-trash"></i>Xóa</button>
@@ -824,7 +785,7 @@ promoForm.addEventListener('submit', async (e) => {
   const promoData = {
     code: document.getElementById('promo-code').value,
     description: document.getElementById('promo-description').value,
-    discount: parseInt(document.getElementById('promo-discount').value),
+    discountPercentage: parseInt(document.getElementById('promo-discount').value),
     startDate: document.getElementById('promo-start-date').value,
     endDate: document.getElementById('promo-end-date').value
   };
@@ -857,9 +818,9 @@ async function editPromo(id) {
   document.getElementById('promo-form-title').textContent = 'Chỉnh sửa Khuyến mãi';
   document.getElementById('promo-code').value = promo.code;
   document.getElementById('promo-description').value = promo.description;
-  document.getElementById('promo-discount').value = promo.discount;
-  document.getElementById('promo-start-date').value = promo.startDate;
-  document.getElementById('promo-end-date').value = promo.endDate;
+  document.getElementById('promo-discount').value = promo.discountPercentage;
+  document.getElementById('promo-start-date').value = promo.startDate.split('T')[0];
+  document.getElementById('promo-end-date').value = promo.endDate.split('T')[0];
   promoFormContainer.style.display = 'block';
 }
 

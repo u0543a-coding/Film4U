@@ -210,16 +210,17 @@
       "city": "Hà Nội"
     },
     {
-      "id": "5efa",
-      "name": "Cinema ",
-      "address": "Sơn Trà ",
-      "city": "Da Nang"
-    },
-    {
       "id": null,
       "name": "Ho van Tiet",
       "address": "dsckjsd",
       "city": "sacxhjsc"
+    },
+    {
+      "id": "fa0b",
+      "name": "Cinema",
+      "address": "Son",
+      "city": "Dannag",
+      "revenue": 0
     }
   ],
   "cinema_rooms": [
