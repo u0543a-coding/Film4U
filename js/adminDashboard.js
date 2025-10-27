@@ -188,7 +188,7 @@ async function loadCinemas() {
 
   cinemasTableBody.innerHTML = "";
 
-  cinemas.forEach((cinema) => {
+  cinemas.forEach((cinema, index) => { // index = 0,1,2...
     const cinemaRoomIds = rooms.filter(r => r.cinemaId === cinema.id).map(r => r.id);
     const cinemaShowtimes = showtimes.filter(st => cinemaRoomIds.includes(st.roomId));
     const cinemaBookings = bookings.filter(b => cinemaShowtimes.some(st => st.id === b.showtimeId));
@@ -196,7 +196,7 @@ async function loadCinemas() {
 
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td>${cinema.id}</td>
+      <td>${index + 1}</td>   <!-- Số thứ tự tự động -->
       <td>${cinema.name}</td>
       <td>${cinema.address}</td>
       <td>${cinema.city}</td>
@@ -297,7 +297,7 @@ async function editCinema(id) {
 async function deleteCinema(id) {
   if (confirm("Bạn có chắc muốn xóa rạp này không?")) {
     await fetch(`${apiUrl}/cinemas/${id}`, { method: "DELETE" });
-    loadCinemas();
+    loadCinemas();  // STT sẽ tự động cập nhật sau khi xóa
   }
 }
 
@@ -342,7 +342,6 @@ window.onclick = (e) => {
 
 // ====== Khởi chạy ======
 loadCinemas();
-
 // ====== Movies Management ======
 const moviesTableBody = document.querySelector('#movies-table tbody');
 const movieFormContainer = document.getElementById('movie-form-container');
