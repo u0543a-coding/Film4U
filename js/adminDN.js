@@ -4,7 +4,7 @@ const apiUrl = "http://localhost:3000";
 // Kiểm tra nếu đã đăng nhập thì chuyển hướng
 document.addEventListener('DOMContentLoaded', function() {
     if (localStorage.getItem('adminLogged') === 'true') {
-        window.location.href = 'admin.html';
+        window.location.href = 'AdminVTi.html';
     }
 });
 
@@ -49,33 +49,29 @@ document.getElementById('adminLoginForm').addEventListener('submit', async funct
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang đăng nhập...';
         submitBtn.disabled = true;
         
-        // Gọi API đăng nhập
-        const response = await fetch(`${apiUrl}/admin/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password })
-        });
+        // Gọi API để lấy danh sách admin
+        const response = await fetch(`${apiUrl}/admins`);
+        const admins = await response.json();
         
-        const result = await response.json();
+        // Tìm admin với email và password khớp
+        const admin = admins.find(a => a.email === email && a.password === password);
         
-        if (response.ok && result.success) {
+        if (admin) {
             // Lưu thông tin đăng nhập
             localStorage.setItem('adminLogged', 'true');
-            localStorage.setItem('adminName', result.admin.name || result.admin.fullName || 'Admin');
-            localStorage.setItem('adminEmail', result.admin.email);
-            localStorage.setItem('adminId', result.admin.id);
+            localStorage.setItem('adminName', admin.fullName || 'Admin');
+            localStorage.setItem('adminEmail', admin.email);
+            localStorage.setItem('adminId', admin.id);
             
             showAlert('Đăng nhập thành công! Đang chuyển hướng...', 'success');
             
             // Chuyển hướng sau 1 giây
             setTimeout(() => {
-                window.location.href = 'admin.html';
+                window.location.href = 'AdminVTi.html';
             }, 1000);
             
         } else {
-            showAlert(result.message || 'Đăng nhập thất bại!', 'danger');
+            showAlert('Email hoặc mật khẩu không đúng!', 'danger');
         }
         
     } catch (error) {

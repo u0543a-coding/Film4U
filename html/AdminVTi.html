@@ -75,6 +75,7 @@
             <input type="text" id="user-fullName" placeholder="Họ và tên" required>
             <input type="email" id="user-email" placeholder="Email" required>
             <input type="password" id="user-password" placeholder="Mật khẩu" required>
+            <input type="text" id="user-phoneNumber" placeholder="Số điện thoại">
             <select id="user-role">
               <option value="user">User</option>
               <option value="admin">Admin</option>
@@ -86,7 +87,7 @@
         <div class="table-container">
           <table id="users-table">
             <thead>
-              <tr><th>ID</th><th>Họ và tên</th><th>Email</th><th>Role</th><th>Thao tác</th></tr>
+              <tr><th>ID</th><th>Họ và tên</th><th>Email</th><th>Số điện thoại</th><th>Role</th><th>Thao tác</th></tr>
             </thead>
             <tbody></tbody>
           </table>
@@ -110,7 +111,7 @@
         <div class="table-container">
           <table id="cinemas-table">
             <thead>
-              <tr><th>ID</th><th>Tên Rạp</th><th>Địa chỉ</th><th>Thành phố</th><th>Doanh thu</th><th>Thao tác</th></tr>
+              <tr><th>ID</th><th>Tên Rạp</th><th>Địa chỉ</th><th>Thành phố</th><th>Thao tác</th></tr>
             </thead>
             <tbody></tbody>
           </table>
@@ -127,6 +128,7 @@
             <input type="text" id="movie-title" placeholder="Tên Phim" required>
             <input type="text" id="movie-director" placeholder="Đạo diễn" required>
             <input type="text" id="movie-actors" placeholder="Diễn viên" required>
+            <input type="number" id="movie-duration" placeholder="Thời lượng (phút)" required>
             <input type="date" id="movie-release-date" placeholder="Ngày phát hành" required>
             <select id="movie-status">
               <option value="now_showing">Đang chiếu</option>
@@ -141,7 +143,7 @@
         <div class="table-container">
           <table id="movies-table">
             <thead>
-              <tr><th>ID</th><th>Tên Phim</th><th>Đạo diễn</th><th>Diễn viên</th><th>Ngày phát hành</th><th>Trạng thái</th><th>Thao tác</th></tr>
+              <tr><th>ID</th><th>Tên Phim</th><th>Đạo diễn</th><th>Thời lượng</th><th>Ngày phát hành</th><th>Trạng thái</th><th>Thao tác</th></tr>
             </thead>
             <tbody></tbody>
           </table>
@@ -156,12 +158,15 @@
           <h3 id="promo-form-title">Thêm Khuyến mãi</h3>
           <form id="promo-form">
             <input type="text" id="promo-code" placeholder="Mã khuyến mãi" required>
+            <input type="text" id="promo-title" placeholder="Tiêu đề" required>
             <input type="text" id="promo-description" placeholder="Mô tả" required>
-            <input type="number" id="promo-discount" placeholder="% giảm giá" min="0" max="100" required>
-            <label>Bắt đầu:</label>
-            <input type="date" id="promo-start-date" required>
-            <label>Kết thúc:</label>
-            <input type="date" id="promo-end-date" required>
+            <select id="promo-discountType">
+              <option value="percentage">Phần trăm</option>
+              <option value="fixed">Giá trị cố định</option>
+            </select>
+            <input type="number" id="promo-discountValue" placeholder="Giá trị giảm" min="0" required>
+            <label>Ngày hết hạn:</label>
+            <input type="datetime-local" id="promo-expiryDate" required>
             <button type="submit" class="btn" style="background:#1abc9c;color:#fff;">Lưu</button>
             <button type="button" id="cancel-promo-btn" class="btn" style="background:#e74c3c;color:#fff;">Hủy</button>
           </form>
@@ -169,7 +174,7 @@
         <div class="table-container">
           <table id="promotions-table">
             <thead>
-              <tr><th>ID</th><th>Mã</th><th>Mô tả</th><th>% Giảm</th><th>Bắt đầu</th><th>Kết thúc</th><th>Thao tác</th></tr>
+              <tr><th>ID</th><th>Mã</th><th>Tiêu đề</th><th>Loại giảm</th><th>Giá trị</th><th>Hết hạn</th><th>Thao tác</th></tr>
             </thead>
             <tbody></tbody>
           </table>
@@ -200,7 +205,7 @@
         <div class="table-container">
           <table id="rooms-table">
             <thead>
-              <tr><th>ID</th><th>Tên Phòng</th><th>Số ghế</th><th>Thao tác</th></tr>
+              <tr><th>ID</th><th>Tên Phòng</th><th>Số hàng</th><th>Số ghế/hàng</th><th>Thao tác</th></tr>
             </thead>
             <tbody></tbody>
           </table>
