@@ -122,46 +122,23 @@ const api = {
         const query = new URLSearchParams(params).toString();
         return fetchJson(`${BASE_URL}/bookings?${query}`);
     },
-   // Văn Tiết mới thêm cho trang quản trị là đây
-  getUsers: (params = {}) => {
-    const query = new URLSearchParams(params).toString();
-    return fetchJson(`${BASE_URL}/users?${query}`);
-  },
-  addUser: (userData) => fetchJson(`${BASE_URL}/users`, {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(userData)
-  }),
-  updateUser: (userId, userData) => fetchJson(`${BASE_URL}/users/${userId}`, {
-    method: 'PUT',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(userData)
-  }),
-  deleteUser: (userId) => fetchJson(`${BASE_URL}/users/${userId}`, {
-    method: 'DELETE'
-  }),
-  getCinemas: () => fetchJson(`${BASE_URL}/cinemas`),
-  getCinemaRooms: (params = {}) => {
-    const query = new URLSearchParams(params).toString();
-    return fetchJson(`${BASE_URL}/cinema_rooms?${query}`);
-  },
-  getBookings: (params = {}) => {
-    const query = new URLSearchParams(params).toString();
-    return fetchJson(`${BASE_URL}/bookings?${query}`);
-  }
+
+    /**
+     * Lấy tất cả rạp chiếu phim.
+     */
+    getCinemas: () => fetchJson(`${BASE_URL}/cinemas`),
+
+    /**
+     * Lấy tất cả phòng chiếu.
+     */
+    getCinemaRooms: () => fetchJson(`${BASE_URL}/cinema_rooms`),
+
+    /**
+     * Lấy các mẫu lịch chiếu với các tham số truy vấn.
+     * @param {object} params - Ví dụ: { movieId: 1 }
+     */
+    getShowtimePatterns: (params = {}) => {
+        const query = new URLSearchParams(params).toString();
+        return fetchJson(`${BASE_URL}/showtime_patterns?${query}`);
+    },
 };
-
-
-async function getData(type) {
-  try {
-    const response = await fetch("../json/db.json"); // đúng đường dẫn
-    const data = await response.json();
-    return data[type] || []; // đảm bảo luôn trả về mảng (nếu không có thì [])
-  } catch (error) {
-    console.error("Lỗi tải dữ liệu:", error);
-    return [];
-  }
-}
-
-
-

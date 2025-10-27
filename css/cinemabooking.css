@@ -10,8 +10,6 @@
       background-color: #f7f8fb;
       color: #222;
       padding: 30px;
-      display: flex;
-      justify-content: center;
     }
 
     .datve-container {
@@ -21,6 +19,7 @@
       padding: 25px 30px;
       max-width: 900px;
       width: 100%;
+      margin: auto;
     }
 
     .datve-title {
@@ -28,6 +27,13 @@
       color: #d32f2f;
       margin-bottom: 25px;
       font-weight: 700;
+    }
+
+    .datve-error-message {
+      text-align: center;
+      color: #d32f2f; /* Sử dụng màu chủ đạo */
+      padding: 20px;
+      font-weight: 500;
     }
 
     /* ===== Chọn rạp ===== */

@@ -4,15 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../css/seatbooking.css">
+  <link rel="stylesheet" href="../css/homepage.css">
   <title>Đặt Ghế Xem Phim</title>
 </head>
 
 <body>
+    <!-- header -->
+  <div id="header-placeholder"></div>
+  <!-- !header -->
+
+
   <div class="datghe-container">
     <h2>Mời Bạn Chọn Ghế</h2>
 
     <div class="datghe-legend">
-        <!-- Chú thích sẽ được cập nhật bằng CSS -->
+        <!-- Chú thích được viết bằng HTML thuần -->
+        <div><span class="seat standard"></span>Ghế thường</div>
+        <div><span class="seat premium"></span>Ghế Premium</div>
+        <div><span class="seat vip"></span>Ghế VIP</div>
+        <div><span class="seat couple"></span>Ghế đôi</div>
+        <div><span class="seat selected"></span>Ghế đang chọn</div>
+        <div><span class="seat occupied"></span>Ghế đã bán</div>
     </div>
 
     <div id="seat-map-container">
@@ -28,10 +40,16 @@
 
     <div class="datghe-btns">
       <button class="datghe-btn datghe-btn-back" onclick="history.back()">← Quay Lại</button>
-      <button class="datghe-btn datghe-btn-confirm">Tiếp tục</button>
+      <button class="datghe-btn datghe-btn-confirm" id="continue-btn">Tiếp tục</button>
     </div>
   </div>
 
+    <!-- footer -->
+  <div id="footer-placeholder"></div>
+  <!-- !footer -->
+
   <script src="../js/seatbooking.js" defer></script>
+    <script src="../js/api.js"></script>
+  <script src="../js/layout.js"></script>
 </body>
 </html>

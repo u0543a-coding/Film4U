@@ -8,42 +8,7 @@
 </head>
 <body class="body">
   <!-- header -->
-<!-- Thanh điều hướng (Navigation Bar) -->
-<nav class="navbar">
-  <div class="navbar-container">
-    <!-- Logo -->
-    <a href="homepage.html" class="navbar-logo">🎬 FILM4U</a>
-
-    <!-- Thanh tìm kiếm -->
-    <form class="navbar-search" id="searchForm">
-      <input
-        type="text"
-        id="search-input"
-        placeholder="🔍 Tìm phim, diễn viên..."
-        autocomplete="off"
-      />
-      <button type="submit" class="search-btn">Tìm</button>
-    </form>
-
-    <!-- Liên kết điều hướng -->
-    <ul class="navbar-links">
-      <li><a href="homepage.html" class="active">Trang chủ</a></li>
-      <li><a href="film.html">Phim</a></li>
-      <li><a href="promotion.html">Khuyến mãi</a></li>
-
-      <!-- Dropdown tài khoản -->
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" id="accountLink">Tài khoản ▾</a>
-        <ul class="dropdown-menu" id="accountMenu">
-          <li><a href="login.html" id="userLoginOption">User Đăng Nhập</a></li>
-          <li><a href="registerUser.html" id="registerOption">User Đăng ký</a></li>
-          <li><hr style="margin: 6px 0; border: 0.5px solid #ddd;"></li>
-          <li><a href="admin-login.html" id="adminLoginOption">Admin Đăng nhập</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</nav>
+  <div id="header-placeholder"></div>
   <!-- !header -->
 
   <!-- body -->
@@ -56,6 +21,16 @@
     <button class="banner-btn next" onclick="changeImage(1)">❯</button>
   </div>
 
+    <!-- Lọc theo thể loại -->
+    <section class="genre-filter-section" id="genre-filter-section">
+        <div class="container">
+            <!-- <h3 class="section-subtitle">Chọn thể loại phim bạn muốn xem</h3> -->
+            <div class="genre-filter-container" id="genre-filter">
+                <!-- Các nút lọc sẽ được thêm bằng JavaScript -->
+            </div>
+        </div>
+    </section>
+
   <!-- Khu vực hiển thị kết quả tìm kiếm (ban đầu bị ẩn) -->
   <section id="search-results-section" class="movie-section" style="display: none;">
     <h3 id="search-results-title"></h3>
@@ -66,7 +41,7 @@
 
   <!-- Phim đang chiếu -->
   <section id="now-showing-section" class="movie-section">
-    <h3>Phim Đang Chiếu</h3>
+    <h3>PHIM ĐANG CHIẾU</h3>
     <div class="movie-grid" id="now-showing-grid">
       <!-- thông tin chiếu sẽ được chèn vào đây -->
     </div>
@@ -74,7 +49,7 @@
 
   <!-- Phim sắp chiếu -->
   <section id="coming-soon-section" class="movie-section">
-    <h3>Phim Sắp Chiếu</h3>
+    <h3>PHIM SẮP CHIẾU</h3>
     <div class="movie-grid" id="coming-soon-grid">
       <!-- thông tin chiếu sẽ được chèn vào đây -->
     </div>
@@ -82,36 +57,7 @@
   <!-- !body -->
 
   <!-- footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-col">
-        <h3>FILM4U</h3>
-        <p>FILM4U là nền tảng xem và chia sẻ phim trực tuyến, được cập nhật liên tục để người dùng có trải nghiệm tốt nhất.</p>
-        <p><b>Liên hệ chúng tôi qua:</b></p>
-        <p>Support24h@film4u.vn</p>
-        <p>Phường Phước Mỹ, TP. Đà Nẵng</p>
-      </div>
-      <div class="footer-col">
-        <h4>Giới thiệu</h4>
-        <ul>
-          <li><a href="#">Về chúng tôi</a></li>
-          <li><a href="#">Điều khoản sử dụng</a></li>
-          <li><a href="#">Chính sách bảo mật</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Hỗ trợ</h4>
-        <ul>
-          <li><a href="#">Câu hỏi thường gặp</a></li>
-          <li><a href="#">Hướng dẫn sử dụng</a></li>
-          <li><a href="#">Báo lỗi</a></li>
-          <li><a href="#">Góp ý & phản hồi</a></li>
-        </ul>
-      </div>
-    </div>
-    <hr>
-    <p class="footer-copy">© 2025 FILM4U. Tất cả các quyền được bảo lưu.</p>
-  </footer>
+  <div id="footer-placeholder"></div>
   <!-- !footer -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -137,5 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
   <script src="../js/api.js"></script>
   <script src='../js/homepage.js'></script>
+  <script src="../js/layout.js"></script>
 </body>
 </html>

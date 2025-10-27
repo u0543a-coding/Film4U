@@ -31,6 +31,62 @@ async function setupBanner() {
   }
 }
 
+
+
+/**
+ * Xử lý tìm kiếm phim dựa trên tiêu đề hoặc diễn viên.
+ * @param {Event} event - Sự kiện submit của form.
+ */
+async function handleSearch(event) {
+  event.preventDefault(); // Ngăn form gửi đi và tải lại trang
+
+  const searchInput = document.getElementById("search-input");
+  const query = searchInput.value.trim();
+
+  const searchResultsSection = document.getElementById("search-results-section");
+  const nowShowingSection = document.getElementById("now-showing-section");
+  const comingSoonSection = document.getElementById("coming-soon-section");
+  const sectionTitle = document.querySelector(".section-title");
+
+  // Nếu ô tìm kiếm trống, hiển thị lại các mục mặc định
+  if (!query) {
+    searchResultsSection.style.display = "none";
+    nowShowingSection.style.display = "block";
+    comingSoonSection.style.display = "block";
+    sectionTitle.style.display = "block";
+    return;
+  }
+
+  try {
+    // Lấy phim dựa trên query
+    const filteredMovies = await api.getMovies({}); // Lấy tất cả phim
+
+    // Ẩn các mục phim hot và hiển thị khu vực kết quả tìm kiếm
+    nowShowingSection.style.display = "none";
+    comingSoonSection.style.display = "none";
+    sectionTitle.style.display = "none";
+    searchResultsSection.style.display = "block";
+
+    // Cập nhật tiêu đề kết quả tìm kiếm
+    const searchResultsTitle = document.getElementById("search-results-title");
+    searchResultsTitle.textContent = `Kết quả tìm kiếm cho "${searchInput.value}"`;
+
+    // Hiển thị phim đã lọc
+    const searchResultsGrid = document.getElementById("search-results-grid"); 
+    
+    // Lọc phim dựa trên query từ input
+    const moviesMatchingQuery = filteredMovies.filter(movie => 
+      movie.title.toLowerCase().includes(query.toLowerCase()) || 
+      movie.actors.toLowerCase().includes(query.toLowerCase())
+    );
+    renderMovies(moviesMatchingQuery, searchResultsGrid, false); // Giả sử tất cả đều có thể đặt vé
+  } catch (error) {
+    console.error("Lỗi khi thực hiện tìm kiếm: ", error);
+  }
+}
+
+
+
 /**
  * Hàm để hiển thị danh sách phim vào một container cụ thể
  * @param {Array} movies - Mảng các đối tượng phim
@@ -95,105 +151,25 @@ async function fetchAndDisplayMovies() {
   }
 }
 
-/**
- * Xử lý tìm kiếm phim dựa trên tiêu đề hoặc diễn viên.
- * @param {Event} event - Sự kiện submit của form.
- */
-async function handleSearch(event) {
-  event.preventDefault(); // Ngăn form gửi đi và tải lại trang
-
-  const searchInput = document.getElementById("search-input");
-  const query = searchInput.value.trim();
-
-  const searchResultsSection = document.getElementById("search-results-section");
-  const nowShowingSection = document.getElementById("now-showing-section");
-  const comingSoonSection = document.getElementById("coming-soon-section");
-  const sectionTitle = document.querySelector(".section-title");
-
-  // Nếu ô tìm kiếm trống, hiển thị lại các mục mặc định
-  if (!query) {
-    searchResultsSection.style.display = "none";
-    nowShowingSection.style.display = "block";
-    comingSoonSection.style.display = "block";
-    sectionTitle.style.display = "block";
-    return;
-  }
-
-  try {
-    // Lấy phim dựa trên query
-    const filteredMovies = await api.getMovies({ q: query });
-
-    // Ẩn các mục phim hot và hiển thị khu vực kết quả tìm kiếm
-    nowShowingSection.style.display = "none";
-    comingSoonSection.style.display = "none";
-    sectionTitle.style.display = "none";
-    searchResultsSection.style.display = "block";
-
-    // Cập nhật tiêu đề kết quả tìm kiếm
-    const searchResultsTitle = document.getElementById("search-results-title");
-    searchResultsTitle.textContent = `Kết quả tìm kiếm cho "${searchInput.value}"`;
-
-    // Hiển thị phim đã lọc
-    const searchResultsGrid = document.getElementById("search-results-grid");
-    renderMovies(filteredMovies, searchResultsGrid, false); // Giả sử tất cả đều có thể đặt vé
-  } catch (error) {
-    console.error("Lỗi khi thực hiện tìm kiếm: ", error);
-  }
-}
 
 // Chạy các hàm khởi tạo khi DOM đã tải xong
 document.addEventListener("DOMContentLoaded", () => {
   setupBanner();
   fetchAndDisplayMovies();
 
-  // Gắn sự kiện cho form tìm kiếm
-  const searchForm = document.querySelector(".navbar-search");
-  if (searchForm) {
-    searchForm.addEventListener("submit", handleSearch);
-  }
+  // Lắng nghe sự kiện header đã được tải
+  document.addEventListener('headerLoaded', () => {
+    // Xử lý tìm kiếm từ URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('search');
+
+    if (searchQuery) {
+      const searchInput = document.getElementById('search-input');
+      if (searchInput) {
+        searchInput.value = decodeURIComponent(searchQuery);
+        // Gọi hàm handleSearch để hiển thị kết quả
+        handleSearch({ preventDefault: () => {} });
+      }
+    }
+  });
 });
-
-
-
-
-
-
-
-
-
-
-
-// Toggle dropdown tài khoản
-const accountLink = document.getElementById("accountLink");
-const accountMenu = document.getElementById("accountMenu");
-const loginOption = document.getElementById("loginOption");
-const registerOption = document.getElementById("registerOption");
-const loginModal = document.getElementById("loginModal");
-
-accountLink.addEventListener("click", (e) => {
-  e.preventDefault();
-  accountMenu.style.display = accountMenu.style.display === "block" ? "none" : "block";
-});
-
-// Click ngoài menu thì ẩn menu
-document.addEventListener("click", (e) => {
-  if (!accountLink.contains(e.target) && !accountMenu.contains(e.target)) {
-    accountMenu.style.display = "none";
-  }
-});
-
-// Khi chọn "Đăng nhập" thì mở modal
-loginOption.addEventListener("click", (e) => {
-  e.preventDefault();
-  accountMenu.style.display = "none";
-  loginModal.style.display = "block";
-});
-
-// Khi chọn "Đăng ký" thì chuyển hướng sang trang đăng ký (hoặc modal khác)
-registerOption.addEventListener("click", (e) => {
-  e.preventDefault();
-  accountMenu.style.display = "none";
-  window.location.href = "registerUser.html"; // đổi đường dẫn nếu cần
-});
-
-

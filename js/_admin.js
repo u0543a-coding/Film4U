@@ -226,6 +226,121 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // --- DOM ELEMENTS (for Showtime Management) ---
+    const addShowtimeBtn = document.getElementById('add-showtime-btn');
+    const showtimeFormContainer = document.getElementById('showtime-form-container');
+    const showtimeForm = document.getElementById('showtime-form');
+    const cancelShowtimeBtn = document.getElementById('cancel-showtime-btn');
+    const showtimesTableBody = document.getElementById('showtimes-table-body');
+    const showtimeMovieSelect = document.getElementById('showtime-movie');
+    const showtimeCinemaSelect = document.getElementById('showtime-cinema');
+    const showtimeRoomSelect = document.getElementById('showtime-room');
+
+    let allShowtimeMovies = [];
+    let allShowtimeCinemas = [];
+    let allShowtimeRooms = [];
+
+    /**
+     * Shows the form for adding a new showtime.
+     */
+    const showShowtimeForm = () => {
+        showtimeForm.reset();
+        showtimeRoomSelect.disabled = true; // Disable room selection initially
+        document.getElementById('showtime-id').value = '';
+        showtimeFormContainer.style.display = 'block';
+    };
+
+    /**
+     * Hides the showtime form.
+     */
+    const hideShowtimeForm = () => {
+        showtimeFormContainer.style.display = 'none';
+        showtimeForm.reset();
+    };
+
+    /**
+     * Fetches and renders showtimes into the table.
+     * (Placeholder for now)
+     */
+    const renderShowtimes = async () => {
+        console.log("renderShowtimes function called");
+        // Logic to fetch and display showtimes will be added here.
+    };
+
+    /**
+     * Populates the dropdowns for movies and cinemas in the showtime form.
+     */
+    const populateShowtimeDropdowns = async () => {
+        try {
+            // Fetch all necessary data in parallel
+            [allShowtimeMovies, allShowtimeCinemas, allShowtimeRooms] = await Promise.all([
+                api.getMovies(),
+                api.getCinemas(),
+                api.getCinemaRooms() // Assuming api.js has or will have this function
+            ]);
+
+            // Populate movies dropdown
+            showtimeMovieSelect.innerHTML = '<option value="">-- Chọn phim --</option>';
+            allShowtimeMovies
+                .filter(m => m.status === 'now_showing') // Only include movies that are currently showing
+                .forEach(movie => {
+                    const option = document.createElement('option');
+                    option.value = movie.id;
+                    option.textContent = movie.title;
+                    showtimeMovieSelect.appendChild(option);
+                });
+
+            // Populate cinemas dropdown
+            showtimeCinemaSelect.innerHTML = '<option value="">-- Chọn rạp --</option>';
+            allShowtimeCinemas.forEach(cinema => {
+                const option = document.createElement('option');
+                option.value = cinema.id;
+                option.textContent = cinema.name;
+                showtimeCinemaSelect.appendChild(option);
+            });
+
+        } catch (error) {
+            console.error("Failed to populate showtime dropdowns:", error);
+        }
+    };
+
+    /**
+     * Updates the room dropdown based on the selected cinema.
+     */
+    const updateRoomDropdown = () => {
+        const selectedCinemaId = showtimeCinemaSelect.value;
+        showtimeRoomSelect.innerHTML = '<option value="">-- Chọn phòng --</option>'; // Reset
+
+        if (!selectedCinemaId) {
+            showtimeRoomSelect.disabled = true;
+            return;
+        }
+
+        const roomsForCinema = allShowtimeRooms.filter(room => room.cinemaId === selectedCinemaId);
+        
+        if (roomsForCinema.length > 0) {
+            roomsForCinema.forEach(room => {
+                const option = document.createElement('option');
+                option.value = room.id;
+                option.textContent = room.room_name;
+                showtimeRoomSelect.appendChild(option);
+            });
+            showtimeRoomSelect.disabled = false;
+        } else {
+            showtimeRoomSelect.disabled = true;
+        }
+    };
+
+    /**
+     * Handles the form submission for adding a showtime.
+     * (Placeholder for now)
+     */
+    const handleShowtimeFormSubmit = async (e) => {
+        e.preventDefault();
+        console.log("Showtime form submitted");
+        // Logic for conflict checking and saving will be added here.
+    };
+
     // --- INITIALIZATION & EVENT LISTENERS --- //
 
     if (addMovieBtn) {
@@ -239,11 +354,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     moviesTableBody.addEventListener('click', handleTableClick);
 
+    // Event listeners for Showtime Management
+    if (addShowtimeBtn) {
+        addShowtimeBtn.addEventListener('click', showShowtimeForm);
+    }
+    if (cancelShowtimeBtn) {
+        cancelShowtimeBtn.addEventListener('click', hideShowtimeForm);
+    }
+    if (showtimeForm) {
+        showtimeForm.addEventListener('submit', handleShowtimeFormSubmit);
+    }
+    if (showtimeCinemaSelect) {
+        showtimeCinemaSelect.addEventListener('change', updateRoomDropdown);
+    }
+
     // Initial data load
     const initialize = async () => {
         await populateGenres();
         await renderMovies();
         await updateDashboardStats();
+
+        // Initialize showtime management
+        await populateShowtimeDropdowns();
+        await renderShowtimes();
     };
 
     /**
