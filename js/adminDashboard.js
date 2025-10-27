@@ -152,143 +152,165 @@ async function deleteUser(id) {
   loadUsers();
   loadDashboard();
 }
+// ====== Chuyển tab ======
+document.querySelectorAll(".nav-item").forEach((item) => {
+  item.addEventListener("click", () => {
+    document.querySelector(".nav-item.active")?.classList.remove("active");
+    item.classList.add("active");
+    const sectionToShow = item.dataset.section;
+    sections.forEach((sec) =>
+      sec.id === `${sectionToShow}-section`
+        ? sec.classList.add("active")
+        : sec.classList.remove("active")
+    );
+    closeCinemaPopup();
+  });
+});
+// =============================
+// ====== QUẢN LÝ RẠP ======
+// =============================
 
-// ====== CINEMA MANAGEMENT ======
-const cinemaSection = document.getElementById("cinemas-section");
-const cinemaList = document.getElementById("cinema-list");
-const cinemaDetail = document.getElementById("cinema-detail");
-const detailContent = document.getElementById("cinema-detail-content");
-const addCinemaBtn = document.getElementById("add-cinema-btn");
-
+const cinemaTable = document.getElementById("cinema-list");
 const popup = document.getElementById("cinema-popup");
 const popupTitle = document.getElementById("popup-title");
 const cinemaForm = document.getElementById("cinema-form");
 const cancelPopup = document.getElementById("cancel-popup");
 
-// Fetch danh sách rạp
+let cinemas = [];
+let editingId = null;
+
+// ----- Lấy danh sách rạp -----
 async function loadCinemas() {
-  const res = await fetch(apiUrl);
-  const cinemas = await res.json();
-  renderCinemaList(cinemas);
+  try {
+    const res = await fetch(`${apiUrl}/cinemas`);
+    cinemas = await res.json();
+    renderCinemas();
+    document.getElementById("total-cinemas").textContent = cinemas.length;
+  } catch (err) {
+    console.error("Lỗi khi tải rạp:", err);
+  }
 }
 
-// Hiển thị danh sách
-function renderCinemaList(cinemas) {
-  cinemaList.innerHTML = "";
-  cinemas.forEach((c) => {
+// ----- Hiển thị danh sách -----
+function renderCinemas() {
+  cinemaTable.innerHTML = "";
+  cinemas.forEach((cinema) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${c.id}</td>
-      <td>${c.name}</td>
-      <td>${c.address}</td>
-      <td>${c.city}</td>
-      <td>0 đ</td>
+      <td>${cinema.id}</td>
+      <td>${cinema.name}</td>
+      <td>${cinema.address}</td>
+      <td>${cinema.city}</td>
+      <td>${cinema.revenue?.toLocaleString() || 0} ₫</td>
       <td>
-        <button class="btn-secondary" onclick="viewCinemaDetail(${c.id})">Xem chi tiết</button>
-        <button class="btn-secondary" onclick="editCinema(${c.id})">Sửa</button>
-        <button class="btn-secondary" onclick="deleteCinema(${c.id})">Xóa</button>
+        <button class="btn-view" data-id="${cinema.id}">Xem</button>
+        <button class="btn-edit" data-id="${cinema.id}">Sửa</button>
+        <button class="btn-delete" data-id="${cinema.id}">Xóa</button>
       </td>
     `;
-    cinemaList.appendChild(tr);
+    cinemaTable.appendChild(tr);
   });
 }
 
-// Ẩn chi tiết khi chuyển tab
-document.querySelectorAll(".sidebar a").forEach(link => {
-  link.addEventListener("click", () => {
-    cinemaDetail.classList.add("hidden");
-  });
+// ----- Mở popup thêm mới -----
+document.getElementById("add-cinema-btn").addEventListener("click", () => {
+  popupTitle.textContent = "Thêm rạp";
+  cinemaForm.reset();
+  editingId = null;
+  openCinemaPopup();
 });
 
-// Hiển thị chi tiết rạp
-async function viewCinemaDetail(id) {
-  const res = await fetch(`${apiUrl}/${id}`);
-  const cinema = await res.json();
-  cinemaDetail.classList.remove("hidden");
+// ----- Submit form -----
+cinemaForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const newCinema = {
+    name: document.getElementById("cinema-name").value.trim(),
+    address: document.getElementById("cinema-address").value.trim(),
+    city: document.getElementById("cinema-city").value.trim(),
+    revenue: 0,
+  };
 
-  const roomsRes = await fetch("http://localhost:3000/cinema_rooms");
-  const rooms = await roomsRes.json();
-  const showtimesRes = await fetch("http://localhost:3000/showtimes");
-  const showtimes = await showtimesRes.json();
+  try {
+    if (editingId) {
+      await fetch(`${apiUrl}/cinemas/${editingId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newCinema),
+      });
+    } else {
+      await fetch(`${apiUrl}/cinemas`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newCinema),
+      });
+    }
+    closeCinemaPopup();
+    loadCinemas();
+  } catch (err) {
+    console.error("Lỗi khi lưu rạp:", err);
+  }
+});
 
-  const cinemaRooms = rooms.filter(r => r.cinemaId === id);
-  const cinemaShowtimes = showtimes.filter(s =>
-    cinemaRooms.some(r => r.id === s.roomId)
-  );
+// ----- Nút hủy popup -----
+cancelPopup.addEventListener("click", closeCinemaPopup);
+function openCinemaPopup() {
+  popup.classList.remove("hidden");
+}
+function closeCinemaPopup() {
+  popup.classList.add("hidden");
+  document.getElementById("cinema-detail")?.classList.add("hidden");
+}
 
-  detailContent.innerHTML = `
+// ----- Click trong bảng -----
+cinemaTable.addEventListener("click", async (e) => {
+  const id = e.target.dataset.id;
+  if (e.target.classList.contains("btn-edit")) {
+    const cinema = cinemas.find((c) => c.id == id);
+    if (!cinema) return;
+    popupTitle.textContent = "Sửa rạp";
+    document.getElementById("cinema-name").value = cinema.name;
+    document.getElementById("cinema-address").value = cinema.address;
+    document.getElementById("cinema-city").value = cinema.city;
+    editingId = id;
+    openCinemaPopup();
+  }
+
+  if (e.target.classList.contains("btn-delete")) {
+    if (confirm("Bạn có chắc muốn xóa rạp này?")) {
+      await fetch(`${apiUrl}/cinemas/${id}`, { method: "DELETE" });
+      loadCinemas();
+    }
+  }
+
+  if (e.target.classList.contains("btn-view")) {
+    const cinema = cinemas.find((c) => c.id == id);
+    if (!cinema) return;
+    showCinemaDetail(cinema);
+  }
+});
+
+// ----- Hiển thị chi tiết -----
+function showCinemaDetail(cinema) {
+  const detail = document.getElementById("cinema-detail");
+  const content = document.getElementById("cinema-detail-content");
+  content.innerHTML = `
     <p><strong>Tên rạp:</strong> ${cinema.name}</p>
     <p><strong>Địa chỉ:</strong> ${cinema.address}</p>
     <p><strong>Thành phố:</strong> ${cinema.city}</p>
-    <hr>
-    <h4>Phòng chiếu:</h4>
-    <ul>${cinemaRooms.map(r => `<li>${r.room_name}</li>`).join("") || "Không có phòng chiếu."}</ul>
-    <h4>Suất chiếu:</h4>
-    <ul>${cinemaShowtimes.map(s => `<li>ID ${s.id} - ${new Date(s.startTime).toLocaleString()}</li>`).join("") || "Không có suất chiếu."}</ul>
+    <p><strong>Doanh thu:</strong> ${cinema.revenue?.toLocaleString() || 0} ₫</p>
   `;
+  detail.classList.remove("hidden");
+
+  // Ẩn khi bấm ngoài
+  document.addEventListener("click", function hideDetail(e) {
+    if (!detail.contains(e.target) && !e.target.classList.contains("btn-view")) {
+      detail.classList.add("hidden");
+      document.removeEventListener("click", hideDetail);
+    }
+  });
 }
 
-// Popup thêm mới
-addCinemaBtn.addEventListener("click", () => {
-  popupTitle.textContent = "Thêm rạp";
-  cinemaForm.reset();
-  document.getElementById("cinema-id").value = "";
-  popup.classList.remove("hidden");
-});
-
-// Hủy popup
-cancelPopup.addEventListener("click", () => {
-  popup.classList.add("hidden");
-});
-
-// Submit form (Thêm/Sửa)
-cinemaForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const id = document.getElementById("cinema-id").value;
-  const data = {
-    name: document.getElementById("cinema-name").value,
-    address: document.getElementById("cinema-address").value,
-    city: document.getElementById("cinema-city").value,
-  };
-
-  if (id) {
-    await fetch(`${apiUrl}/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-  } else {
-    await fetch(apiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-  }
-
-  popup.classList.add("hidden");
-  loadCinemas();
-});
-
-// Sửa rạp
-async function editCinema(id) {
-  const res = await fetch(`${apiUrl}/${id}`);
-  const cinema = await res.json();
-  popupTitle.textContent = "Sửa thông tin rạp";
-  document.getElementById("cinema-id").value = cinema.id;
-  document.getElementById("cinema-name").value = cinema.name;
-  document.getElementById("cinema-address").value = cinema.address;
-  document.getElementById("cinema-city").value = cinema.city;
-  popup.classList.remove("hidden");
-}
-
-// Xóa rạp
-async function deleteCinema(id) {
-  if (!confirm("Xác nhận xóa rạp này?")) return;
-  await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
-  loadCinemas();
-}
-
-// Khởi động
+// ====== Khởi chạy ======
 loadCinemas();
 
 // ====== Movies Management ======
