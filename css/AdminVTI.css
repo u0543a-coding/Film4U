@@ -277,3 +277,35 @@ table tr:hover {
     flex-direction: column;
   }
 }
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table-container th, td {
+  border-bottom: 1px solid #333;
+  padding: 8px;
+  text-align: left;
+}
+.btn {
+  background: #2e86de;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn.small { padding: 3px 8px; font-size: 14px; }
+.btn.danger { background: #e74c3c; }
+.btn.primary { background: #1abc9c; }
+.tab-btn.active { background: #1abc9c; color: #fff; }
+.room-card, .showtime-card {
+  background: #1e1e2f;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 8px;
+}
+.content-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}

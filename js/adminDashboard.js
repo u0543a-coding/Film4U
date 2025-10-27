@@ -153,50 +153,227 @@ async function deleteUser(id) {
   loadDashboard();
 }
 
-// ====== Cinemas Management ======
-const cinemasTableBody = document.querySelector('#cinemas-table tbody');
+// ====== QUẢN LÝ RẠP ======
+const cinemasSection = document.getElementById("cinemas-section");
+const cinemaDetailContainer = document.getElementById("cinema-detail-container");
 
+// Elements
+const cinemasTableBody = document.querySelector("#cinemas-table tbody");
+const addCinemaBtn = document.getElementById("add-cinema-btn");
+const cinemaFormContainer = document.getElementById("cinema-form-container");
+const cinemaForm = document.getElementById("cinema-form");
+const cancelCinemaBtn = document.getElementById("cancel-cinema-btn");
+
+// Detail elements
+const cinemaNameDetail = document.getElementById("cinema-name-detail");
+const cinemaAddressDetail = document.getElementById("cinema-address-detail");
+const btnCloseDetail = document.getElementById("btn-close-cinema-detail");
+const btnEditCinema = document.getElementById("btn-edit-cinema");
+const btnDeleteCinema = document.getElementById("btn-delete-cinema");
+const editForm = document.getElementById("cinema-edit-form");
+const editCancel = document.getElementById("cinema-edit-cancel");
+
+// Tabs
+const btnRoomsSeats = document.getElementById("btn-rooms-seats");
+const btnShowtimes = document.getElementById("btn-showtimes");
+const tabRooms = document.getElementById("tab-rooms-seats");
+const tabShowtimes = document.getElementById("tab-showtimes");
+
+let cinemas = [];
+let cinemaRooms = [];
+let showtimes = [];
+let currentCinema = null;
+
+// ====== Fetch Data ======
 async function loadCinemas() {
-  try {
-    const [cinemasRes, roomsRes, showtimesRes, bookingsRes] = await Promise.all([
-      fetch(`${apiUrl}/cinemas`),
-      fetch(`${apiUrl}/cinema_rooms`),
-      fetch(`${apiUrl}/showtimes`),
-      fetch(`${apiUrl}/bookings`)
-    ]);
-
-    const cinemas = await cinemasRes.json();
-    const rooms = await roomsRes.json();
-    const showtimes = await showtimesRes.json();
-    const bookings = await bookingsRes.json();
-
-    cinemasTableBody.innerHTML = '';
-    cinemas.forEach(cinema => {
-      const cinemaRooms = rooms.filter(r => r.cinemaId === cinema.id);
-      let cinemaRevenue = 0;
-
-      cinemaRooms.forEach(room => {
-        const roomShowtimes = showtimes.filter(s => s.roomId === room.id);
-        roomShowtimes.forEach(st => {
-          const stBookings = bookings.filter(b => b.showtimeId === st.id);
-          stBookings.forEach(b => cinemaRevenue += (b.totalPrice || 0));
-        });
-      });
-
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${cinema.id}</td>
-        <td>${cinema.name}</td>
-        <td>${cinema.address}</td>
-        <td>${cinema.city}</td>
-        <td>${cinemaRevenue.toLocaleString('vi-VN')} ₫</td>
-      `;
-      cinemasTableBody.appendChild(tr);
-    });
-  } catch (err) {
-    console.error("Error loading cinemas:", err);
-  }
+  const [cinemaRes, roomRes, showtimeRes] = await Promise.all([
+    fetch(`${apiUrl}/cinemas`),
+    fetch(`${apiUrl}/cinema_rooms`),
+    fetch(`${apiUrl}/showtimes`),
+  ]);
+  cinemas = await cinemaRes.json();
+  cinemaRooms = await roomRes.json();
+  showtimes = await showtimeRes.json();
+  renderCinemasTable();
 }
+
+// ====== Render Table ======
+function renderCinemasTable() {
+  cinemasTableBody.innerHTML = "";
+  cinemas.forEach((c) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${c.id}</td>
+      <td>${c.name}</td>
+      <td>${c.address}</td>
+      <td>${c.city}</td>
+      <td>${c.revenue || 0}</td>
+      <td>
+        <button class="btn small" onclick="viewCinemaDetail(${c.id})">Xem</button>
+      </td>
+    `;
+    cinemasTableBody.appendChild(tr);
+  });
+}
+
+// ====== View Detail ======
+window.viewCinemaDetail = function (id) {
+  currentCinema = cinemas.find((c) => c.id === id);
+  if (!currentCinema) return;
+
+  // Hiển thị thông tin
+  cinemaNameDetail.textContent = currentCinema.name;
+  cinemaAddressDetail.textContent = `${currentCinema.address}, ${currentCinema.city}`;
+
+  // Chuyển view
+  cinemasSection.style.display = "none";
+  cinemaDetailContainer.style.display = "block";
+
+  renderCinemaRooms();
+  renderCinemaShowtimes();
+};
+
+// ====== Quay lại danh sách ======
+btnCloseDetail.addEventListener("click", () => {
+  cinemaDetailContainer.style.display = "none";
+  cinemasSection.style.display = "block";
+});
+
+// ====== Tabs ======
+btnRoomsSeats.addEventListener("click", () => {
+  btnRoomsSeats.classList.add("active");
+  btnShowtimes.classList.remove("active");
+  tabRooms.style.display = "block";
+  tabShowtimes.style.display = "none";
+});
+
+btnShowtimes.addEventListener("click", () => {
+  btnShowtimes.classList.add("active");
+  btnRoomsSeats.classList.remove("active");
+  tabShowtimes.style.display = "block";
+  tabRooms.style.display = "none";
+});
+
+// ====== Render Phòng ======
+function renderCinemaRooms() {
+  const container = document.getElementById("rooms-seats-content");
+  container.innerHTML = "";
+
+  const rooms = cinemaRooms.filter((r) => r.cinemaId === currentCinema.id);
+  if (rooms.length === 0) {
+    container.innerHTML = "<p>Chưa có phòng chiếu nào.</p>";
+    return;
+  }
+
+  rooms.forEach((room) => {
+    const div = document.createElement("div");
+    div.className = "room-card";
+    div.innerHTML = `
+      <h4>${room.room_name}</h4>
+      <p>${room.rows} hàng × ${room.seatsPerRow} ghế</p>
+    `;
+    container.appendChild(div);
+  });
+}
+
+// ====== Render Suất chiếu ======
+function renderCinemaShowtimes() {
+  const container = document.getElementById("showtimes-content");
+  container.innerHTML = "";
+
+  const cinemaShowtimes = showtimes.filter((s) => {
+    const room = cinemaRooms.find((r) => r.id === s.roomId);
+    return room && room.cinemaId === currentCinema.id;
+  });
+
+  if (cinemaShowtimes.length === 0) {
+    container.innerHTML = "<p>Chưa có suất chiếu nào.</p>";
+    return;
+  }
+
+  cinemaShowtimes.forEach((st) => {
+    const movieName = st.movieTitle || `Phim #${st.movieId}`;
+    const time = new Date(st.startTime).toLocaleString("vi-VN");
+    const div = document.createElement("div");
+    div.className = "showtime-card";
+    div.innerHTML = `
+      <p>🎬 ${movieName}</p>
+      <p>🕒 ${time}</p>
+      <p>💰 ${st.price}₫</p>
+    `;
+    container.appendChild(div);
+  });
+}
+
+// ====== Thêm rạp ======
+addCinemaBtn.addEventListener("click", () => {
+  cinemaFormContainer.style.display = "block";
+  document.getElementById("cinema-form-title").textContent = "Thêm Rạp";
+});
+
+cancelCinemaBtn.addEventListener("click", () => {
+  cinemaFormContainer.style.display = "none";
+  cinemaForm.reset();
+});
+
+cinemaForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const newCinema = {
+    name: document.getElementById("cinema-name").value,
+    address: document.getElementById("cinema-address").value,
+    city: document.getElementById("cinema-city").value,
+    revenue: 0,
+  };
+  await fetch(`${apiUrl}/cinemas`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newCinema),
+  });
+  cinemaForm.reset();
+  cinemaFormContainer.style.display = "none";
+  loadCinemas();
+});
+
+// ====== Sửa / Xóa rạp ======
+btnEditCinema.addEventListener("click", () => {
+  editForm.style.display = "block";
+  editForm["cinema-edit-name"].value = currentCinema.name;
+  editForm["cinema-edit-address"].value = currentCinema.address;
+  editForm["cinema-edit-city"].value = currentCinema.city;
+});
+
+editCancel.addEventListener("click", () => {
+  editForm.style.display = "none";
+});
+
+editForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const updated = {
+    ...currentCinema,
+    name: document.getElementById("cinema-edit-name").value,
+    address: document.getElementById("cinema-edit-address").value,
+    city: document.getElementById("cinema-edit-city").value,
+  };
+  await fetch(`${apiUrl}/cinemas/${currentCinema.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updated),
+  });
+  editForm.style.display = "none";
+  loadCinemas();
+  viewCinemaDetail(currentCinema.id);
+});
+
+btnDeleteCinema.addEventListener("click", async () => {
+  if (!confirm("Xóa rạp này?")) return;
+  await fetch(`${apiUrl}/cinemas/${currentCinema.id}`, { method: "DELETE" });
+  cinemaDetailContainer.style.display = "none";
+  cinemasSection.style.display = "block";
+  loadCinemas();
+});
+
+// ====== Init ======
+loadCinemas();
 
 // ====== Movies Management ======
 const moviesTableBody = document.querySelector('#movies-table tbody');
