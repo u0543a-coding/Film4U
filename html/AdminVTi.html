@@ -90,12 +90,14 @@
         </div>
       </section>
 <!-- ================= CINEMA MANAGEMENT ================= -->
-<section id="cinemas-section" class="content-section">
-  <h2>🎬 Quản lý Rạp chiếu</h2>
+<section id="cinemas-section" class="content-section hidden">
+  <div class="section-header">
+    <h2>🎬 Quản lý Rạp chiếu</h2>
+    <button id="add-cinema-btn" class="btn-primary">+ Thêm rạp mới</button>
+  </div>
 
-  <!-- ===== Danh sách Rạp ===== -->
-  <div class="table-container">
-    <table id="cinemas-table">
+  <div class="table-wrapper">
+    <table class="data-table">
       <thead>
         <tr>
           <th>ID</th>
@@ -106,33 +108,46 @@
           <th>Hành động</th>
         </tr>
       </thead>
-      <tbody>
-        <!-- loadCinemas() render here -->
+      <tbody id="cinema-list">
+        <!-- render danh sách rạp -->
       </tbody>
     </table>
   </div>
 
-  <!-- ===== Chi tiết Rạp ===== -->
-  <div id="cinema-details-container" class="cinema-details">
-    <h3 id="cinema-details-title">Chi tiết Rạp</h3>
-
-    <div id="cinema-tabs" class="cinema-tabs">
-      <button class="tab-btn active" data-tab="rooms">Phòng chiếu & Ghế</button>
-      <button class="tab-btn" data-tab="showtimes">Phòng chiếu & Xuất chiếu</button>
+  <div id="cinema-detail" class="cinema-detail hidden">
+    <h3>Chi tiết Rạp</h3>
+    <div class="detail-actions">
+      <button id="view-rooms-btn" class="btn-secondary">Phòng chiếu & Ghế</button>
+      <button id="view-showtimes-btn" class="btn-secondary">Phòng chiếu & Xuất chiếu</button>
     </div>
-
-    <!-- Tab 1: Rooms & Seats -->
-    <div id="rooms-container" class="cinema-tab-content">
-      <!-- render phòng chiếu & ghế -->
+    <div id="cinema-detail-content" class="detail-content">
+      <p>Không có lịch chiếu.</p>
     </div>
+  </div>
 
-    <!-- Tab 2: Showtimes -->
-    <div id="showtimes-container" class="cinema-tab-content" style="display:none;">
-      <!-- render xuất chiếu -->
+  <!-- Popup form -->
+  <div id="cinema-popup" class="popup hidden">
+    <div class="popup-content">
+      <h3 id="popup-title">Thêm rạp</h3>
+      <form id="cinema-form">
+        <input type="hidden" id="cinema-id" />
+        <label>Tên rạp:</label>
+        <input type="text" id="cinema-name" required />
+
+        <label>Địa chỉ:</label>
+        <input type="text" id="cinema-address" required />
+
+        <label>Thành phố:</label>
+        <input type="text" id="cinema-city" required />
+
+        <div class="popup-buttons">
+          <button type="submit" class="btn-primary">Lưu</button>
+          <button type="button" id="cancel-popup" class="btn-secondary">Hủy</button>
+        </div>
+      </form>
     </div>
   </div>
 </section>
-
       <!-- Movies Management -->
       <section id="movies-section" class="content-section">
         <h2>Quản lý Phim</h2>
