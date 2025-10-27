@@ -110,16 +110,24 @@ document.addEventListener("DOMContentLoaded", async () => {
               <textarea class="input-content" rows="3" placeholder="Viết đánh giá của bạn..."></textarea>
               <button type="submit" class="submit-btn">Gửi đánh giá</button>
             </form>
+            <div class="login-prompt" style="display: none;">
+              <p>Vui lòng <a href="login.html">đăng nhập</a> để để lại bình luận.</p>
+            </div>
           </div>
         </div>
       `;
+
+      const loggedInUser = sessionStorage.getItem('loggedInUser');
+      const reviewForm = document.querySelector(".review-form");
+      const loginPrompt = document.querySelector(".login-prompt");
 
       /**
        * Hàm xử lý việc gửi đánh giá mới.
        * @param {Event} event - Sự kiện submit của form.
        * @param {string} movieId - ID của bộ phim được đánh giá.
+       * @param {object} user - Thông tin người dùng đã đăng nhập.
        */
-      async function handleReviewSubmit(event, movieId) {
+      async function handleReviewSubmit(event, movieId, user) {
         event.preventDefault();
         const form = event.target;
         const textarea = form.querySelector(".input-content");
@@ -137,7 +145,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         try {
           const reviewData = {
             movieId: parseInt(movieId),
-            author: "Người dùng ẩn danh", // Hoặc lấy từ người dùng đã đăng nhập
+            author: user.fullName, // Lấy tên từ người dùng đã đăng nhập
             content: content,
             createdAt: new Date().toISOString(),
           };
@@ -158,12 +166,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       }
 
-      // Thêm trình lắng nghe sự kiện cho form mới
-      const reviewForm = document.querySelector(".review-form");
-      if (reviewForm) {
+      if (loggedInUser) {
+        const user = JSON.parse(loggedInUser);
+        reviewForm.style.display = 'block';
+        loginPrompt.style.display = 'none';
         reviewForm.addEventListener("submit", (event) =>
-          handleReviewSubmit(event, movieId)
+          handleReviewSubmit(event, movieId, user)
         );
+      } else {
+        reviewForm.style.display = 'none';
+        loginPrompt.style.display = 'block';
       }
 
       /**

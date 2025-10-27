@@ -172,10 +172,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 showtime: new Date(showtime.startTime).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }) + ' - ' + new Date(showtime.startTime).toLocaleDateString('vi-VN'),
                 roomName: room.room_name,
                 selectedSeats: selectedSeats.map(seat => seat.dataset.seatLabel),
-<<<<<<< HEAD
                 selectedSeatIds: selectedSeats.map(seat => seat.dataset.seatId),
-=======
->>>>>>> VanTiet
                 totalPrice: selectedSeats.length * showtime.price,
                 showtimeId: showtimeId
             };

@@ -70,6 +70,7 @@ th {
     font-weight: 600;
 }
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream:css/Xacnhan.css
     input {
       width: 100%;
@@ -79,6 +80,8 @@ th {
       font-size: 14px;
     }
 =======
+=======
+>>>>>>> origin/feature/TongDat
 td:nth-child(2) { text-align: center; }
 td:nth-child(3) { text-align: right; }
 th:nth-child(2) { text-align: center; }
@@ -117,7 +120,10 @@ th:nth-child(3) { text-align: right; }
     border-color: #4c9aff;
     box-shadow: 0 0 0 2px rgba(76, 154, 255, 0.3);
 }
+<<<<<<< HEAD
 >>>>>>> Stashed changes:css/confirm.css
+=======
+>>>>>>> origin/feature/TongDat
 
 /* Right column styles */
 .summary {
