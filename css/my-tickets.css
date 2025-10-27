@@ -1,0 +1,74 @@
+/* General container for the page */
+.main-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Booking History Section */
+.booking-history-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.booking-history-container h2 {
+    color: #555;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: normal;
+}
+
+#booking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.booking-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    gap: 20px;
+}
+
+.film-poster {
+    width: 120px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.booking-details {
+    flex-grow: 1;
+}
+
+.booking-card h3 {
+    margin-top: 0;
+    color: #c0392b;
+}
+
+.booking-card p {
+    margin: 8px 0;
+    line-height: 1.5;
+    color: #555;
+}
+
+.booking-card strong {
+    color: #333;
+}
+
+.no-bookings {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}

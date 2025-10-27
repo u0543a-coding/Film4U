@@ -17,6 +17,15 @@
       "phoneNumber": "0987654321",
       "role": "user",
       "createdAt": "2025-10-02T11:30:00.000Z"
+    },
+    {
+      "id": "fdad",
+      "fullName": "Hồ Văn Đàn",
+      "email": "c54681737@gmail.com",
+      "password": "111222333",
+      "phoneNumber": "",
+      "role": "user",
+      "createdAt": "2025-10-27T15:01:53.701Z"
     }
   ],
   "genres": [
@@ -67,9 +76,8 @@
       "release_date": "2024-06-07",
       "trailer_url": "https://www.youtube.com/watch?v=f4rs22gGzMA",
       "description": "M, một sinh viên đại học, quyết định về chăm sóc bà ngoại đang mắc bệnh ung thư giai đoạn cuối, với mục đích bí mật là để thừa kế gia tài hàng triệu baht của bà. Tuy nhiên, khi sống cùng bà, cậu dần khám phá ra những giá trị tình thân còn quý giá hơn cả tiền bạc.",
-      "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/l/a/lan_of_heir_main_poster_1_.jpg",
-      "status": "now_showing",
-      "isFeatured": true
+      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/p/o/poster_opt1_gia_tai_cua_ngoai_3.jpg",
+      "status": "now_showing"
     },
     {
       "id": "2",
@@ -85,9 +93,8 @@
       "release_date": "2024-06-14",
       "trailer_url": "https://www.youtube.com/watch?v=Vl3V_g5-k0E",
       "description": "Riley bước vào tuổi dậy thì, và trung tâm điều khiển cảm xúc của cô bé phải đối mặt với một cuộc \"phá dỡ\" lớn để chào đón những cảm xúc hoàn toàn mới, phức tạp hơn như Lo Âu, Ganh Tị, Xấu Hổ và Chán Nản.",
-      "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/i/o/io2_main_poster_1__1.jpg",
-      "status": "now_showing",
-      "isFeatured": false
+      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/1/0/1080x1350-insideout.jpg",
+      "status": "now_showing"
     },
     {
       "id": "3",
@@ -103,7 +110,7 @@
       "release_date": "2024-06-28",
       "trailer_url": "https://www.youtube.com/watch?v=YPY7J-flzE8",
       "description": "Lấy bối cảnh ngày đầu tiên của cuộc xâm lăng của các sinh vật săn mồi bằng âm thanh, bộ phim theo chân một người phụ nữ phải tìm cách sống sót qua những giờ phút kinh hoàng tại một trong những thành phố ồn ào nhất thế giới - New York.",
-      "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/q/p/qp-do_main_poster_1__1.jpg",
+      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/a/q/aqpd1_teaser_glass_470x700.jpg",
       "status": "now_showing"
     },
     {
@@ -121,7 +128,7 @@
       "release_date": "2024-07-03",
       "trailer_url": "https://www.youtube.com/watch?v=qQ4b9iB_b8U",
       "description": "Gru cùng gia đình chào đón thành viên mới, Gru Jr., và cậu bé dường như có mục tiêu duy nhất là làm khổ bố mình. Mọi chuyện trở nên tồi tệ hơn khi gia đình Gru phải đối mặt với kẻ thù mới và buộc phải chạy trốn.",
-      "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/d/m/dm4_main_poster_1__1.jpg",
+      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/d/m/dm4_posterminion_700x1000.jpg",
       "status": "now_showing"
     },
     {
@@ -138,7 +145,7 @@
       "release_date": "2024-07-26",
       "trailer_url": "https://www.youtube.com/watch?v=73_1biulkYk",
       "description": "Wolverine đang hồi phục sau chấn thương thì gặp phải Deadpool lắm lời. Họ hợp sức để chiến đấu chống lại một kẻ thù chung, tạo nên một trong những cặp đôi bất đắc dĩ và hài hước nhất vũ trụ Marvel.",
-      "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/d/p/dp3_main_poster_1__1.jpg",
+      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/4/7/470x700-deadpool.jpg",
       "status": "coming_soon"
     },
     {
@@ -153,7 +160,7 @@
       "release_date": "2024-07-12",
       "trailer_url": "https://www.youtube.com/watch?v=example_trailer_6",
       "description": "Một bộ phim tài liệu khám phá những bí ẩn và hoạt động phức tạp đằng sau một trong những sân bay bận rộn nhất thế giới, nơi mỗi quyết định đều có thể ảnh hưởng đến hàng ngàn sinh mạng.",
-      "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/s/n/snvn_main-poster_1_.jpg",
+      "poster_url": "https://files02.duytan.edu.vn/svruploads/news-duytan/uploads/images/3-1-2019-8-35-50-30.png",
       "status": "coming_soon"
     },
     {
@@ -170,7 +177,7 @@
       "release_date": "2024-07-19",
       "trailer_url": "https://www.youtube.com/watch?v=wtnkF4I38oI",
       "description": "Một cặp vợ chồng chuyên săn lốc xoáy liều mạng thử nghiệm một hệ thống cảnh báo thời tiết đột phá, đối mặt với những cơn cuồng phong kinh hoàng nhất từng được ghi nhận ở trung tâm Oklahoma.",
-      "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/t/w/twisters_main_poster_1__1.jpg",
+      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/p/o/poster_payoff_loc_xoay_tu_than_8_1_.jpg",
       "status": "coming_soon"
     },
     {
@@ -186,7 +193,72 @@
       "release_date": "2025-06-13",
       "trailer_url": "https://www.youtube.com/watch?v=example_trailer_8",
       "description": "Chuyển thể từ bộ phim hoạt hình kinh điển, câu chuyện kể về cậu bé Hiccup yếu ớt, người đã thách thức truyền thống của bộ tộc Viking khi kết bạn với kẻ thù đáng sợ nhất của họ - một con rồng tên Răng Sún.",
-      "poster_url": "https://img.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f059372130030c/h/t/httyd_teaser_poster_1_.jpg",
+      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/h/d/hdg_payoff_470x700.jpg",
+      "status": "coming_soon"
+    },
+    {
+      "id": "9",
+      "title": "ĐIỆN THOẠI ĐEN",
+      "genreIds": [
+        1,
+        7,
+        8
+      ],
+      "duration_minutes": 114,
+      "director": "Scott Derrickson",
+      "actors": "Ethan Hawke, Mason Thames, Madeleine McGraw",
+      "release_date": "2025-10-31",
+      "trailer_url": "https://www.youtube.com/watch?v=73_1biulkYk",
+      "description": "2 anh em buộc phải đối đầu với một kẻ sát nhân không chỉ mạnh mẽ hơn sau khi chết, mà còn có mối liên hệ sâu sắc với họ hơn những gì họ từng tưởng tượng.",
+      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/4/7/470x700-tbp2.jpg",
+      "status": "now_showing"
+    },
+    {
+      "id": "10",
+      "title": "CỤC VÀNG CỦA NGOẠI",
+      "genreIds": [
+        5
+      ],
+      "duration_minutes": 119,
+      "director": "Khương Ngọc",
+      "actors": "Việt Hương, Hồng Đào, Lê Khánh, Băng Di",
+      "release_date": "2025-10-17",
+      "trailer_url": "https://www.youtube.com/watch?v=example_trailer_6",
+      "description": "Lấy cảm hứng từ những ký ức tuổi thơ ngọt ngào, “Cục Vàng Của Ngoại” mang đến câu chuyện ấm áp về tình bà cháu trong một xóm nhỏ chan chứa nghĩa tình.",
+      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/4/7/470wx700h-cvcn_1.jpg",
+      "status": "now_showing"
+    },
+    {
+      "id": "11",
+      "title": "CẢI MÃ",
+      "genreIds": [
+        1,
+        2,
+        5
+      ],
+      "duration_minutes": 115,
+      "director": "Thắng Vũ",
+      "actors": "Rima Thanh Vy, Hoàng Phúc, Thúy Hạnh",
+      "release_date": "2025-10-31",
+      "trailer_url": "https://www.youtube.com/watch?v=wtnkF4I38oI",
+      "description": "Khi đại gia đình ông Quang trở về quê để thực hiện nghi lễ cải táng đã bị trì hoãn quá lâu, họ không chỉ đối diện với những nghi thức tâm linh, mà còn vô tình khơi dậy vòng xoáy nghiệp báo truyền đời.",
+      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/6/7/675wx1000h_1.jpg",
+      "status": "coming_soon"
+    },
+    {
+      "id": "12",
+      "title": "BỊT MẮT BẮT NAI",
+      "genreIds": [
+        2,
+        4
+      ],
+      "duration_minutes": 92,
+      "director": "Hoàng Thơ",
+      "actors": "Lương Gia Huy, Thái Trà My, Dũng Bino, Bích Ngọc",
+      "release_date": "2025-10-31",
+      "trailer_url": "https://www.youtube.com/watch?v=example_trailer_8",
+      "description": "Trang - một nhân viên bất động sản bị cưỡng bức. Cô lo sợ bạn trai Hiệp sẽ chia tay nên đã \"dụ\" anh đến một homestay để cầu hôn. Tại đây, cô hoảng loạn khi gặp Long - chủ homestay, người giống hệt kẻ đã hãm hại mình; bên cạnh đó Ngọc - vợ của Long cũng là nạn nhân của tên này. Khi Trang âm thầm tìm hiểu sự thật, thì mọi thứ càng lại càng phức tạp hơn và có một âm mưu đen tối đang chờ đợi tất cả bọn họ.",
+      "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/t/m/tmdb-poster-2000x3000.jpg",
       "status": "coming_soon"
     }
   ],
@@ -208,116 +280,428 @@
       "name": "Film4U Cầu Giấy",
       "address": "222 Trần Duy Hưng, Trung Hoà, Quận Cầu Giấy",
       "city": "Hà Nội"
-    },
-    {
-      "id": null,
-      "name": "Ho van Tiet",
-      "address": "dsckjsd",
-      "city": "sacxhjsc"
     }
   ],
   "cinema_rooms": [
     {
-      "id": "1",
-      "cinemaId": 1,
-      "room_name": "Phòng 1",
-      "seat_layout": {
-        "rows": 8,
-        "seatsPerRow": 12,
-        "config": {
-          "defaultType": "standard",
-          "defaultPrice": 90000,
-          "typeMapping": [
-            {
-              "type": "premium",
-              "price": 120000,
-              "rows": [
-                "C",
-                "D",
-                "E"
-              ]
-            },
-            {
-              "type": "couple",
-              "price": 110000,
-              "rows": [
-                "H"
-              ]
-            }
-          ]
-        }
+      "id": "room_c1_1",
+      "cinemaId": "1",
+      "room_name": "Phòng 1 (Lối đi giữa)",
+      "gridDimensions": {
+        "totalRows": 12,
+        "totalCols": 18
       }
     },
     {
-      "id": "2",
-      "cinemaId": 1,
+      "id": "room_c1_3",
+      "cinemaId": "1",
+      "room_name": "Phòng 2 (Phòng nhỏ)",
+      "gridDimensions": {
+        "totalRows": 8,
+        "totalCols": 12
+      }
+    },
+    {
+      "id": "room_c4_1",
+      "cinemaId": "4",
+      "room_name": "Phòng 1",
+      "gridDimensions": {
+        "totalRows": 10,
+        "totalCols": 14
+      }
+    },
+    {
+      "id": "room_c4_2",
+      "cinemaId": "4",
       "room_name": "Phòng 2",
-      "seat_layout": {
-        "rows": 10,
-        "seatsPerRow": 15
+      "gridDimensions": {
+        "totalRows": 10,
+        "totalCols": 14
       }
     },
     {
-      "id": "13",
-      "cinemaId": 4,
-      "room_name": "Phòng 1",
-      "seat_layout": {
-        "rows": 10,
-        "seatsPerRow": 15
+      "id": "room_c4_3",
+      "cinemaId": "4",
+      "room_name": "Phòng 3",
+      "gridDimensions": {
+        "totalRows": 10,
+        "totalCols": 14
       }
+    }
+  ],
+  "seatTemplates": [
+    {
+      "id": "st_c1_1_A1",
+      "roomId": "room_c1_1",
+      "seatLabel": "A1",
+      "seatType": "Standard",
+      "gridRow": 1,
+      "gridCol": 1
+    },
+    {
+      "id": "st_c1_1_A2",
+      "roomId": "room_c1_1",
+      "seatLabel": "A2",
+      "seatType": "Standard",
+      "gridRow": 1,
+      "gridCol": 2
+    },
+    {
+      "id": "st_c1_1_A3",
+      "roomId": "room_c1_1",
+      "seatLabel": "A3",
+      "seatType": "Standard",
+      "gridRow": 1,
+      "gridCol": 3
+    },
+    {
+      "id": "st_c1_1_A4",
+      "roomId": "room_c1_1",
+      "seatLabel": "A4",
+      "seatType": "Standard",
+      "gridRow": 1,
+      "gridCol": 4
+    },
+    {
+      "id": "st_c1_1_A5",
+      "roomId": "room_c1_1",
+      "seatLabel": "A5",
+      "seatType": "Standard",
+      "gridRow": 1,
+      "gridCol": 5
+    },
+    {
+      "id": "st_c1_1_A6",
+      "roomId": "room_c1_1",
+      "seatLabel": "A6",
+      "seatType": "Standard",
+      "gridRow": 1,
+      "gridCol": 6
+    },
+    {
+      "id": "st_c1_1_F12",
+      "roomId": "room_c1_1",
+      "seatLabel": "F12",
+      "seatType": "Premium",
+      "gridRow": 6,
+      "gridCol": 12
+    },
+    {
+      "id": "st_c1_1_F13",
+      "roomId": "room_c1_1",
+      "seatLabel": "F13",
+      "seatType": "Premium",
+      "gridRow": 6,
+      "gridCol": 13
+    },
+    {
+      "id": "st_c1_1_F14",
+      "roomId": "room_c1_1",
+      "seatLabel": "F14",
+      "seatType": "Premium",
+      "gridRow": 6,
+      "gridCol": 14
+    },
+    {
+      "id": "st_c1_1_G6",
+      "roomId": "room_c1_1",
+      "seatLabel": "G6",
+      "seatType": "Premium",
+      "gridRow": 7,
+      "gridCol": 6
+    },
+    {
+      "id": "st_c1_1_G7",
+      "roomId": "room_c1_1",
+      "seatLabel": "G7",
+      "seatType": "Premium",
+      "gridRow": 7,
+      "gridCol": 7
+    },
+    {
+      "id": "st_c1_1_G8",
+      "roomId": "room_c1_1",
+      "seatLabel": "G8",
+      "seatType": "Premium",
+      "gridRow": 7,
+      "gridCol": 8
+    },
+    {
+      "id": "st_c1_1_G11",
+      "roomId": "room_c1_1",
+      "seatLabel": "G11",
+      "seatType": "Premium",
+      "gridRow": 7,
+      "gridCol": 11
+    },
+    {
+      "id": "st_c1_1_G12",
+      "roomId": "room_c1_1",
+      "seatLabel": "G12",
+      "seatType": "Premium",
+      "gridRow": 7,
+      "gridCol": 12
+    },
+    {
+      "id": "st_c1_1_G13",
+      "roomId": "room_c1_1",
+      "seatLabel": "G13",
+      "seatType": "Premium",
+      "gridRow": 7,
+      "gridCol": 13
+    },
+    {
+      "id": "st_c1_1_H7",
+      "roomId": "room_c1_1",
+      "seatLabel": "H7",
+      "seatType": "VIP",
+      "gridRow": 8,
+      "gridCol": 7
+    },
+    {
+      "id": "st_c1_1_H8",
+      "roomId": "room_c1_1",
+      "seatLabel": "H8",
+      "seatType": "VIP",
+      "gridRow": 8,
+      "gridCol": 8
+    },
+    {
+      "id": "st_c1_1_H11",
+      "roomId": "room_c1_1",
+      "seatLabel": "H11",
+      "seatType": "VIP",
+      "gridRow": 8,
+      "gridCol": 11
+    },
+    {
+      "id": "st_c1_1_H12",
+      "roomId": "room_c1_1",
+      "seatLabel": "H12",
+      "seatType": "VIP",
+      "gridRow": 8,
+      "gridCol": 12
+    },
+    {
+      "id": "st_c1_1_L1",
+      "roomId": "room_c1_1",
+      "seatLabel": "L1",
+      "seatType": "Couple",
+      "gridRow": 12,
+      "gridCol": 1
+    },
+    {
+      "id": "st_c1_1_L3",
+      "roomId": "room_c1_1",
+      "seatLabel": "L3",
+      "seatType": "Couple",
+      "gridRow": 12,
+      "gridCol": 3
+    },
+    {
+      "id": "st_c1_1_L5",
+      "roomId": "room_c1_1",
+      "seatLabel": "L5",
+      "seatType": "Couple",
+      "gridRow": 12,
+      "gridCol": 5
+    },
+    {
+      "id": "st_c1_1_L7",
+      "roomId": "room_c1_1",
+      "seatLabel": "L7",
+      "seatType": "Couple",
+      "gridRow": 12,
+      "gridCol": 7
+    },
+    {
+      "id": "st_c1_1_L12",
+      "roomId": "room_c1_1",
+      "seatLabel": "L12",
+      "seatType": "Couple",
+      "gridRow": 12,
+      "gridCol": 12
+    },
+    {
+      "id": "st_c1_1_L14",
+      "roomId": "room_c1_1",
+      "seatLabel": "L14",
+      "seatType": "Couple",
+      "gridRow": 12,
+      "gridCol": 14
+    },
+    {
+      "id": "st_c1_1_L16",
+      "roomId": "room_c1_1",
+      "seatLabel": "L16",
+      "seatType": "Couple",
+      "gridRow": 12,
+      "gridCol": 16
+    },
+    {
+      "id": "st_c4_1_A1",
+      "roomId": "room_c4_1",
+      "seatLabel": "A1",
+      "seatType": "Standard",
+      "gridRow": 1,
+      "gridCol": 1
+    },
+    {
+      "id": "st_c4_1_A2",
+      "roomId": "room_c4_1",
+      "seatLabel": "A2",
+      "seatType": "Standard",
+      "gridRow": 1,
+      "gridCol": 2
+    },
+    {
+      "id": "st_c4_1_E5",
+      "roomId": "room_c4_1",
+      "seatLabel": "E5",
+      "seatType": "VIP",
+      "gridRow": 5,
+      "gridCol": 5
+    },
+    {
+      "id": "st_c4_1_E6",
+      "roomId": "room_c4_1",
+      "seatLabel": "E6",
+      "seatType": "VIP",
+      "gridRow": 5,
+      "gridCol": 6
     }
   ],
   "showtimes": [
     {
       "id": "1",
-      "movieId": 1,
-      "roomId": 2,
-      "startTime": "2025-10-25T19:30:00",
+      "movieId": "1",
+      "cinemaId": "1",
+      "roomId": "room_c1_1",
+      "startTime": "2025-10-27T19:30:00",
       "price": 110000
     },
     {
       "id": "2",
-      "movieId": 2,
-      "roomId": 13,
-      "startTime": "2025-10-25T20:00:00",
+      "movieId": "2",
+      "cinemaId": "4",
+      "roomId": "room_c4_1",
+      "startTime": "2025-10-27T20:00:00",
       "price": 120000
     },
     {
       "id": "3",
-      "movieId": 1,
-      "roomId": 13,
-      "startTime": "2025-10-25T21:00:00",
+      "movieId": "1",
+      "cinemaId": "4",
+      "roomId": "room_c4_1",
+      "startTime": "2025-10-28T21:00:00",
       "price": 125000
     }
   ],
   "showtimeSeats": [
     {
-      "showtimeId": 1,
-      "seatId": "2_C5",
-      "status": "occupied",
-      "heldByBooking": null,
-      "id": "ab54"
+      "id": "b93f",
+      "showtimeId": "1",
+      "seatTemplateId": "st_c1_1_G7",
+      "status": "occupied"
     },
     {
-      "showtimeId": 1,
-      "seatId": "2_C6",
-      "status": "held",
-      "heldByBooking": 42,
-      "id": "2675"
+      "id": "69de",
+      "showtimeId": "1",
+      "seatTemplateId": "st_c1_1_G8",
+      "status": "occupied"
+    },
+    {
+      "id": "a1b2",
+      "showtimeId": "1",
+      "seatTemplateId": "st_c1_1_H11",
+      "status": "occupied"
+    },
+    {
+      "id": "c3d4",
+      "showtimeId": "1",
+      "seatTemplateId": "st_c1_1_H12",
+      "status": "occupied"
     }
   ],
   "bookings": [
     {
       "id": "1",
-      "userId": 2,
-      "showtimeId": 1,
-      "seatIds": [
-        "2_G7",
-        "2_G8"
+      "userId": "2",
+      "showtimeId": "1",
+      "seatTemplateIds": [
+        "st_c1_1_F13",
+        "st_c1_1_F14"
       ],
-      "totalPrice": 220000,
+      "totalPrice": 260000,
       "bookingTime": "2025-10-20T14:00:00Z",
       "status": "confirmed"
+    },
+    {
+      "id": "c3c8",
+      "userId": "2",
+      "showtimeId": "1",
+      "totalPrice": 112500,
+      "bookingTime": "2025-10-27T14:09:05.752Z",
+      "status": "confirmed",
+      "promoId": null
+    },
+    {
+      "id": "d17f",
+      "userId": "2",
+      "showtimeId": "1",
+      "totalPrice": 112500,
+      "bookingTime": "2025-10-27T14:09:11.139Z",
+      "status": "confirmed",
+      "promoId": null
+    },
+    {
+      "id": "1c83",
+      "userId": "fdad",
+      "showtimeId": "1",
+      "seatTemplateIds": [
+        "st_c1_1_G13"
+      ],
+      "totalPrice": 112500,
+      "bookingTime": "2025-10-27T15:36:34.511Z",
+      "status": "confirmed",
+      "promoId": null
+    },
+    {
+      "id": "e213",
+      "userId": "2",
+      "showtimeId": "3",
+      "seatTemplateIds": [
+        "st_c4_1_E5"
+      ],
+      "totalPrice": 127500,
+      "bookingTime": "2025-10-27T17:20:52.775Z",
+      "status": "confirmed",
+      "promoId": null
+    },
+    {
+      "id": "f417",
+      "userId": "2",
+      "showtimeId": "3",
+      "seatTemplateIds": [
+        "st_c4_1_E5"
+      ],
+      "totalPrice": 127500,
+      "bookingTime": "2025-10-27T17:25:08.189Z",
+      "status": "confirmed",
+      "promoId": null
+    },
+    {
+      "id": "9459",
+      "userId": "2",
+      "showtimeId": "3",
+      "seatTemplateIds": [
+        "st_c4_1_E5",
+        "st_c4_1_E6"
+      ],
+      "totalPrice": 252500,
+      "bookingTime": "2025-10-27T17:58:52.526Z",
+      "status": "confirmed",
+      "promoId": null
     }
   ],
   "banners": [
@@ -336,28 +720,66 @@
   ],
   "promotions": [
     {
-      "id": "1",
-      "code": "SUMMER2025",
-      "description": "Giảm 15% vé mùa hè",
-      "discountPercentage": 15,
-      "startDate": "2025-06-01T00:00:00Z",
-      "endDate": "2025-08-31T23:59:59Z"
+      "id": "promo001",
+      "code": "FILM4U15",
+      "title": "Giảm 15% cho lần đầu đặt vé",
+      "description": "Nhập mã FILM4U15 để được giảm ngay 15% tổng giá trị đơn hàng đầu tiên của bạn tại Film4U.",
+      "discountType": "percentage",
+      "discountValue": 15,
+      "expiryDate": "2025-12-31T23:59:59Z",
+      "usedBy": []
+    },
+    {
+      "id": "promo002",
+      "code": "FIX20K",
+      "title": "Giảm ngay 20.000đ",
+      "description": "Tất cả các khách hàng nhập mã FIX20K sẽ được giảm trực tiếp 20.000đ vào tổng hóa đơn.",
+      "discountType": "fixed",
+      "discountValue": 20000,
+      "expiryDate": "2025-11-30T23:59:59Z",
+      "usedBy": [
+        "2"
+      ]
+    },
+    {
+      "id": "promo003",
+      "code": "HETHAN",
+      "title": "Mã giảm giá đã hết hạn",
+      "description": "Mã giảm giá dành cho dịp lễ 30/4 đã kết thúc.",
+      "discountType": "percentage",
+      "discountValue": 30,
+      "expiryDate": "2025-05-01T23:59:59Z",
+      "usedBy": []
     }
   ],
   "reviews": [
     {
       "id": "1",
-      "movieId": 1,
+      "movieId": "1",
       "author": "Trần Thị B",
       "content": "Phim rất cảm động, lấy đi nhiều nước mắt của mình. Diễn xuất của các diễn viên rất chân thật.",
       "createdAt": "2025-10-20T10:00:00.000Z"
     },
     {
       "id": "2",
-      "movieId": 1,
+      "movieId": "1",
       "author": "Lê Văn C",
       "content": "Một bộ phim ý nghĩa về tình cảm gia đình. Ai cũng nên xem cùng bà và mẹ.",
       "createdAt": "2025-10-21T11:30:00.000Z"
+    },
+    {
+      "id": "019e",
+      "movieId": "2",
+      "author": "Người dùng ẩn danh",
+      "content": "Bộ phim rất hay, tôi đã xem nó 2 lần rồi.",
+      "createdAt": "2025-10-23T16:59:09.528Z"
+    },
+    {
+      "id": "c2d4",
+      "movieId": 1,
+      "author": "Hồ Văn Đàn",
+      "content": "âbd",
+      "createdAt": "2025-10-27T15:23:41.727Z"
     }
   ]
 }

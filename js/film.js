@@ -55,7 +55,25 @@ async function fetchAndDisplayAllMovies() {
   }
 }
 
+// Kiểm tra trạng thái đăng nhập và xử lý nút đặt vé
+function handleBookingButtons() {
+  const loggedInUser = sessionStorage.getItem('loggedInUser');
+  const bookingButtons = document.querySelectorAll('.btn.red');
+
+  bookingButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      if (!loggedInUser) {
+        e.preventDefault();
+        e.stopPropagation();
+        alert('Vui lòng đăng nhập để đặt vé');
+        window.location.href = 'login.html';
+      }
+    });
+  });
+}
+
 // Chạy các hàm khởi tạo khi DOM đã tải xong
-document.addEventListener("DOMContentLoaded", () => {
-  fetchAndDisplayAllMovies();
+document.addEventListener("DOMContentLoaded", async () => {
+  await fetchAndDisplayAllMovies();
+  handleBookingButtons();
 });

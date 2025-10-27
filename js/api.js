@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = 'http://localhost:3000';
 
 /**
  * Hàm fetch helper chung để xử lý các yêu cầu API và lỗi.
@@ -80,6 +80,18 @@ const api = {
     },
 
     /**
+     * Thêm một người dùng mới.
+     * @param {object} userData - Dữ liệu người dùng mới.
+     */
+    createUser: (userData) => {
+        return fetchJson(`${BASE_URL}/users`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userData),
+        });
+    },
+
+    /**
      * Thêm một phim mới.
      * @param {object} movieData - Dữ liệu phim mới.
      */
@@ -124,6 +136,18 @@ const api = {
     },
 
     /**
+     * Thêm một đặt vé mới.
+     * @param {object} bookingData - Dữ liệu đặt vé mới.
+     */
+    createBooking: (bookingData) => {
+        return fetchJson(`${BASE_URL}/bookings`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bookingData),
+        });
+    },
+
+    /**
      * Lấy tất cả rạp chiếu phim.
      */
     getCinemas: () => fetchJson(`${BASE_URL}/cinemas`),
@@ -140,5 +164,82 @@ const api = {
     getShowtimePatterns: (params = {}) => {
         const query = new URLSearchParams(params).toString();
         return fetchJson(`${BASE_URL}/showtime_patterns?${query}`);
+    },
+
+    /**
+     * Lấy danh sách suất chiếu với các tham số truy vấn.
+     * @param {object} params - Ví dụ: { roomId: 'room_c1_1', _expand: 'movie' }
+     */
+    getShowtimes: (params = {}) => {
+        const query = new URLSearchParams(params).toString();
+        return fetchJson(`${BASE_URL}/showtimes?${query}`);
+    },
+
+    /**
+     * Thêm một suất chiếu mới.
+     * @param {object} showtimeData - Dữ liệu suất chiếu mới.
+     */
+    addShowtime: (showtimeData) => {
+        return fetchJson(`${BASE_URL}/showtimes`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(showtimeData),
+        });
+    },
+
+    /**
+     * Xóa một suất chiếu.
+     * @param {string|number} showtimeId - ID của suất chiếu.
+     */
+    deleteShowtime: (showtimeId) => {
+        return fetchJson(`${BASE_URL}/showtimes/${showtimeId}`, {
+            method: 'DELETE',
+        });
+    },
+
+    /**
+     * Lấy tất cả các chương trình khuyến mãi.
+     */
+    getPromotions: () => fetchJson(`${BASE_URL}/promotions`),
+
+    /**
+     * Lấy khuyến mãi bằng mã code.
+     * @param {string} code - Mã khuyến mãi.
+     */
+    getPromotionByCode: (code) => fetchJson(`${BASE_URL}/promotions?code=${code}`),
+
+    /**
+     * Thêm một khuyến mãi mới.
+     * @param {object} promoData - Dữ liệu khuyến mãi.
+     */
+    addPromotion: (promoData) => {
+        return fetchJson(`${BASE_URL}/promotions`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(promoData),
+        });
+    },
+
+    /**
+     * Cập nhật một khuyến mãi.
+     * @param {string|number} promoId - ID của khuyến mãi.
+     * @param {object} promoData - Dữ liệu để cập nhật.
+     */
+    updatePromotion: (promoId, promoData) => {
+        return fetchJson(`${BASE_URL}/promotions/${promoId}`, {
+            method: 'PATCH', // PATCH is better for partial updates
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(promoData),
+        });
+    },
+
+    /**
+     * Xóa một khuyến mãi.
+     * @param {string|number} promoId - ID của khuyến mãi.
+     */
+    deletePromotion: (promoId) => {
+        return fetchJson(`${BASE_URL}/promotions/${promoId}`, {
+            method: 'DELETE',
+        });
     },
 };

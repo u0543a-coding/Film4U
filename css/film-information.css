@@ -1,4 +1,4 @@
- * {
+* {
    margin: 0;
    padding: 0;
    box-sizing: border-box;
@@ -284,10 +284,10 @@
    border-radius: 8px;
    resize: none;
    font-size: 14px;
+   width: 100%; /* <-- ĐÃ THÊM */
  }
 
  .submit-btn {
-   align-self: flex-end;
    background-color: #e50914;
    color: #fff;
    border: none;
@@ -295,6 +295,7 @@
    border-radius: 8px;
    cursor: pointer;
    transition: 0.2s;
+   align-self: flex-end; /* <-- ĐÃ THÊM */
  }
 
  .submit-btn:hover {
