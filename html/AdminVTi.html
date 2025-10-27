@@ -89,44 +89,67 @@
           </table>
         </div>
       </section>
-<!-- Cinema Management -->
-<section id="cinemas-section" class="content-section">
-  <h2>Quản lý Rạp</h2>
-  <div class="table-container">
-    <table id="cinemas-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Tên Rạp</th>
-          <th>Địa chỉ</th>
-          <th>Thành phố</th>
-          <th>Doanh thu</th>
-          <th>Thao tác</th> <!-- nhớ thêm cột này để hiện nút "Xem chi tiết" -->
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
-</section>
+        <!-- Cinema Management -->
+    <section id="cinemas-section" class="content-section">
+      <h2>Quản lý Rạp</h2>
+      <div class="table-container">
+        <table id="cinemas-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Tên Rạp</th>
+              <th>Địa chỉ</th>
+              <th>Thành phố</th>
+              <th>Doanh thu</th>
+              <th>Hành động</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+    <!-- ===== Cinema Details Section ===== -->
+    <div id="cinema-details-container" style="display:none;">
+      <h3 id="cinema-details-title"></h3>
 
-<!-- ====== Cinema Detail Container ====== -->
-<div id="cinema-detail-container" style="display:none;">
-  <h3>Chi tiết rạp: <span id="cinema-name-detail"></span></h3>
-  <p>Địa chỉ: <span id="cinema-address-detail"></span></p>
+      <div id="cinema-tabs">
+        <button class="cinema-tab-btn active" data-tab="tab-rooms">Phòng chiếu & Ghế</button>
+        <button class="cinema-tab-btn" data-tab="tab-showtimes">Xuất chiếu</button>
+      </div>
 
-  <div id="cinema-tabs">
-    <button id="btn-rooms-seats" class="tab-btn active">Phòng chiếu & Ghế</button>
-    <button id="btn-showtimes" class="tab-btn">Phòng chiếu & Xuất chiếu</button>
-  </div>
+      <!-- Tab 1 -->
+      <div id="tab-rooms" class="cinema-tab-content active">
+        <h4>Phòng chiếu & Ghế</h4>
+        <table id="rooms-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Tên phòng</th>
+              <th>Sức chứa</th>
+              <th>Số ghế</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
 
-  <div id="tab-rooms-seats">
-    <div id="rooms-seats-content"></div>
-  </div>
-
-  <div id="tab-showtimes" style="display:none;">
-    <div id="showtimes-content"></div>
-  </div>
-</div>
+      <!-- Tab 2 -->
+      <div id="tab-showtimes" class="cinema-tab-content">
+        <h4>Xuất chiếu</h4>
+        <table id="showtimes-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Phòng</th>
+              <th>Phim</th>
+              <th>Giờ chiếu</th>
+              <th>Giá vé</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
       <!-- Movies Management -->
       <section id="movies-section" class="content-section">
         <h2>Quản lý Phim</h2>
