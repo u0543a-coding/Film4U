@@ -384,3 +384,23 @@ table tr:hover {
   margin: 10px 0;
   border-radius: 10px;
 }
+.modal-content.small {
+  max-width: 400px;
+}
+
+.form-group {
+  margin: 10px 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  background: #f4f4f4;
+}
