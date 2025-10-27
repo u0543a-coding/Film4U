@@ -310,242 +310,90 @@ table tr:hover {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 /* ===================== CINEMA MANAGEMENT ===================== */
-#cinemas-section {
-  padding: 20px;
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.section-header h2 {
-  color: #ffcc66;
-}
-
-.table-wrapper {
-  background: #1a1a35;
-  border-radius: 12px;
-  padding: 10px;
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  color: #eee;
-}
-
-.data-table th {
-  text-align: left;
-  padding: 12px;
-  background: #23234a;
-  color: #ffcc66;
-}
-
-.data-table td {
-  padding: 12px;
-  border-top: 1px solid #2c2c56;
-}
-
-.data-table tr:hover {
-  background: #2a2a4d;
-}
-
-.btn-primary, .btn-secondary {
-  padding: 8px 14px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.btn-primary {
-  background: #4a4af8;
-  color: #fff;
-}
-
-.btn-secondary {
-  background: #2e2e4a;
-  color: #ddd;
-}
-
-.btn-secondary:hover, .btn-primary:hover {
-  opacity: 0.9;
-}
-
-.cinema-detail {
-  margin-top: 25px;
-  background: #1a1a35;
-  border-radius: 12px;
-  padding: 15px;
-}
-
-.detail-actions {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.detail-content {
-  background: #14142a;
-  border-radius: 8px;
-  padding: 15px;
-}
-
-/* Popup Form */
-.popup {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.popup-content {
-  background: #1c1c3a;
-  padding: 25px;
-  border-radius: 10px;
-  width: 400px;
-  color: #fff;
-}
-
-.popup-content h3 {
-  color: #ffcc66;
-  margin-bottom: 15px;
-}
-
-.popup-content label {
-  display: block;
-  margin-top: 8px;
-}
-
-.popup-content input {
-  width: 100%;
-  margin-top: 5px;
-  padding: 8px;
-  border-radius: 6px;
-  border: none;
-  background: #2e2e4a;
-  color: #fff;
-}
-
-.popup-buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.hidden {
-  display: none !important;
-}
-/* ===== CINEMA POPUP ===== */
-.popup {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-.popup.hidden {
-  display: none;
-}
-
-.popup-content {
-  background: #1f1f3a;
-  padding: 20px;
-  border-radius: 12px;
-  width: 350px;
-  color: #fff;
-}
-
-.popup-content label {
-  display: block;
-  margin-top: 8px;
-}
-
-.popup-content input {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  border: none;
-  border-radius: 6px;
-}
-
-.popup-buttons {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 15px;
-  gap: 10px;
-}
-
-/* ===== TABLE & DETAIL ===== */
-.table-wrapper {
-  overflow-x: auto;
-  margin-top: 15px;
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #1f1f3a;
-  color: #fff;
-}
-
-.data-table th, .data-table td {
-  border: 1px solid #2f2f4f;
-  padding: 8px;
-  text-align: left;
-}
-
-.btn-primary {
-  background: #1abc9c;
-  color: white;
-  padding: 6px 10px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.btn-secondary {
-  background: #555;
-  color: white;
-  padding: 6px 10px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.btn-view, .btn-edit, .btn-delete {
-  background: none;
-  border: none;
-  color: #1abc9c;
-  cursor: pointer;
-}
-
-.cinema-detail {
-  background: #1f1f3a;
-  border-radius: 8px;
+/* ====== Cinema Detail Section ====== */
+#cinema-detail-container {
   margin-top: 20px;
-  padding: 15px;
+  padding: 20px;
+  background: #1b1b3a; /* sáng hơn tone nền chính */
+  border-radius: 12px;
+  color: #f0f0f0;
+}
+
+#cinema-detail-container h3 {
+  font-size: 1.4rem;
   color: #fff;
-}
-
-.cinema-detail.hidden {
-  display: none;
-}
-
-.detail-actions {
-  display: flex;
-  gap: 10px;
   margin-bottom: 10px;
+}
+
+#cinema-detail-container p {
+  font-size: 0.95rem;
+  color: #cfcfcf;
+  margin-bottom: 15px;
+}
+
+/* ====== Tabs ====== */
+#cinema-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+#cinema-tabs .tab-btn {
+  padding: 8px 16px;
+  border: 1px solid #3b3b70;
+  border-radius: 8px;
+  background: #2a2a54;
+  color: #f0f0f0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#cinema-tabs .tab-btn:hover {
+  background: #373779;
+}
+
+#cinema-tabs .tab-btn.active {
+  background: #5757d1;
+  color: #fff;
+  border-color: #5757d1;
+}
+
+/* ====== Room Blocks ====== */
+.room-block {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  background: #23234b;
+}
+
+.room-block h4 {
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.room-block p {
+  color: #c7c7c7;
+  margin-bottom: 6px;
+}
+
+.room-block ul {
+  list-style: none;
+  padding-left: 10px;
+}
+
+.room-block ul li {
+  padding: 4px 0;
+  border-bottom: 1px solid #2e2e5a;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+}
+
+.room-block ul li:last-child {
+  border-bottom: none;
+}
+
+/* ====== Transition ====== */
+#tab-rooms-seats,
+#tab-showtimes {
+  transition: all 0.3s ease;
 }

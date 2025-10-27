@@ -310,8 +310,149 @@ function showCinemaDetail(cinema) {
   });
 }
 
-// ====== Khởi chạy ======
+// =================== CINEMA MANAGEMENT ===================
+
+async function loadCinemas() {
+  const res = await fetch(`${apiUrl}/cinemas`);
+  const cinemas = await res.json();
+
+  const tableBody = document.querySelector("#cinemas-table tbody");
+  tableBody.innerHTML = "";
+
+  for (const cinema of cinemas) {
+    // Tính tổng doanh thu của từng rạp
+    const resRooms = await fetch(`${apiUrl}/cinema_rooms?cinemaId=${cinema.id}`);
+    const rooms = await resRooms.json();
+
+    let totalRevenue = 0;
+    for (const room of rooms) {
+      const showRes = await fetch(`${apiUrl}/showtimes?roomId=${room.id}`);
+      const showtimes = await showRes.json();
+
+      for (const show of showtimes) {
+        const bookingRes = await fetch(`${apiUrl}/bookings?showtimeId=${show.id}`);
+        const bookings = await bookingRes.json();
+        bookings.forEach(b => totalRevenue += b.totalPrice);
+      }
+    }
+
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${cinema.id}</td>
+      <td>${cinema.name}</td>
+      <td>${cinema.address}</td>
+      <td>${cinema.city}</td>
+      <td>${totalRevenue.toLocaleString()} ₫</td>
+      <td><button class="view-btn" data-id="${cinema.id}">Xem chi tiết</button></td>
+    `;
+    tableBody.appendChild(tr);
+  }
+
+  // Sự kiện click "Xem chi tiết"
+  document.querySelectorAll(".view-btn").forEach(btn => {
+    btn.addEventListener("click", e => {
+      const id = e.target.dataset.id;
+      showCinemaDetail(id);
+    });
+  });
+}
+
+async function showCinemaDetail(cId) {
+  const res = await fetch(`${apiUrl}/cinemas/${cId}`);
+  const cinema = await res.json();
+
+  document.getElementById("cinema-name-detail").textContent = cinema.name;
+  document.getElementById("cinema-address-detail").textContent = cinema.address;
+  document.getElementById("cinema-detail-container").style.display = "block";
+
+  // Load tab đầu tiên
+  loadRoomsAndSeats(cId);
+
+  // Tab chuyển đổi
+  document.getElementById("btn-rooms-seats").onclick = () => {
+    document.getElementById("tab-rooms-seats").style.display = "block";
+    document.getElementById("tab-showtimes").style.display = "none";
+    document.getElementById("btn-rooms-seats").classList.add("active");
+    document.getElementById("btn-showtimes").classList.remove("active");
+    loadRoomsAndSeats(cId);
+  };
+
+  document.getElementById("btn-showtimes").onclick = () => {
+    document.getElementById("tab-rooms-seats").style.display = "none";
+    document.getElementById("tab-showtimes").style.display = "block";
+    document.getElementById("btn-showtimes").classList.add("active");
+    document.getElementById("btn-rooms-seats").classList.remove("active");
+    loadRoomsAndShowtimes(cId);
+  };
+}
+
+async function loadRoomsAndSeats(cId) {
+  const resRooms = await fetch(`${apiUrl}/cinema_rooms?cinemaId=${cId}`);
+  const rooms = await resRooms.json();
+
+  let html = "";
+  if (rooms.length === 0) {
+    html = "<p>Không có phòng chiếu nào</p>";
+  } else {
+    rooms.forEach(room => {
+      const layout = room.seat_layout || {};
+      const rows = layout.rows || 0;
+      const seatsPerRow = layout.seatsPerRow || 0;
+      const capacity = rows * seatsPerRow;
+
+      html += `
+        <div class="room-box">
+          <p><strong>Phòng:</strong> ${room.room_name}</p>
+          <p><strong>Số hàng:</strong> ${rows}</p>
+          <p><strong>Số ghế mỗi hàng:</strong> ${seatsPerRow}</p>
+          <p><strong>Tổng sức chứa:</strong> ${capacity}</p>
+        </div>`;
+    });
+  }
+
+  document.getElementById("rooms-seats-content").innerHTML = html;
+}
+
+async function loadRoomsAndShowtimes(cId) {
+  const resRooms = await fetch(`${apiUrl}/cinema_rooms?cinemaId=${cId}`);
+  const rooms = await resRooms.json();
+
+  let html = "";
+  for (const room of rooms) {
+    const resShowtimes = await fetch(`${apiUrl}/showtimes?roomId=${room.id}`);
+    const showtimes = await resShowtimes.json();
+
+    html += `<div class="room-showtime"><h4>${room.room_name}</h4>`;
+    if (showtimes.length === 0) {
+      html += `<p>Không có xuất chiếu nào.</p>`;
+    } else {
+      showtimes.forEach(show => {
+        const movie = getMovieTitle(show.movieId);
+        const time = new Date(show.startTime).toLocaleString("vi-VN");
+        html += `<p>${movie} — ${time} — Giá: ${show.price.toLocaleString()} ₫</p>`;
+      });
+    }
+    html += `</div>`;
+  }
+
+  document.getElementById("showtimes-content").innerHTML = html;
+}
+
+// Helper: lấy tên phim theo movieId
+function getMovieTitle(movieId) {
+  const movie = window.moviesCache?.find(m => m.id == movieId);
+  return movie ? movie.title : `Phim #${movieId}`;
+}
+
+// Load sẵn danh sách phim vào cache
+(async () => {
+  const res = await fetch(`${apiUrl}/movies`);
+  window.moviesCache = await res.json();
+})();
+
+// Gọi lần đầu
 loadCinemas();
+
 
 // ====== Movies Management ======
 const moviesTableBody = document.querySelector('#movies-table tbody');
