@@ -29,6 +29,7 @@
                 <a href="#" class="nav-item" data-section="cinemas"><i class="fas fa-university"></i> Quản lý Rạp</a>
                 <a href="#" class="nav-item" data-section="users"><i class="fas fa-users"></i> Quản lý Người dùng</a>
                 <a href="#" class="nav-item" data-section="banners"><i class="fas fa-images"></i> Quản lý Banner</a>
+                <a href="#" class="nav-item" data-section="promotions"><i class="fas fa-tags"></i> Quản lý Khuyến mãi</a>
                 <a href="#" class="nav-item" data-section="settings"><i class="fas fa-cog"></i> Cài đặt</a>
             </nav>
         </aside>
@@ -190,6 +191,30 @@
                 </div>
             </section>
 
+            <!-- Promotion Management Section -->
+            <section id="promotions-section" class="content-section">
+                <div class="section-header">
+                    <h2>Quản lý Khuyến mãi</h2>
+                    <button id="add-promo-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Thêm Khuyến mãi</button>
+                </div>
+                <div class="table-container">
+                    <table id="promotions-table">
+                        <thead>
+                            <tr>
+                                <th>Mã Code</th>
+                                <th>Tiêu đề</th>
+                                <th>Giảm giá</th>
+                                <th>Ngày hết hạn</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="promotions-table-body">
+                            <!-- Promotion rows will be injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
             <!-- Settings Section -->
             <section id="settings-section" class="content-section">
                 <div class="section-header">
@@ -201,6 +226,50 @@
             </section>
         </main>
     </div>
+
+    <!-- Promotion Modal -->
+    <div id="promo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 id="promo-modal-title">Thêm Khuyến mãi</h3>
+            <form id="promo-form">
+                <input type="hidden" id="promo-id">
+                <div class="form-group">
+                    <label for="promo-code">Mã Code</label>
+                    <input type="text" id="promo-code" required>
+                </div>
+                <div class="form-group">
+                    <label for="promo-title">Tiêu đề</label>
+                    <input type="text" id="promo-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="promo-description">Mô tả</label>
+                    <textarea id="promo-description"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="promo-discount-type">Loại giảm giá</label>
+                        <select id="promo-discount-type">
+                            <option value="percentage">Phần trăm (%)</option>
+                            <option value="fixed">Số tiền cố định (VND)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="promo-discount-value">Giá trị giảm giá</label>
+                        <input type="number" id="promo-discount-value" required min="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="promo-expiry-date">Ngày hết hạn</label>
+                    <input type="datetime-local" id="promo-expiry-date" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="../js/api.js"></script>
     <script src="../js/_admin.js"></script>
 </body>

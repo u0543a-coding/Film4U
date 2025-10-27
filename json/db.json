@@ -568,7 +568,7 @@
       "movieId": "1",
       "cinemaId": "1",
       "roomId": "room_c1_1",
-      "startTime": "2025-10-25T19:30:00",
+      "startTime": "2025-10-27T19:30:00",
       "price": 110000
     },
     {
@@ -576,7 +576,7 @@
       "movieId": "2",
       "cinemaId": "4",
       "roomId": "room_c4_1",
-      "startTime": "2025-10-25T20:00:00",
+      "startTime": "2025-10-27T20:00:00",
       "price": 120000
     },
     {
@@ -584,7 +584,7 @@
       "movieId": "1",
       "cinemaId": "4",
       "roomId": "room_c4_1",
-      "startTime": "2025-10-25T21:00:00",
+      "startTime": "2025-10-28T21:00:00",
       "price": 125000
     }
   ],
@@ -644,12 +644,34 @@
   ],
   "promotions": [
     {
-      "id": "1",
-      "code": "SUMMER2025",
-      "description": "Giảm 15% vé mùa hè",
-      "discountPercentage": 15,
-      "startDate": "2025-06-01T00:00:00Z",
-      "endDate": "2025-08-31T23:59:59Z"
+      "id": "promo001",
+      "code": "FILM4U15",
+      "title": "Giảm 15% cho lần đầu đặt vé",
+      "description": "Nhập mã FILM4U15 để được giảm ngay 15% tổng giá trị đơn hàng đầu tiên của bạn tại Film4U.",
+      "discountType": "percentage",
+      "discountValue": 15,
+      "expiryDate": "2025-12-31T23:59:59Z",
+      "usedBy": []
+    },
+    {
+      "id": "promo002",
+      "code": "FIX20K",
+      "title": "Giảm ngay 20.000đ",
+      "description": "Tất cả các khách hàng nhập mã FIX20K sẽ được giảm trực tiếp 20.000đ vào tổng hóa đơn.",
+      "discountType": "fixed",
+      "discountValue": 20000,
+      "expiryDate": "2025-11-30T23:59:59Z",
+      "usedBy": ["2"]
+    },
+    {
+      "id": "promo003",
+      "code": "HETHAN",
+      "title": "Mã giảm giá đã hết hạn",
+      "description": "Mã giảm giá dành cho dịp lễ 30/4 đã kết thúc.",
+      "discountType": "percentage",
+      "discountValue": 30,
+      "expiryDate": "2025-05-01T23:59:59Z",
+      "usedBy": []
     }
   ],
   "reviews": [

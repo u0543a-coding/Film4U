@@ -1,85 +1,105 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="" href="../css/confirm.css">
-  <title>Xác Nhận Thanh Toán</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác nhận đặt vé - Film4U</title>
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/confirm.css">
 </head>
-
 <body>
-  <div class="container">
-    <div class="left">
-      <div class="card">
-        <h3>Tóm tắt đơn hàng</h3>
-        <table>
-          <tr>
-            <th>Mô tả</th>
-            <th>Số lượng</th>
-            <th>Thành tiền</th>
-          </tr>
-          <tr>
-            <td>Standard</td>
-            <td>1</td>
-            <td>50.000 đ</td>
-          </tr>
-          <tr>
-            <td>Phí tiện ích</td>
-            <td></td>
-            <td>2.500 đ</td>
-          </tr>
-          <tr class="total-row">
-            <td>Tổng</td>
-            <td></td>
-            <td>52.500 đ</td>
-          </tr>
-        </table>
-      </div>
+    <header id="header-placeholder"></header>
 
-      <div class="card">
-        <h3>Thông tin cá nhân</h3>
-        <div class="input-group">
-          <input type="text" placeholder="* Họ và tên">
-          <input type="text" placeholder="* Số điện thoại">
-          <input type="email" placeholder="Email">
+    <main class="main-container">
+        <div class="container">
+            <h1>Xác nhận thông tin đặt vé</h1>
+            <div class="confirm-layout">
+                <!-- Cột trái: Form thông tin khách hàng -->
+                <div class="left">
+                    <div class="form-container">
+                        <h2>Thông tin người nhận vé</h2>
+                        <div class="info-group">
+                            <label for="confirm-fullname">Họ và tên</label>
+                            <input type="text" id="confirm-fullname" placeholder="Nhập họ và tên">
+                        </div>
+                        <div class="info-group">
+                            <label for="confirm-phone">Số điện thoại</label>
+                            <input type="text" id="confirm-phone" placeholder="Nhập số điện thoại">
+                        </div>
+                        <div class="info-group">
+                            <label for="confirm-email">Email</label>
+                            <input type="email" id="confirm-email" placeholder="Nhập email">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cột phải: Tóm tắt đơn hàng -->
+                <div class="right">
+                    <div class="summary-box">
+                        <h2>Tóm tắt đơn hàng</h2>
+                        <div class="summary">
+                            <!-- Thông tin phim sẽ được chèn vào đây bởi JS -->
+                        </div>
+                        <table id="order-summary-table">
+                            <tbody>
+                                <tr>
+                                    <td><strong>Hạng mục</strong></td>
+                                    <td><strong>Số lượng</strong></td>
+                                    <td><strong>Giá (VND)</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Vé xem phim</td>
+                                    <td>0</td>
+                                    <td>0 đ</td>
+                                </tr>
+                                <tr>
+                                    <td>Phí tiện ích</td>
+                                    <td></td>
+                                    <td>2,500 đ</td>
+                                </tr>
+                                <tr class="discount-row" style="display: none;">
+                                    <td>Giảm giá</td>
+                                    <td></td>
+                                    <td id="discount-amount">-0 đ</td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td colspan="2"><strong>Tổng cộng</strong></td>
+                                    <td id="total-price">0 đ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="promo-section">
+                            <input type="text" id="promo-code-input" placeholder="Nhập mã giảm giá">
+                            <button id="apply-promo-btn">Áp dụng</button>
+                        </div>
+                        <p id="promo-message" class="promo-message"></p>
+                        <div class="total-box">
+                            <p>Thành tiền: <b>0 đ</b></p>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn btn-back">Quay lại</button>
+                            <button class="btn btn-confirm">Xác nhận</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="right">
-      <div class="summary">
-        <strong>Tee Yod 3: Quỷ Ăn Tạng</strong>
-        Rio Đà Nẵng<br>
-        Suất <b>21:40 - 14/10/2025</b><br>
-        Phòng chiếu <b>05</b> – Ghế <b>I04</b>
-      </div>
+        <!-- Popup xác nhận thành công -->
+        <div class="popup" style="display: none;">
+            <div class="popup-content">
+                <img src="https://img.icons8.com/color/96/000000/ok--v1.png" alt="Success">
+                <h2>Đặt vé thành công!</h2>
+                <p>Cảm ơn bạn đã sử dụng dịch vụ của Film4U. Chúc bạn có một buổi xem phim vui vẻ!</p>
+                <button>Về trang chủ</button>
+            </div>
+        </div>
+    </main>
 
-      <div class="total-box">
-        <h4>Tổng đơn hàng</h4>
-        <p><b>52.500 đ</b></p>
-      </div>
+    <footer id="footer-placeholder"></footer>
 
-      <div class="note">
-        Vé đã mua không thể đổi hoặc hoàn tiền.<br>
-        Mã vé sẽ được gửi 01 lần qua số điện thoại và email đã nhập.<br>
-        Vui lòng kiểm tra kỹ thông tin trước khi tiếp tục.
-      </div>
-
-      <div class="btns">
-        <button class="btn btn-back">←</button>
-        <button class="btn btn-confirm" onclick="document.querySelector('.popup').style.display='flex'">Xác nhận</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Popup -->
-  <div class="popup">
-    <div class="popup-box">
-      <h2>Đặt vé thành công!</h2>
-      <p>Bạn sẽ nhận được thông tin vé qua Email và SĐT.</p>
-      <button onclick="document.querySelector('.popup').style.display='none'">Đóng</button>
-    </div>
-  </div>
-  <script src="../js/confirm.js" defer></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/confirm.js"></script>
 </body>
 </html>

@@ -7,12 +7,15 @@ body {
     background-color: #f0f2f5;
 }
 
-.login-container {
+.container {
+    width: 350px;
+}
+
+.form-container {
     background-color: #fff;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 300px;
 }
 
 h2 {
@@ -34,12 +37,11 @@ h2 {
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 
 button {
-    display: block; /* Chuyển thành block để căn giữa bằng margin */
-    width: 50%; /* Thu hẹp chiều rộng */
-    margin: 1.5rem auto 0; /* Căn giữa và tạo khoảng cách với ô input */
+    width: 100%;
     padding: 0.75rem;
     border: none;
     border-radius: 4px;
@@ -47,14 +49,38 @@ button {
     color: #fff;
     font-size: 1rem;
     cursor: pointer;
+    margin-top: 1rem;
 }
 
 button:hover {
     background-color: #0056b3;
 }
 
+.message {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.message a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.message a:hover {
+    text-decoration: underline;
+}
+
 .error-message {
     color: red;
     text-align: center;
     margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.success-message {
+    color: green;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
 }

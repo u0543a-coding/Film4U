@@ -260,11 +260,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Fetches and renders showtimes into the table.
-     * (Placeholder for now)
      */
     const renderShowtimes = async () => {
-        console.log("renderShowtimes function called");
-        // Logic to fetch and display showtimes will be added here.
+        try {
+            const showtimes = await api.getShowtimes({ _sort: 'startTime', _order: 'desc' });
+            showtimesTableBody.innerHTML = ''; // Clear table
+
+            // Create lookup maps for efficiency
+            const movieMap = new Map(allShowtimeMovies.map(m => [m.id, m.title]));
+            const cinemaMap = new Map(allShowtimeCinemas.map(c => [c.id, c.name]));
+            const roomMap = new Map(allShowtimeRooms.map(r => [r.id, r.room_name]));
+
+            showtimes.forEach(st => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${movieMap.get(st.movieId) || 'N/A'}</td>
+                    <td>${cinemaMap.get(st.cinemaId) || 'N/A'}</td>
+                    <td>${roomMap.get(st.roomId) || 'N/A'}</td>
+                    <td>${new Date(st.startTime).toLocaleString('vi-VN')}</td>
+                    <td>${st.price.toLocaleString('vi-VN')} ₫</td>
+                    <td class="actions">
+                        <button class="btn btn-sm btn-danger delete-showtime-btn" data-id="${st.id}">Xóa</button>
+                    </td>
+                `;
+                showtimesTableBody.appendChild(row);
+            });
+        } catch (error) {
+            console.error("Failed to render showtimes:", error);
+            showtimesTableBody.innerHTML = '<tr><td colspan="6">Lỗi tải danh sách suất chiếu.</td></tr>';
+        }
+    };
+
+    /**
+     * Handles click events on the showtimes table, specifically for deletion.
+     */
+    const handleShowtimesTableClick = async (e) => {
+        const target = e.target;
+        if (target.classList.contains('delete-showtime-btn')) {
+            const showtimeId = target.dataset.id;
+            if (confirm('Bạn có chắc chắn muốn xóa suất chiếu này không? Thao tác này không thể hoàn tác.')) {
+                try {
+                    await api.deleteShowtime(showtimeId);
+                    await renderShowtimes(); // Refresh the table
+                } catch (error) {
+                    console.error('Failed to delete showtime:', error);
+                    alert('Xóa suất chiếu không thành công.');
+                }
+            }
+        }
     };
 
     /**
@@ -331,14 +374,115 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const timelineInfo = document.getElementById('timeline-info');
+    const conflictWarning = document.getElementById('conflict-warning');
+    const saveShowtimeBtn = document.getElementById('save-showtime-btn');
+
+    /**
+     * Displays the current schedule for a room and checks for conflicts with the proposed new showtime.
+     */
+    const displayTimelineAndCheckConflict = async () => {
+        const movieId = showtimeMovieSelect.value;
+        const roomId = showtimeRoomSelect.value;
+        const date = document.getElementById('showtime-date').value;
+        const startTime = document.getElementById('showtime-start-time').value;
+
+        // Clear previous state
+        timelineInfo.innerHTML = '';
+        conflictWarning.innerHTML = '';
+        saveShowtimeBtn.disabled = true; // Disable by default
+
+        if (!roomId || !date) { // Only need room and date to show timeline
+            return;
+        }
+
+        try {
+            // 1. Fetch existing showtimes for the selected room and date
+            const existingShowtimes = await api.getShowtimes({
+                roomId: roomId,
+                startTime_like: `^${date}` // Get all showtimes that start with the selected date
+            });
+
+            const CLEANUP_TIME_MINS = 20;
+            
+            // 2. Display the timeline of existing showtimes
+            let timelineHTML = '<strong>Lịch hiện tại của phòng:</strong><ul>';
+            if (existingShowtimes.length > 0) {
+                existingShowtimes.sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
+                existingShowtimes.forEach(st => {
+                    const stStart = new Date(st.startTime);
+                    const stMovie = allShowtimeMovies.find(m => m.id === st.movieId);
+                    const stDuration = stMovie ? stMovie.duration_minutes : 0;
+                    const stEnd = new Date(stStart.getTime() + (stDuration + CLEANUP_TIME_MINS) * 60000);
+                    timelineHTML += `<li>${stStart.toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'})} - ${stEnd.toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'})} (${stMovie ? stMovie.title : 'N/A'})</li>`;
+                });
+            } else {
+                timelineHTML += '<li>Chưa có suất chiếu nào.</li>';
+            }
+            timelineHTML += '</ul>';
+            timelineInfo.innerHTML = timelineHTML;
+
+            // 3. Check for conflicts if all info is present
+            if (!movieId || !startTime) {
+                return; // Not enough info to check for conflict
+            }
+
+            const movie = allShowtimeMovies.find(m => m.id === movieId);
+            if (!movie) return;
+
+            const proposedStart = new Date(`${date}T${startTime}`);
+            const proposedEnd = new Date(proposedStart.getTime() + (movie.duration_minutes + CLEANUP_TIME_MINS) * 60000);
+
+            let conflictFound = false;
+            for (const st of existingShowtimes) {
+                const stStart = new Date(st.startTime);
+                const stMovie = allShowtimeMovies.find(m => m.id === st.movieId);
+                const stDuration = stMovie ? stMovie.duration_minutes : 0;
+                const stEnd = new Date(stStart.getTime() + (stDuration + CLEANUP_TIME_MINS) * 60000);
+
+                if (proposedStart < stEnd && proposedEnd > stStart) {
+                    conflictFound = true;
+                    conflictWarning.innerHTML = `Xung đột với suất chiếu: <strong>${stMovie.title}</strong> lúc ${stStart.toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'})}`;
+                    break;
+                }
+            }
+
+            // 4. Enable or disable the save button
+            if (!conflictFound) {
+                saveShowtimeBtn.disabled = false;
+            } else {
+                saveShowtimeBtn.disabled = true;
+            }
+
+        } catch (error) {
+            console.error("Error checking timeline:", error);
+            conflictWarning.innerHTML = "Không thể tải và kiểm tra lịch chiếu.";
+        }
+    };
+
     /**
      * Handles the form submission for adding a showtime.
-     * (Placeholder for now)
      */
     const handleShowtimeFormSubmit = async (e) => {
         e.preventDefault();
-        console.log("Showtime form submitted");
-        // Logic for conflict checking and saving will be added here.
+        const formData = new FormData(showtimeForm);
+        const showtimeData = {
+            movieId: formData.get('movieId'),
+            cinemaId: formData.get('cinemaId'),
+            roomId: formData.get('roomId'),
+            startTime: `${formData.get('date')}T${formData.get('startTime')}`,
+            price: parseInt(formData.get('price')),
+        };
+
+        try {
+            await api.addShowtime(showtimeData);
+            hideShowtimeForm();
+            await renderShowtimes(); // Refresh the table
+            alert('Thêm suất chiếu thành công!');
+        } catch (error) {
+            console.error("Failed to save showtime:", error);
+            alert('Lưu suất chiếu không thành công.');
+        }
     };
 
     // --- INITIALIZATION & EVENT LISTENERS --- //
@@ -367,21 +511,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (showtimeCinemaSelect) {
         showtimeCinemaSelect.addEventListener('change', updateRoomDropdown);
     }
-
-    // Initial data load
-    const initialize = async () => {
-        await populateGenres();
-        await renderMovies();
-        await updateDashboardStats();
-
-        // Initialize showtime management
-        await populateShowtimeDropdowns();
-        await renderShowtimes();
-    };
-
-    /**
-     * Fetches data and updates the stat cards on the dashboard.
-     */
+    if (showtimesTableBody) {
+        showtimesTableBody.addEventListener('click', handleShowtimesTableClick);
+    }
+    // Add listeners to all relevant fields to trigger conflict check
+    [showtimeMovieSelect, showtimeRoomSelect, document.getElementById('showtime-date'), document.getElementById('showtime-start-time')].forEach(el => {
+        if(el) el.addEventListener('change', displayTimelineAndCheckConflict);
+    });
     const updateDashboardStats = async () => {
         try {
             const [movies, users, bookings] = await Promise.all([
@@ -415,6 +551,15 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error("Failed to update dashboard stats:", error);
         }
+    };
+
+    const initialize = async () => {
+        // Initial data loading and rendering
+        await populateGenres();
+        await renderMovies();
+        await populateShowtimeDropdowns();
+        await renderShowtimes();
+        await updateDashboardStats();
     };
 
     initialize();

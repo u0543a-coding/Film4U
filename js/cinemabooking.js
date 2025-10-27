@@ -41,6 +41,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     const weekdays = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
     const today = new Date();
 
+    // Helper function to format date string correctly without timezone issues
+    const toYYYYMMDD = (date) => {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+    }
+
     for (let i = 0; i < 7; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
@@ -49,16 +57,20 @@ document.addEventListener("DOMContentLoaded", async () => {
       const month = date.getMonth() + 1;
       const weekday = weekdays[date.getDay()];
       const formattedDate = `${day}/${month}`;
-      const dateString = date.toISOString().split('T')[0]; // YYYY-MM-DD
+      const dateString = toYYYYMMDD(date); // Sử dụng helper function
 
       const dateItem = document.createElement('div');
       dateItem.classList.add('datve-date-item');
+      dateItem.dataset.date = dateString;
+
       if (i === 0) {
-        dateItem.classList.add('active'); // Kích hoạt ngày đầu tiên (hôm nay)
+        dateItem.classList.add('active');
         state.selectedDate = dateString; // Set ngày mặc định là hôm nay
       }
-      dateItem.dataset.date = dateString;
-      dateItem.innerHTML = `${formattedDate}<br><small>${weekday}</small>`;
+      
+      // Consistent format for all days: Weekday on top, date on bottom
+      dateItem.innerHTML = `${weekday}<br><small>${formattedDate}</small>`;
+      
       dateList.appendChild(dateItem);
     }
     
