@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin tài khoản - Film4U</title>
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/user-info.css">
+</head>
+<body>
+    <header id="header-placeholder"></header>
+
+    <main class="main-container">
+        <div class="form-container" id="user-info-container">
+            <h1>Thông tin tài khoản</h1>
+            
+            <div id="view-mode">
+                <div class="info-group">
+                    <label>Họ và tên:</label>
+                    <p id="user-fullname"></p>
+                </div>
+                <div class="info-group">
+                    <label>Email:</label>
+                    <p id="user-email"></p>
+                </div>
+                <div class="info-group">
+                    <label>Số điện thoại:</label>
+                    <p id="user-phone"></p>
+                </div>
+                <button id="edit-button" class="submit-btn">Chỉnh sửa thông tin</button>
+                <button id="logout-button" class="submit-btn">Đăng xuất</button>
+            </div>
+
+            <form id="edit-mode" class="hidden">
+                <div class="form-group">
+                    <label for="edit-fullname">Họ và tên:</label>
+                    <input type="text" id="edit-fullname" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-email">Email:</label>
+                    <input type="email" id="edit-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-phone">Số điện thoại:</label>
+                    <input type="tel" id="edit-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-password">Mật khẩu mới (để trống nếu không đổi):</label>
+                    <input type="password" id="edit-password">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" id="save-button" class="submit-btn">Lưu thay đổi</button>
+                    <button type="button" id="cancel-button" class="submit-btn alt">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer id="footer-placeholder"></footer>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/user-info.js"></script>
+</body>
+</html>

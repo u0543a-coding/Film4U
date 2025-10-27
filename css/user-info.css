@@ -1,0 +1,103 @@
+/* General container for user info page */
+.form-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.form-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* View Mode */
+.info-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.info-group label {
+    font-weight: bold;
+    color: #555;
+    width: 120px;
+    flex-shrink: 0;
+}
+
+.info-group p {
+    margin: 0;
+    color: #333;
+}
+
+/* Edit Mode */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Buttons */
+.submit-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #a53125;
+}
+
+#logout-button {
+    background-color: #7f8c8d;
+}
+
+#logout-button:hover {
+    background-color: #6c7a7b;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.submit-btn.alt {
+    background-color: #95a5a6;
+}
+
+.submit-btn.alt:hover {
+    background-color: #7f8c8d;
+}
+
+/* Utility */
+.hidden {
+    display: none;
+}

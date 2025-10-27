@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác nhận đặt vé - Film4U</title>
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/confirm.css">
+</head>
+<body>
+    <header id="header-placeholder"></header>
+
+  <div class="container">
+    <div class="left">
+      <div class="card">
+        <h3>Thông tin cá nhân</h3>
+        <div class="input-group">
+          <input type="text" id="confirm-fullname" placeholder="* Họ và tên">
+          <input type="email" id="confirm-email" placeholder="* Email">
+        </div>
+      </div>
+      <div class="card">
+        <h3>Tóm tắt đơn hàng</h3>
+        <table id="order-summary-table">
+            <tbody>
+                <tr>
+                    <th>Hạng mục</th>
+                    <th>Số lượng</th>
+                    <th>Giá (VND)</th>
+                </tr>
+                <tr>
+                    <td>Vé xem phim</td>
+                    <td>0</td>
+                    <td>0 đ</td>
+                </tr>
+                <tr>
+                    <td>Phí tiện ích</td>
+                    <td></td>
+                    <td>2,500 đ</td>
+                </tr>
+                <tr class="discount-row" style="display: none;">
+                    <td>Giảm giá</td>
+                    <td></td>
+                    <td id="discount-amount">-0 đ</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="2"><strong>Tổng cộng</strong></td>
+                    <td id="total-price">0 đ</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="summary">
+        <!-- Movie details will be injected here by JS -->
+      </div>
+
+      <div class="promo-section card">
+          <h3>Mã giảm giá</h3>
+          <input type="text" id="promo-code-input" placeholder="Nhập mã giảm giá">
+          <button id="apply-promo-btn">Áp dụng</button>
+          <p id="promo-message" class="promo-message"></p>
+      </div>
+
+      <div class="total-box">
+        <h4>Tổng đơn hàng</h4>
+        <p><b>0 đ</b></p>
+      </div>
+
+      <div class="note">
+        Vé đã mua không thể đổi hoặc hoàn tiền.<br>
+        Mã vé sẽ được gửi qua email đã nhập.<br>
+        Vui lòng kiểm tra kỹ thông tin trước khi tiếp tục.
+      </div>
+
+      <div class="btns">
+        <button class="btn btn-back">←</button>
+        <button class="btn btn-confirm">Xác nhận</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup -->
+  <div class="popup" style="display: none;">
+    <div class="popup-content">
+        <img src="https://img.icons8.com/color/96/000000/ok--v1.png" alt="Success">
+        <h2>Đặt vé thành công!</h2>
+        <p>Cảm ơn bạn đã sử dụng dịch vụ của Film4U. Chúc bạn có một buổi xem phim vui vẻ!</p>
+        <button>Về trang chủ</button>
+    </div>
+  </div>
+
+    <footer id="footer-placeholder"></footer>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/confirm.js"></script>
+</body>
+</html>

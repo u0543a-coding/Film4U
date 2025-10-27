@@ -1,4 +1,4 @@
- * {
+* {
    margin: 0;
    padding: 0;
    box-sizing: border-box;
@@ -279,10 +279,15 @@
    border-radius: 8px;
    resize: none;
    font-size: 14px;
+   width: 100%; /* <-- ĐÃ THÊM */
  }
 
+<<<<<<< Updated upstream
  .xemchitiet-submit-btn {
    align-self: flex-end;
+=======
+ .submit-btn {
+>>>>>>> Stashed changes
    background-color: #e50914;
    color: #fff;
    border: none;
@@ -290,6 +295,7 @@
    border-radius: 8px;
    cursor: pointer;
    transition: 0.2s;
+   align-self: flex-end; /* <-- ĐÃ THÊM */
  }
 
  .xemchitiet-submit-btn:hover {
