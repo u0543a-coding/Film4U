@@ -1,0 +1,180 @@
+/* ============================
+        RESET & CHUNG
+    ============================ */
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 40px;
+      color: #333;
+      display: flex;
+      justify-content: center;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* ============================
+        TRANG ĐẶT GHẾ
+    ============================ */
+    .datghe-container {
+      max-width: 900px; /* Tăng độ rộng để vừa sơ đồ ghế mới */
+      margin: 0 auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+    }
+
+    .datghe-container h2 {
+      text-align: center;
+      color: #26374d;
+      margin-bottom: 20px;
+    }
+
+    .datghe-legend {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
+      gap: 20px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .datghe-legend div {
+        display: flex;
+        align-items: center;
+    }
+
+    .datghe-legend span {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      margin-right: 8px;
+    }
+
+    .datghe-info {
+      background: #f9fafc;
+      border-radius: 8px;
+      padding: 15px;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-top: 20px; /* Chuyển margin từ bottom của seat-container sang top của info */
+      margin-bottom: 20px;
+    }
+
+    .datghe-total {
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 18px; /* Làm cho tổng tiền nổi bật hơn */
+      color: #d32f2f;
+    }
+
+    .datghe-btns {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .datghe-btn {
+      padding: 12px 24px; /* Tăng padding cho nút to hơn */
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      transition: all 0.3s;
+    }
+
+    .datghe-btn-back {
+        background-color: transparent;
+        color: #555;
+    }
+
+    .datghe-btn-back:hover {
+      background-color: #f5f5f5;
+      border-color: #999;
+    }
+
+    .datghe-btn-confirm {
+      background-color: #293e5a;
+      color: #fff;
+      border: none;
+    }
+
+    .datghe-btn-confirm:hover {
+      background-color: #1d2b3f;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+/* ========================================
+    STYLES FOR DYNAMIC SEAT MAP (NEW)
+======================================== */
+
+#seat-map-container {
+    display: grid;
+    grid-template-columns: repeat(var(--seats-per-row, 12), 1fr);
+    gap: 8px;
+    padding: 20px;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #f0f2f5;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+}
+
+.seat {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-top: 3px solid transparent;
+}
+
+.seat.standard { background-color: #B9F6CA; border-top-color: #69F0AE; }
+.seat.premium { background-color: #81D4FA; border-top-color: #40C4FF; }
+.seat.couple { background-color: #F48FB1; border-top-color: #F06292; }
+
+.seat.occupied {
+    background-color: #E0E0E0;
+    border-top-color: #BDBDBD;
+    cursor: not-allowed;
+    color: #9E9E9E;
+}
+
+.seat.held {
+    background-color: #FFD54F;
+    border-top-color: #FFC107;
+    cursor: not-allowed;
+}
+
+.seat.selected {
+    background-color: #651FFF;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(101, 31, 255, 0.5);
+    border: none;
+}
+
+/* Chỉ báo màn hình */
+#seat-map-container::before {
+    content: 'MÀN HÌNH';
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 10px;
+    background-color: #424242;
+    color: white;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}

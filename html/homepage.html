@@ -8,22 +8,42 @@
 </head>
 <body class="body">
   <!-- header -->
-  <!-- Thanh điều hướng (navigation bar)-->
-  <nav class="navbar">
-    <div class="navbar-container">
-      <a href="#" class="navbar-logo">FILM4U</a>
-      <form class="navbar-search">
-        <input type="text" id="search-input" placeholder="Tìm phim, diễn viên...">
-        <button type="submit" class="search-btn">Tìm</button>
-      </form>
-      <ul class="navbar-links">
-        <li><a href="homepage.html" class="active">Trang chủ</a></li>
-        <li><a href="film.html">Phim</a></li>
-        <li><a href="promotion.html">Khuyến mãi</a></li>
-        <li><a href="#">Tài khoản</a></li>
-      </ul>
-    </div>
-  </nav>
+<!-- Thanh điều hướng (Navigation Bar) -->
+<nav class="navbar">
+  <div class="navbar-container">
+    <!-- Logo -->
+    <a href="homepage.html" class="navbar-logo">🎬 FILM4U</a>
+
+    <!-- Thanh tìm kiếm -->
+    <form class="navbar-search" id="searchForm">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Tìm phim, diễn viên..."
+        autocomplete="off"
+      />
+      <button type="submit" class="search-btn">Tìm</button>
+    </form>
+
+    <!-- Liên kết điều hướng -->
+    <ul class="navbar-links">
+      <li><a href="homepage.html" class="active">Trang chủ</a></li>
+      <li><a href="film.html">Phim</a></li>
+      <li><a href="promotion.html">Khuyến mãi</a></li>
+
+      <!-- Dropdown tài khoản -->
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" id="accountLink">Tài khoản ▾</a>
+        <ul class="dropdown-menu" id="accountMenu">
+          <li><a href="login.html" id="userLoginOption">User Đăng Nhập</a></li>
+          <li><a href="registerUser.html" id="registerOption">User Đăng ký</a></li>
+          <li><hr style="margin: 6px 0; border: 0.5px solid #ddd;"></li>
+          <li><a href="admin-login.html" id="adminLoginOption">Admin Đăng nhập</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
   <!-- !header -->
 
   <!-- body -->
@@ -93,7 +113,29 @@
     <p class="footer-copy">© 2025 FILM4U. Tất cả các quyền được bảo lưu.</p>
   </footer>
   <!-- !footer -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const accountLink = document.getElementById("accountLink");
+  const accountMenu = document.getElementById("accountMenu");
 
+  // Lấy user từ localStorage
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  if (loggedInUser) {
+    // Nếu đã đăng nhập → đổi thành tên user + nút đăng xuất
+    accountLink.textContent = `Xin chào, ${loggedInUser.fullName || loggedInUser.name || "User"}`;
+    accountMenu.innerHTML = `<li><a href="homepage.html" id="logoutBtn">Đăng xuất</a></li>`;
+
+    // Xử lý nút đăng xuất
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("loggedInUser");
+      alert("Đã đăng xuất!");
+      window.location.reload();
+    });
+  }
+});
+</script>
+  <script src="../js/api.js"></script>
   <script src='../js/homepage.js'></script>
 </body>
 </html>

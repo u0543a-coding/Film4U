@@ -1,0 +1,117 @@
+/* --- Tổng thể giao diện --- */
+body {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+  margin: 0;
+}
+
+/* --- Khung đăng nhập --- */
+.login-container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 320px;
+}
+
+/* --- Tiêu đề --- */
+h2 {
+  text-align: center;
+  margin-bottom: 1.8rem;
+  color: #333;
+  font-size: 1.4rem;
+}
+
+/* --- Nhóm input --- */
+.input-group {
+  margin-bottom: 1.2rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* --- Ô nhập liệu --- */
+.input-group input {
+  width: 100%;
+  padding: 0.55rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  transition: border 0.2s;
+}
+
+.input-group input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* --- Ẩn/hiện mật khẩu --- */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding: 0.55rem 2.3rem 0.55rem 0.55rem; /* chừa chỗ bên phải cho icon */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border 0.2s;
+}
+
+.password-wrapper input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #666;
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+  transition: color 0.2s;
+}
+
+.toggle-password:hover {
+  color: #000;
+}
+
+/* --- Nút đăng nhập --- */
+button {
+  display: block;
+  width: 100%;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* --- Thông báo lỗi --- */
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
