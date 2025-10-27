@@ -89,89 +89,49 @@
           </table>
         </div>
       </section>
-      <!-- ================= CINEMA MANAGEMENT ================= -->
-      <section id="cinemas-section" class="content-section" style="display:none;">
-        <h2>🎬 Quản lý Rạp</h2>
+<!-- ================= CINEMA MANAGEMENT ================= -->
+<section id="cinemas-section" class="content-section">
+  <h2>🎬 Quản lý Rạp chiếu</h2>
 
-        <div class="action-bar">
-          <button id="add-cinema-btn" class="btn primary">+ Thêm Rạp</button>
-        </div>
+  <!-- ===== Danh sách Rạp ===== -->
+  <div class="table-container">
+    <table id="cinemas-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tên Rạp</th>
+          <th>Địa chỉ</th>
+          <th>Thành phố</th>
+          <th>Doanh thu</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- loadCinemas() render here -->
+      </tbody>
+    </table>
+  </div>
 
-        <!-- Form thêm/sửa rạp -->
-        <div id="cinema-form-container" class="form-container" style="display:none;">
-          <h3 id="cinema-form-title">Thêm Rạp</h3>
-          <form id="cinema-form">
-            <input type="text" id="cinema-name" placeholder="Tên rạp" required>
-            <input type="text" id="cinema-address" placeholder="Địa chỉ" required>
-            <input type="text" id="cinema-city" placeholder="Thành phố" required>
-            <div class="form-actions">
-              <button type="submit" class="btn primary">Lưu</button>
-              <button type="button" id="cancel-cinema-btn" class="btn danger">Hủy</button>
-            </div>
-          </form>
-        </div>
+  <!-- ===== Chi tiết Rạp ===== -->
+  <div id="cinema-details-container" class="cinema-details">
+    <h3 id="cinema-details-title">Chi tiết Rạp</h3>
 
-        <div class="table-container">
-          <table id="cinemas-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Tên Rạp</th>
-                <th>Địa chỉ</th>
-                <th>Thành phố</th>
-                <th>Doanh thu</th>
-                <th>Thao tác</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </section>
+    <div id="cinema-tabs" class="cinema-tabs">
+      <button class="tab-btn active" data-tab="rooms">Phòng chiếu & Ghế</button>
+      <button class="tab-btn" data-tab="showtimes">Phòng chiếu & Xuất chiếu</button>
+    </div>
 
-      <!-- ================= CINEMA DETAIL ================= -->
-      <div id="cinema-detail-container" style="display:none;">
-        <div class="cinema-detail-header">
-          <h3>Chi tiết rạp: <span id="cinema-name-detail"></span></h3>
-          <p>Địa chỉ <span id="cinema-address-detail"></span></p>
-          <div class="cinema-detail-actions">
-            <button id="btn-close-cinema-detail" class="btn"> Quay lại</button>
-            <button id="btn-edit-cinema" class="btn"> Sửa</button>
-            <button id="btn-delete-cinema" class="btn danger"> Xóa</button>
-          </div>
+    <!-- Tab 1: Rooms & Seats -->
+    <div id="rooms-container" class="cinema-tab-content">
+      <!-- render phòng chiếu & ghế -->
+    </div>
 
-          <!-- Inline Edit Form -->
-          <form id="cinema-edit-form" style="display:none;">
-            <input id="cinema-edit-name" placeholder="Tên rạp" required />
-            <input id="cinema-edit-address" placeholder="Địa chỉ" required />
-            <input id="cinema-edit-city" placeholder="Thành phố" required />
-            <div class="form-actions">
-              <button type="submit" class="btn primary">Lưu</button>
-              <button type="button" id="cinema-edit-cancel" class="btn">Hủy</button>
-            </div>
-          </form>
-        </div>
-
-        <div id="cinema-tabs">
-          <button id="btn-rooms-seats" class="tab-btn active">Phòng chiếu & Ghế</button>
-          <button id="btn-showtimes" class="tab-btn">Suất chiếu</button>
-        </div>
-
-        <!-- Tab 1 -->
-        <div id="tab-rooms-seats">
-          <div class="tab-header">
-            <button id="btn-add-room" class="btn primary">+ Thêm Phòng</button>
-          </div>
-          <div id="rooms-seats-content" class="content-grid"></div>
-        </div>
-
-        <!-- Tab 2 -->
-        <div id="tab-showtimes" style="display:none;">
-          <div class="tab-header">
-            <button id="btn-add-showtime" class="btn primary">+ Thêm Suất Chiếu</button>
-          </div>
-          <div id="showtimes-content" class="content-grid"></div>
-        </div>
-      </div>
+    <!-- Tab 2: Showtimes -->
+    <div id="showtimes-container" class="cinema-tab-content" style="display:none;">
+      <!-- render xuất chiếu -->
+    </div>
+  </div>
+</section>
 
       <!-- Movies Management -->
       <section id="movies-section" class="content-section">

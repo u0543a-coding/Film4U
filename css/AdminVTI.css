@@ -309,80 +309,131 @@ table tr:hover {
   gap: 10px;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
-/* ====== Cinema Management ====== */
-.content-section {
-  padding: 20px;
-  background: #121229;
-  border-radius: 10px;
-  color: #f0f0f0;
+/* ===================== CINEMA MANAGEMENT ===================== */
+#cinemas-section {
+  margin-top: 30px;
 }
 
-.btn {
-  background: #3498db;
-  color: white;
-  padding: 6px 14px;
+#cinemas-section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: #ffcf66;
+  border-left: 4px solid #ffcf66;
+  padding-left: 10px;
+}
+
+/* ===== Table ===== */
+.table-container {
+  background: #1a1a35;
+  border-radius: 12px;
+  padding: 15px;
+  overflow-x: auto;
+}
+
+#cinemas-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #eee;
+}
+
+#cinemas-table th, #cinemas-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #2d2d4d;
+  text-align: left;
+}
+
+#cinemas-table th {
+  background: #232347;
+  color: #ffcf66;
+  font-weight: 600;
+}
+
+#cinemas-table tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+#cinemas-table button {
+  background: #4b4bff;
+  color: #fff;
   border: none;
+  padding: 5px 10px;
   border-radius: 6px;
   cursor: pointer;
   transition: 0.2s;
 }
-.btn:hover { opacity: 0.85; }
-.btn.primary { background: #1abc9c; }
-.btn.danger { background: #e74c3c; }
 
-.table-container {
-  margin-top: 15px;
-}
-.table-container table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.table-container th, .table-container td {
-  border-bottom: 1px solid #2c2c54;
-  padding: 10px;
-  text-align: left;
-}
-.table-container th {
-  background: #1f1f3d;
-  color: #ffa94d;
+#cinemas-table button:hover {
+  background: #6f6fff;
 }
 
-.form-container, .inline-form {
-  margin-top: 15px;
-  background: #1e1e3a;
-  padding: 15px;
-  border-radius: 8px;
+/* ===== Chi tiết Rạp ===== */
+.cinema-details {
+  margin-top: 25px;
+  background: #191932;
+  border-radius: 12px;
+  padding: 15px 20px;
+  display: none;
 }
-.form-container input, .inline-form input, select {
-  width: 100%;
-  margin: 6px 0;
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #444;
-  background: #181833;
+
+.cinema-details h3 {
   color: #fff;
-}
-.form-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-.cinema-detail-header {
   margin-bottom: 10px;
 }
-.tab-btn {
-  background: #1e1e3a;
-  color: #fff;
+
+/* ===== Tabs ===== */
+.cinema-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.cinema-tabs .tab-btn {
+  padding: 8px 16px;
   border: none;
-  padding: 8px 12px;
-  margin-right: 8px;
   border-radius: 6px;
   cursor: pointer;
+  background: #292952;
+  color: #fff;
+  transition: 0.3s;
 }
-.tab-btn.active { background: #1abc9c; }
-.content-grid {
-  background: #181833;
+
+.cinema-tabs .tab-btn.active {
+  background: #5e4bff;
+  color: #fff;
+}
+
+/* ===== Nội dung chi tiết ===== */
+.cinema-tab-content {
+  background: #101024;
+  border-radius: 10px;
   padding: 15px;
-  border-radius: 8px;
-  margin-top: 10px;
+}
+
+.room-box {
+  background: #1b1b36;
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  transition: 0.3s;
+}
+
+.room-box:hover {
+  background: #22224b;
+}
+
+.room-box h4 {
+  margin-bottom: 6px;
+  color: #ffd166;
+  font-weight: 600;
+}
+
+.room-box p, .room-box li {
+  color: #ccc;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.room-box ul {
+  margin-left: 20px;
+  list-style-type: disc;
 }
