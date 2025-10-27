@@ -166,8 +166,6 @@ const cinemaForm = document.getElementById("cinemaForm");
 const addCinemaBtn = document.getElementById("add-cinema-btn");
 const cinemaFormTitle = document.getElementById("cinemaFormTitle");
 
-let nextCinemaId = 1; // ID tự tăng cho rạp mới
-
 // ====== Hàm định dạng tiền tệ VNĐ ======
 const formatCurrency = (amount) =>
   amount.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
@@ -188,13 +186,9 @@ async function loadCinemas() {
     bookingsRes.json()
   ]);
 
-  // Cập nhật nextCinemaId dựa trên ID lớn nhất hiện có
-  const maxId = cinemas.length ? Math.max(...cinemas.map(c => c.id)) : 0;
-  nextCinemaId = maxId + 1;
-
   cinemasTableBody.innerHTML = "";
 
-  cinemas.forEach((cinema, index) => {
+  cinemas.forEach((cinema) => {
     const cinemaRoomIds = rooms.filter(r => r.cinemaId === cinema.id).map(r => r.id);
     const cinemaShowtimes = showtimes.filter(st => cinemaRoomIds.includes(st.roomId));
     const cinemaBookings = bookings.filter(b => cinemaShowtimes.some(st => st.id === b.showtimeId));
@@ -311,7 +305,7 @@ async function deleteCinema(id) {
 cinemaForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  let cinemaId = document.getElementById("cinemaId").value;
+  const cinemaId = document.getElementById("cinemaId").value;
   const newCinema = {
     name: document.getElementById("cinemaName").value,
     address: document.getElementById("cinemaAddress").value,
@@ -319,15 +313,14 @@ cinemaForm.addEventListener("submit", async (e) => {
   };
 
   if (cinemaId) {
-    // Update rạp hiện có
+    // Update
     await fetch(`${apiUrl}/cinemas/${cinemaId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newCinema)
     });
   } else {
-    // Thêm rạp mới → gán ID tự tăng
-    newCinema.id = nextCinemaId++;
+    // Create
     await fetch(`${apiUrl}/cinemas`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
