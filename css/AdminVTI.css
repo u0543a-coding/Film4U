@@ -310,28 +310,25 @@ table tr:hover {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 /* ===================== CINEMA MANAGEMENT ===================== */
-
-/* --- Modal chi tiết rạp --- */
+/* ===== Modal ===== */
 .modal {
   display: none;
   position: fixed;
-  z-index: 2000;
+  z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  background-color: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .modal-content {
   background: #1e1e3f;
   margin: 5% auto;
-  padding: 25px;
-  border-radius: 12px;
+  padding: 20px;
   width: 80%;
-  max-width: 800px;
-  border: 1px solid #ffb86c;
+  border-radius: 12px;
   color: #fff;
 }
 
@@ -339,119 +336,51 @@ table tr:hover {
   float: right;
   font-size: 22px;
   cursor: pointer;
-  color: #ffb86c;
-  transition: color 0.3s;
 }
 
-.close-btn:hover {
-  color: #ff6f61;
+/* ===== Table ===== */
+.table-container {
+  overflow-x: auto;
+  margin-top: 15px;
 }
 
-/* --- Thông tin rạp --- */
-#cinema-info {
-  background: #2a2a50;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  line-height: 1.6;
-  border: 1px solid #444;
-}
-
-#cinema-info p span {
-  color: #ffb86c;
-  font-weight: 600;
-}
-
-/* --- Tabs (Phòng chiếu & Xuất chiếu) --- */
-#cinema-tabs {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.cinema-tab-btn {
-  background: #2a2a50;
-  color: #fff;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.cinema-tab-btn.active {
-  background: #ffb86c;
-  color: #1c1c36;
-}
-
-.cinema-tab-btn:hover {
-  background: #ff6f61;
-  color: #fff;
-}
-
-/* --- Nội dung từng tab --- */
-.cinema-tab-content {
-  display: none;
-}
-
-.cinema-tab-content.active {
-  display: block;
-}
-
-/* --- Bảng chi tiết trong Modal --- */
-#cinema-details-container {
-  background: #1e1e3f;
-  padding: 20px;
-  border-radius: 12px;
-  border: 1px solid #ffb86c;
-  margin-top: 20px;
-}
-
-#cinema-details-title {
-  color: #ffb86c;
-  margin-bottom: 15px;
-  font-size: 1.3rem;
-}
-
-/* --- Bảng trong tab --- */
-#rooms-table, #showtimes-table {
+#cinemas-table {
   width: 100%;
   border-collapse: collapse;
-  background: #2a2a50;
-  border-radius: 8px;
-  overflow: hidden;
 }
 
-#rooms-table th, #rooms-table td,
-#showtimes-table th, #showtimes-table td {
+#cinemas-table th,
+#cinemas-table td {
+  border: 1px solid #333;
   padding: 10px;
-  border-bottom: 1px solid #444;
-  text-align: left;
-  color: #fff;
+  text-align: center;
 }
 
-#rooms-table th, #showtimes-table th {
-  background: #1c1c36;
-  color: #ffb86c;
+#cinemas-table th {
+  background: #27275a;
 }
 
-#rooms-table tr:hover, #showtimes-table tr:hover {
-  background: #2c2c5c;
+.btn.small.primary {
+  background: #5b5be0;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btn.small.primary:hover {
+  background: #7070ff;
 }
 
-/* --- Responsive --- */
-@media (max-width: 768px) {
-  .modal-content {
-    width: 95%;
-    padding: 15px;
-  }
+/* ===== Cinema Detail Sections ===== */
+.cinema-info-box p span {
+  font-weight: bold;
+  color: #a4a4ff;
+}
 
-  #cinema-tabs {
-    flex-direction: column;
-  }
-
-  .cinema-tab-btn {
-    width: 100%;
-    text-align: center;
-  }
+.room-card, .showtime-card {
+  background: #23235b;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
 }

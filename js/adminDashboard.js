@@ -153,134 +153,128 @@ async function deleteUser(id) {
   loadDashboard();
 }
 
-// ====== Cinemas Management (Updated) ======
-const cinemasTableBody = document.querySelector('#cinemas-table tbody');
-const cinemaDetailsContainer = document.getElementById('cinema-details-container');
-const cinemaDetailsTitle = document.getElementById('cinema-details-title');
-const cinemaTabs = document.getElementById('cinema-tabs');
-const cinemaTabButtons = document.querySelectorAll('.cinema-tab-btn');
-const roomsTableBody = document.querySelector('#rooms-table tbody');
-const showtimesTableBody = document.querySelector('#showtimes-table tbody');
-const seatsTableBody = document.querySelector('#seats-table tbody');
+// ======== Cinema Management ========
+const cinemasTableBody = document.querySelector("#cinemas-table tbody");
+const cinemaDetailModal = document.getElementById("cinemaDetailModal");
+const closeModalBtn = document.querySelector(".close-btn");
+const cinemaInfoDiv = document.getElementById("cinema-info");
+const roomsDiv = document.getElementById("cinema-rooms");
+const showtimesDiv = document.getElementById("cinema-showtimes");
 
-let currentCinemaId = null;
+// Hàm định dạng tiền tệ VNĐ
+const formatCurrency = (amount) =>
+  amount.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
 
+// ====== Load danh sách rạp ======
 async function loadCinemas() {
-  try {
-    const [cinemasRes, roomsRes, showtimesRes, bookingsRes] = await Promise.all([
-      fetch(`${apiUrl}/cinemas`),
-      fetch(`${apiUrl}/cinema_rooms`),
-      fetch(`${apiUrl}/showtimes`),
-      fetch(`${apiUrl}/bookings`)
-    ]);
+  const [cinemasRes, roomsRes, showtimesRes, bookingsRes] = await Promise.all([
+    fetch(`${apiUrl}/cinemas`),
+    fetch(`${apiUrl}/cinema_rooms`),
+    fetch(`${apiUrl}/showtimes`),
+    fetch(`${apiUrl}/bookings`)
+  ]);
 
-    const cinemas = await cinemasRes.json();
-    const rooms = await roomsRes.json();
-    const showtimes = await showtimesRes.json();
-    const bookings = await bookingsRes.json();
+  const [cinemas, rooms, showtimes, bookings] = await Promise.all([
+    cinemasRes.json(),
+    roomsRes.json(),
+    showtimesRes.json(),
+    bookingsRes.json()
+  ]);
 
-    cinemasTableBody.innerHTML = '';
-    cinemas.forEach(cinema => {
-      const cinemaRooms = rooms.filter(r => r.cinemaId === cinema.id);
-      let cinemaRevenue = 0;
-      cinemaRooms.forEach(room => {
-        const roomShowtimes = showtimes.filter(s => s.roomId === room.id);
-        roomShowtimes.forEach(st => {
-          const stBookings = bookings.filter(b => b.showtimeId === st.id);
-          stBookings.forEach(b => cinemaRevenue += (b.totalPrice || 0));
-        });
-      });
+  cinemasTableBody.innerHTML = "";
 
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${cinema.id}</td>
-        <td>${cinema.name}</td>
-        <td>${cinema.address}</td>
-        <td>${cinema.city}</td>
-        <td>${cinemaRevenue.toLocaleString('vi-VN')} ₫</td>
-        <td><button class="view-cinema-btn" data-id="${cinema.id}"><i class="fas fa-eye"></i> Xem chi tiết</button></td>
-      `;
-      cinemasTableBody.appendChild(tr);
-    });
+  cinemas.forEach((cinema) => {
+    // Tính doanh thu từ các showtime trong rạp
+    const cinemaRoomIds = rooms.filter(r => r.cinemaId === cinema.id).map(r => r.id);
+    const cinemaShowtimes = showtimes.filter(st => cinemaRoomIds.includes(st.roomId));
+    const cinemaBookings = bookings.filter(b => 
+      cinemaShowtimes.some(st => st.id === b.showtimeId)
+    );
+    const totalRevenue = cinemaBookings.reduce((sum, b) => sum + b.totalPrice, 0);
 
-    document.querySelectorAll('.view-cinema-btn').forEach(btn => {
-      btn.addEventListener('click', () => showCinemaDetails(btn.dataset.id));
-    });
-
-  } catch (err) {
-    console.error("Error loading cinemas:", err);
-  }
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${cinema.id}</td>
+      <td>${cinema.name}</td>
+      <td>${cinema.address}</td>
+      <td>${cinema.city}</td>
+      <td>${formatCurrency(totalRevenue)}</td>
+      <td>
+        <button class="btn small primary" onclick="viewCinemaDetail(${cinema.id})">
+          <i class="fa fa-eye"></i> Xem
+        </button>
+      </td>
+    `;
+    cinemasTableBody.appendChild(row);
+  });
 }
 
-async function showCinemaDetails(cinemaId) {
-  try {
-    currentCinemaId = parseInt(cinemaId);
-    const [cinemaRes, roomsRes, seatsRes, showtimesRes, moviesRes] = await Promise.all([
-      fetch(`${apiUrl}/cinemas/${cinemaId}`),
-      fetch(`${apiUrl}/cinema_rooms`),
-      fetch(`${apiUrl}/showtimeSeats`),
-      fetch(`${apiUrl}/showtimes`),
-      fetch(`${apiUrl}/movies`)
-    ]);
+// ====== Xem chi tiết rạp ======
+async function viewCinemaDetail(cinemaId) {
+  const [cinemaRes, roomsRes, showtimesRes, moviesRes] = await Promise.all([
+    fetch(`${apiUrl}/cinemas/${cinemaId}`),
+    fetch(`${apiUrl}/cinema_rooms`),
+    fetch(`${apiUrl}/showtimes`),
+    fetch(`${apiUrl}/movies`)
+  ]);
 
-    const cinema = await cinemaRes.json();
-    const rooms = await roomsRes.json();
-    const seats = await seatsRes.json();
-    const showtimes = await showtimesRes.json();
-    const movies = await moviesRes.json();
+  const [cinema, rooms, showtimes, movies] = await Promise.all([
+    cinemaRes.json(),
+    roomsRes.json(),
+    showtimesRes.json(),
+    moviesRes.json()
+  ]);
 
-    const cinemaRooms = rooms.filter(r => r.cinemaId === cinema.id);
+  // Thông tin rạp
+  cinemaInfoDiv.innerHTML = `
+    <p><span>ID:</span> ${cinema.id}</p>
+    <p><span>Tên:</span> ${cinema.name}</p>
+    <p><span>Địa chỉ:</span> ${cinema.address}</p>
+    <p><span>Thành phố:</span> ${cinema.city}</p>
+  `;
 
-    cinemaDetailsTitle.textContent = `Rạp: ${cinema.name}`;
-    cinemaDetailsContainer.style.display = 'block';
+  // Phòng chiếu & ghế
+  const cinemaRooms = rooms.filter(r => r.cinemaId === cinemaId);
+  roomsDiv.innerHTML = cinemaRooms.length
+    ? cinemaRooms.map(r => `
+        <div class="room-card">
+          <p><strong>${r.room_name}</strong></p>
+          <p>Số hàng ghế: ${r.seat_layout?.rows || '—'}</p>
+          <p>Số ghế mỗi hàng: ${r.seat_layout?.seatsPerRow || '—'}</p>
+          <p>Tổng ghế: ${(r.seat_layout?.rows || 0) * (r.seat_layout?.seatsPerRow || 0)}</p>
+        </div>
+      `).join("")
+    : "<p>Không có dữ liệu phòng chiếu.</p>";
 
-    // === Load tab 1: Rooms & Seats ===
-    roomsTableBody.innerHTML = '';
-    cinemaRooms.forEach(room => {
-      const seatCount = seats.filter(s => s.roomId === room.id).length;
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${room.id}</td>
-        <td>${room.name}</td>
-        <td>${room.capacity}</td>
-        <td>${seatCount}</td>
-      `;
-      roomsTableBody.appendChild(tr);
-    });
-
-    // === Load tab 2: Showtimes ===
-    showtimesTableBody.innerHTML = '';
-    cinemaRooms.forEach(room => {
-      const roomShowtimes = showtimes.filter(st => st.roomId === room.id);
-      roomShowtimes.forEach(st => {
+  // Suất chiếu
+  const cinemaRoomIds = cinemaRooms.map(r => r.id);
+  const cinemaShowtimes = showtimes.filter(st => cinemaRoomIds.includes(st.roomId));
+  showtimesDiv.innerHTML = cinemaShowtimes.length
+    ? cinemaShowtimes.map(st => {
         const movie = movies.find(m => m.id === st.movieId);
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${st.id}</td>
-          <td>${room.name}</td>
-          <td>${movie ? movie.title : 'Không xác định'}</td>
-          <td>${new Date(st.startTime).toLocaleString('vi-VN')}</td>
-          <td>${st.price.toLocaleString('vi-VN')} ₫</td>
+        const room = cinemaRooms.find(r => r.id === st.roomId);
+        return `
+          <div class="showtime-card">
+            <p><strong>Phim:</strong> ${movie?.title || "Không rõ"}</p>
+            <p><strong>Phòng:</strong> ${room?.room_name || "?"}</p>
+            <p><strong>Giờ chiếu:</strong> ${new Date(st.startTime).toLocaleString("vi-VN")}</p>
+            <p><strong>Giá vé:</strong> ${formatCurrency(st.price)}</p>
+          </div>
         `;
-        showtimesTableBody.appendChild(tr);
-      });
-    });
+      }).join("")
+    : "<p>Không có suất chiếu nào.</p>";
 
-    // Tab switching
-    cinemaTabButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        cinemaTabButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const tab = btn.dataset.tab;
-        document.querySelectorAll('.cinema-tab-content').forEach(sec => sec.classList.remove('active'));
-        document.getElementById(tab).classList.add('active');
-      });
-    });
-
-  } catch (err) {
-    console.error("Error loading cinema details:", err);
-  }
+  cinemaDetailModal.style.display = "block";
 }
+
+// ====== Đóng modal ======
+closeModalBtn.onclick = () => (cinemaDetailModal.style.display = "none");
+window.onclick = (e) => {
+  if (e.target === cinemaDetailModal) cinemaDetailModal.style.display = "none";
+};
+
+// ====== Khởi chạy ======
+loadCinemas();
 
 // ====== Movies Management ======
 const moviesTableBody = document.querySelector('#movies-table tbody');
