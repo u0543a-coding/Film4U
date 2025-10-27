@@ -48,6 +48,8 @@ a {
   border-radius: 8px;
   display: none;
   min-width: 150px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1001;
 }
 
 .user-menu a {
@@ -139,10 +141,28 @@ a {
   min-width: 200px;
   border: 1px solid #ffb86c;
   transition: transform 0.2s;
+  text-align: center;
 }
 
 .dashboard-card:hover {
   transform: translateY(-5px);
+}
+
+.dashboard-card i {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #ffb86c;
+}
+
+.dashboard-card p {
+  margin-bottom: 10px;
+  color: #ccc;
+}
+
+.dashboard-card span {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
 }
 
 /* ====== Buttons ====== */
@@ -155,37 +175,88 @@ a {
   transition: all 0.3s;
   background: #ff6f61;
   color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .btn:hover {
   background: #ffb86c;
+  transform: translateY(-2px);
+}
+
+.btn.small { 
+  padding: 3px 8px; 
+  font-size: 14px; 
+}
+
+.btn.primary { 
+  background: #1abc9c; 
+}
+
+.btn.danger { 
+  background: #e74c3c; 
 }
 
 /* ====== Edit/Delete Buttons ====== */
-.edit-btn, .edit-movie-btn, .edit-promo-btn {
+.edit-btn, .edit-movie-btn, .edit-promo-btn, 
+.edit-cinema-btn, .edit-room-btn, .edit-screening-btn {
   background: #ffb86c;
   color: #1c1c36;
   padding: 6px 12px;
   border-radius: 6px;
   transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
 }
 
-.edit-btn:hover, .edit-movie-btn:hover, .edit-promo-btn:hover {
+.edit-btn:hover, .edit-movie-btn:hover, .edit-promo-btn:hover,
+.edit-cinema-btn:hover, .edit-room-btn:hover, .edit-screening-btn:hover {
   background: #ff6f61;
   color: #fff;
 }
 
-.delete-btn, .delete-movie-btn, .delete-promo-btn {
+.delete-btn, .delete-movie-btn, .delete-promo-btn,
+.delete-cinema-btn, .delete-room-btn, .delete-screening-btn {
   background: #ff6f61;
   color: #fff;
   padding: 6px 12px;
   border-radius: 6px;
   transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
 }
 
-.delete-btn:hover, .delete-movie-btn:hover, .delete-promo-btn:hover {
+.delete-btn:hover, .delete-movie-btn:hover, .delete-promo-btn:hover,
+.delete-cinema-btn:hover, .delete-room-btn:hover, .delete-screening-btn:hover {
   background: #ffb86c;
   color: #1c1c36;
+}
+
+.view-cinema-btn, .view-room-btn {
+  background: #1abc9c;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
+}
+
+.view-cinema-btn:hover, .view-room-btn:hover {
+  background: #16a085;
 }
 
 /* ====== Tables ====== */
@@ -195,6 +266,7 @@ a {
   padding: 20px;
   border-radius: 12px;
   margin-bottom: 25px;
+  border: 1px solid #333;
 }
 
 table {
@@ -227,7 +299,7 @@ table tr:hover {
   border: 1px solid #ffb86c;
 }
 
-.form-container h3 {
+.form-container h3, .form-container h4 {
   margin-bottom: 18px;
   color: #ffb86c;
 }
@@ -252,155 +324,395 @@ table tr:hover {
   border-color: #ffb86c;
 }
 
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+  color: #ccc;
+}
+
+/* ====== Modal Styles ====== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background-color: #1e1e3f;
+  margin: 5% auto;
+  padding: 0;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 900px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+  border: 1px solid #ffb86c;
+  animation: slideIn 0.3s;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.large-modal {
+  max-width: 1100px;
+}
+
+.modal-header {
+  padding: 20px;
+  border-bottom: 1px solid #444;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2a2a50;
+  border-radius: 12px 12px 0 0;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #ffb86c;
+}
+
+.close {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close:hover {
+  color: #ff6f61;
+}
+
+.modal-body {
+  padding: 20px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* ====== Tabs ====== */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #444;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #ccc;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s;
+}
+
+.tab-btn.active {
+  color: #ffb86c;
+  border-bottom-color: #ffb86c;
+}
+
+.tab-btn:hover:not(.active) {
+  color: #ffb86c;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ====== Seats Grid ====== */
+.seats-container h4 {
+  margin-bottom: 15px;
+  color: #ffb86c;
+  text-align: center;
+}
+
+.seats-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  padding: 20px;
+  background: #2a2a50;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.seat-row {
+  display: flex;
+  gap: 8px;
+}
+
+.seat {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  transition: all 0.3s;
+  border: 2px solid transparent;
+}
+
+.seat.available {
+  background: #27ae60;
+  color: white;
+}
+
+.seat.unavailable {
+  background: #e74c3c;
+  color: white;
+}
+
+.seat:hover {
+  transform: scale(1.1);
+  border-color: #ffb86c;
+}
+
+/* Screen indicator */
+.screen {
+  width: 80%;
+  height: 20px;
+  background: linear-gradient(90deg, #ff6f61, #ffb86c);
+  margin: 0 auto 30px;
+  border-radius: 4px;
+  text-align: center;
+  color: #1c1c36;
+  font-weight: bold;
+  padding: 5px;
+}
+
+/* ====== Room and Showtime Cards ====== */
+.content-grid {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin-bottom: 20px;
+}
+
+.room-card, .showtime-card {
+  background: #2a2a50;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  transition: all 0.3s;
+}
+
+.room-card:hover, .showtime-card:hover {
+  border-color: #ffb86c;
+  transform: translateY(-3px);
+}
+
+.room-card h4, .showtime-card h4 {
+  color: #ffb86c;
+  margin-bottom: 10px;
+}
+
+.room-card p, .showtime-card p {
+  color: #ccc;
+  margin-bottom: 5px;
+}
+
+/* ====== Action Buttons Container ====== */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
 /* ====== Responsive ====== */
 @media screen and (max-width: 768px) {
   .admin-layout {
     flex-direction: column;
   }
+  
   .sidebar {
     width: 100%;
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
   }
+  
   .sidebar-nav {
     flex-direction: row;
+    width: 100%;
+    overflow-x: auto;
   }
+  
   .nav-item {
     padding: 10px;
     font-size: 0.9rem;
+    white-space: nowrap;
   }
+  
   .main-content {
     padding: 15px;
   }
+  
   .dashboard-cards {
     flex-direction: column;
   }
-}
-.table-container table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.table-container th, td {
-  border-bottom: 1px solid #333;
-  padding: 8px;
-  text-align: left;
-}
-.btn {
-  background: #2e86de;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.btn.small { padding: 3px 8px; font-size: 14px; }
-.btn.danger { background: #e74c3c; }
-.btn.primary { background: #1abc9c; }
-.tab-btn.active { background: #1abc9c; color: #fff; }
-.room-card, .showtime-card {
-  background: #1e1e2f;
-  margin: 5px;
-  padding: 10px;
-  border-radius: 8px;
-}
-.content-grid {
-  display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-/* ===================== CINEMA MANAGEMENT ===================== */
-/* ===== Modal ===== */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  background: rgba(0, 0, 0, 0.6);
+  
+  .dashboard-card {
+    min-width: 100%;
+  }
+  
+  .modal-content {
+    width: 95%;
+    margin: 10% auto;
+  }
+  
+  .tabs {
+    flex-wrap: wrap;
+  }
+  
+  .tab-btn {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+  }
+  
+  .seats-grid {
+    padding: 10px;
+  }
+  
+  .seat {
+    width: 35px;
+    height: 35px;
+    font-size: 10px;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+  
+  .action-buttons button {
+    width: 100%;
+  }
 }
 
-.modal-content {
-  background: #1e1e3f;
-  margin: 5% auto;
-  padding: 20px;
-  width: 80%;
-  border-radius: 12px;
-  color: #fff;
+@media screen and (max-width: 480px) {
+  .navbar {
+    padding: 10px 15px;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .navbar-logo {
+    font-size: 1.4rem;
+  }
+  
+  .content-section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .table-container {
+    padding: 10px;
+  }
+  
+  table th, table td {
+    padding: 8px 6px;
+    font-size: 0.9rem;
+  }
+  
+  .form-container {
+    padding: 15px;
+  }
 }
 
-.close-btn {
-  float: right;
-  font-size: 22px;
-  cursor: pointer;
-}
-
-/* ===== Table ===== */
-.table-container {
-  overflow-x: auto;
-  margin-top: 15px;
-}
-
-#cinemas-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-#cinemas-table th,
-#cinemas-table td {
-  border: 1px solid #333;
-  padding: 10px;
+/* ====== Utility Classes ====== */
+.text-center {
   text-align: center;
 }
 
-#cinemas-table th {
-  background: #27275a;
+.mt-10 {
+  margin-top: 10px;
 }
 
-.btn.small.primary {
-  background: #5b5be0;
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.btn.small.primary:hover {
-  background: #7070ff;
+.mb-10 {
+  margin-bottom: 10px;
 }
 
-/* ===== Cinema Detail Sections ===== */
-.cinema-info-box p span {
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ====== Status Indicators ====== */
+.status-now_showing {
+  color: #27ae60;
   font-weight: bold;
-  color: #a4a4ff;
 }
 
-.room-card, .showtime-card {
-  background: #23235b;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 10px;
-}
-.modal-content.small {
-  max-width: 400px;
+.status-coming_soon {
+  color: #f39c12;
+  font-weight: bold;
 }
 
-.form-group {
-  margin: 10px 0;
+.status-active {
+  color: #27ae60;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
+.status-inactive {
+  color: #e74c3c;
 }
 
-.form-group input {
-  width: 100%;
-  padding: 6px 10px;
-  border: none;
-  border-radius: 6px;
-  background: #f4f4f4;
+/* ====== Loading Spinner ====== */
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid #ffb86c;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

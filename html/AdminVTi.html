@@ -30,37 +30,37 @@
     </aside>
 
     <main class="main-content">
-    <!-- Dashboard -->
-    <section id="dashboard-section" class="content-section active">
-      <h2>Dashboard</h2>
-      <div class="dashboard-cards">
-        <div class="dashboard-card">
-          <i class="fas fa-users fa-2x"></i>
-          <p>Tổng Người dùng</p>
-          <span id="total-users">0</span>
+      <!-- Dashboard -->
+      <section id="dashboard-section" class="content-section active">
+        <h2>Dashboard</h2>
+        <div class="dashboard-cards">
+          <div class="dashboard-card">
+            <i class="fas fa-users fa-2x"></i>
+            <p>Tổng Người dùng</p>
+            <span id="total-users">0</span>
+          </div>
+          <div class="dashboard-card">
+            <i class="fas fa-university fa-2x"></i>
+            <p>Tổng Rạp</p>
+            <span id="total-cinemas">0</span>
+          </div>
+          <div class="dashboard-card">
+            <i class="fas fa-film fa-2x"></i>
+            <p>Tổng Phim</p>
+            <span id="total-movies">0</span>
+          </div>
+          <div class="dashboard-card">
+            <i class="fas fa-tags fa-2x"></i>
+            <p>Tổng Khuyến mãi</p>
+            <span id="total-promotions">0</span>
+          </div>
+          <div class="dashboard-card">
+            <i class="fas fa-dollar-sign fa-2x"></i>
+            <p>Doanh thu</p>
+            <span id="total-revenue">0 ₫</span>
+          </div>
         </div>
-        <div class="dashboard-card">
-          <i class="fas fa-university fa-2x"></i>
-          <p>Tổng Rạp</p>
-          <span id="total-cinemas">0</span>
-        </div>
-        <div class="dashboard-card">
-          <i class="fas fa-film fa-2x"></i>
-          <p>Tổng Phim</p>
-          <span id="total-movies">0</span>
-        </div>
-        <div class="dashboard-card">
-          <i class="fas fa-tags fa-2x"></i>
-          <p>Tổng Khuyến mãi</p>
-          <span id="total-promotions">0</span>
-        </div>
-        <div class="dashboard-card">
-          <i class="fas fa-dollar-sign fa-2x"></i>
-          <p>Doanh thu</p>
-          <span id="total-revenue">0 ₫</span>
-        </div>
-      </div>
-    </section>
+      </section>
 
       <!-- User Management -->
       <section id="users-section" class="content-section">
@@ -89,73 +89,30 @@
           </table>
         </div>
       </section>
-      <!-- ================== Quản lý Rạp ================== -->
-<section id="cinemas-section" class="content-section">
-  <h2>Quản lý Rạp</h2>
 
-  <div class="actions">
-    <button id="add-cinema-btn" class="btn primary">
-      <i class="fa fa-plus"></i> Thêm Rạp
-    </button>
-  </div>
-
-  <!-- Bảng danh sách rạp -->
-  <div class="table-container">
-    <table id="cinemas-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Tên Rạp</th>
-          <th>Địa chỉ</th>
-          <th>Thành phố</th>
-          <th>Doanh thu</th>
-          <th>Hành động</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ================== Modal Chi tiết Rạp ================== -->
-<div id="cinemaDetailModal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <h3>Chi tiết Rạp</h3>
-
-    <div id="cinema-info" class="cinema-info-box"></div>
-
-    <h4>Phòng chiếu – Ghế</h4>
-    <div id="cinema-rooms" class="cinema-rooms-container"></div>
-
-    <h4>Phòng chiếu – Suất chiếu</h4>
-    <div id="cinema-showtimes" class="cinema-showtimes-container"></div>
-  </div>
-</div>
-
-<!-- ================== Modal Form Rạp (Thêm/Sửa) ================== -->
-<div id="cinemaFormModal" class="modal">
-  <div class="modal-content small">
-    <span class="close-form-btn">&times;</span>
-    <h3 id="cinemaFormTitle">Thêm Rạp</h3>
-    <form id="cinemaForm">
-      <input type="hidden" id="cinemaId">
-      <div class="form-group">
-        <label for="cinemaName">Tên rạp:</label>
-        <input type="text" id="cinemaName" required>
-      </div>
-      <div class="form-group">
-        <label for="cinemaAddress">Địa chỉ:</label>
-        <input type="text" id="cinemaAddress" required>
-      </div>
-      <div class="form-group">
-        <label for="cinemaCity">Thành phố:</label>
-        <input type="text" id="cinemaCity" required>
-      </div>
-      <button type="submit" class="btn primary">Lưu</button>
-    </form>
-  </div>
-</div>
+      <!-- Cinema Management -->
+      <section id="cinemas-section" class="content-section">
+        <h2>Quản lý Rạp</h2>
+        <button id="add-cinema-btn" class="btn" style="background:#1abc9c;color:#fff;margin-bottom:10px;">Thêm Rạp</button>
+        <div id="cinema-form-container" class="form-container" style="display:none;">
+          <h3 id="cinema-form-title">Thêm Rạp</h3>
+          <form id="cinema-form">
+            <input type="text" id="cinema-name" placeholder="Tên rạp" required>
+            <input type="text" id="cinema-address" placeholder="Địa chỉ" required>
+            <input type="text" id="cinema-city" placeholder="Thành phố" required>
+            <button type="submit" class="btn" style="background:#1abc9c;color:#fff;">Lưu</button>
+            <button type="button" id="cancel-cinema-btn" class="btn" style="background:#e74c3c;color:#fff;">Hủy</button>
+          </form>
+        </div>
+        <div class="table-container">
+          <table id="cinemas-table">
+            <thead>
+              <tr><th>ID</th><th>Tên Rạp</th><th>Địa chỉ</th><th>Thành phố</th><th>Doanh thu</th><th>Thao tác</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
 
       <!-- Movies Management -->
       <section id="movies-section" class="content-section">
@@ -187,6 +144,7 @@
           </table>
         </div>
       </section>
+
       <!-- Promotions Management -->
       <section id="promotions-section" class="content-section">
         <h2>Quản lý Khuyến mãi</h2>
@@ -215,6 +173,86 @@
         </div>
       </section>
     </main>
+  </div>
+
+  <!-- Modal quản lý phòng -->
+  <div id="rooms-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="rooms-modal-title">Quản lý Phòng - <span id="cinema-name-title"></span></h3>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <button id="add-room-btn" class="btn" style="background:#1abc9c;color:#fff;margin-bottom:10px;">Thêm Phòng</button>
+        <div id="room-form-container" class="form-container" style="display:none;">
+          <h4 id="room-form-title">Thêm Phòng</h4>
+          <form id="room-form">
+            <input type="text" id="room-name" placeholder="Tên phòng" required>
+            <input type="number" id="room-rows" placeholder="Số hàng ghế" min="1" required>
+            <input type="number" id="room-cols" placeholder="Số ghế mỗi hàng" min="1" required>
+            <button type="submit" class="btn" style="background:#1abc9c;color:#fff;">Lưu</button>
+            <button type="button" id="cancel-room-btn" class="btn" style="background:#e74c3c;color:#fff;">Hủy</button>
+          </form>
+        </div>
+        <div class="table-container">
+          <table id="rooms-table">
+            <thead>
+              <tr><th>ID</th><th>Tên Phòng</th><th>Số ghế</th><th>Thao tác</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal quản lý ghế và suất chiếu -->
+  <div id="room-detail-modal" class="modal">
+    <div class="modal-content large-modal">
+      <div class="modal-header">
+        <h3 id="room-detail-modal-title">Quản lý Phòng - <span id="room-name-title"></span></h3>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="seats">Quản lý Ghế</button>
+          <button class="tab-btn" data-tab="screenings">Quản lý Suất chiếu</button>
+        </div>
+        
+        <!-- Tab Quản lý Ghế -->
+        <div id="seats-tab" class="tab-content active">
+          <div class="seats-container">
+            <h4>Sơ đồ ghế</h4>
+            <div id="seats-grid"></div>
+          </div>
+        </div>
+        
+        <!-- Tab Quản lý Suất chiếu -->
+        <div id="screenings-tab" class="tab-content">
+          <button id="add-screening-btn" class="btn" style="background:#1abc9c;color:#fff;margin-bottom:10px;">Thêm Suất chiếu</button>
+          <div id="screening-form-container" class="form-container" style="display:none;">
+            <h4 id="screening-form-title">Thêm Suất chiếu</h4>
+            <form id="screening-form">
+              <select id="screening-movie" required>
+                <option value="">Chọn phim</option>
+              </select>
+              <input type="datetime-local" id="screening-time" required>
+              <input type="number" id="screening-price" placeholder="Giá vé" min="0" required>
+              <button type="submit" class="btn" style="background:#1abc9c;color:#fff;">Lưu</button>
+              <button type="button" id="cancel-screening-btn" class="btn" style="background:#e74c3c;color:#fff;">Hủy</button>
+            </form>
+          </div>
+          <div class="table-container">
+            <table id="screenings-table">
+              <thead>
+                <tr><th>ID</th><th>Phim</th><th>Thời gian</th><th>Giá vé</th><th>Thao tác</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="../js/api.js"></script>
