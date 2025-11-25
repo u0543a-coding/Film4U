@@ -1,5 +1,5 @@
 {
-    "admins": [
+  "admins": [
     {
       "id": "1",
       "fullName": "Admin Film4U",
@@ -7,8 +7,9 @@
       "password": "adminpassword",
       "phoneNumber": "+84 33532152",
       "role": "admin"
-    }],
-    "users": [
+    }
+  ],
+  "users": [
     {
       "id": "1",
       "fullName": "Admin Film4U",
@@ -35,6 +36,15 @@
       "phoneNumber": "",
       "role": "user",
       "createdAt": "2025-10-27T15:01:53.701Z"
+    },
+    {
+      "id": "6f64",
+      "fullName": "Van Tiet",
+      "email": "tiet27@gmail.com",
+      "password": "123456",
+      "phoneNumber": "0373532152",
+      "role": "user",
+      "createdAt": "2025-10-29T05:27:48.331Z"
     }
   ],
   "genres": [
@@ -269,6 +279,34 @@
       "description": "Trang - một nhân viên bất động sản bị cưỡng bức. Cô lo sợ bạn trai Hiệp sẽ chia tay nên đã \"dụ\" anh đến một homestay để cầu hôn. Tại đây, cô hoảng loạn khi gặp Long - chủ homestay, người giống hệt kẻ đã hãm hại mình; bên cạnh đó Ngọc - vợ của Long cũng là nạn nhân của tên này. Khi Trang âm thầm tìm hiểu sự thật, thì mọi thứ càng lại càng phức tạp hơn và có một âm mưu đen tối đang chờ đợi tất cả bọn họ.",
       "poster_url": "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/t/m/tmdb-poster-2000x3000.jpg",
       "status": "coming_soon"
+    },
+    {
+      "id": "9c84",
+      "title": "PNV",
+      "director": "abc",
+      "actors": "nn",
+      "duration_minutes": 180,
+      "release_date": "2025-10-12",
+      "status": "now_showing",
+      "poster_url": "http://127.0.0.1:5500/html/AdminVTi.html#",
+      "description": "sdbs",
+      "genreIds": [
+        5
+      ]
+    },
+    {
+      "id": "30b7",
+      "title": "PNV",
+      "director": "xyz",
+      "actors": "vt",
+      "duration_minutes": 100,
+      "release_date": "2025-10-29",
+      "status": "now_showing",
+      "poster_url": "http://127.0.0.1:5500/Film4U/html/AdminVTi.html#",
+      "description": "Phim nói về ...",
+      "genreIds": [
+        5
+      ]
     }
   ],
   "cinemas": [
@@ -289,6 +327,12 @@
       "name": "Film4U Cầu Giấy",
       "address": "222 Trần Duy Hưng, Trung Hoà, Quận Cầu Giấy",
       "city": "Hà Nội"
+    },
+    {
+      "id": "8b9b",
+      "name": "Cinema DN",
+      "address": "Son Tra",
+      "city": "Da Nang"
     }
   ],
   "cinema_rooms": [
@@ -335,6 +379,15 @@
       "gridDimensions": {
         "totalRows": 10,
         "totalCols": 14
+      }
+    },
+    {
+      "id": "8a58",
+      "room_name": "01",
+      "cinemaId": "8b9b",
+      "gridDimensions": {
+        "totalRows": 11,
+        "totalCols": 10
       }
     }
   ],
@@ -578,6 +631,14 @@
       "seatType": "VIP",
       "gridRow": 5,
       "gridCol": 6
+    },
+    {
+      "id": "9152",
+      "roomId": "8a58",
+      "seatLabel": "A1",
+      "seatType": "Standard",
+      "gridRow": 2,
+      "gridCol": 2
     }
   ],
   "showtimes": [
@@ -604,6 +665,22 @@
       "roomId": "room_c4_1",
       "startTime": "2025-10-28T21:00:00",
       "price": 125000
+    },
+    {
+      "id": "43ed",
+      "movieId": "4",
+      "cinemaId": "4",
+      "roomId": "room_c4_1",
+      "startTime": "2025-10-29T14:00",
+      "price": 60000
+    },
+    {
+      "id": "9a49",
+      "movieId": "1",
+      "cinemaId": "8b9b",
+      "roomId": "8a58",
+      "startTime": "2025-10-29T13:00",
+      "price": 60000
     }
   ],
   "showtimeSeats": [
@@ -711,6 +788,31 @@
       "bookingTime": "2025-10-27T17:58:52.526Z",
       "status": "confirmed",
       "promoId": null
+    },
+    {
+      "id": "177e",
+      "userId": "2",
+      "showtimeId": "3",
+      "seatTemplateIds": [
+        "st_c4_1_A2"
+      ],
+      "totalPrice": 108750,
+      "bookingTime": "2025-10-28T01:13:33.733Z",
+      "status": "confirmed",
+      "promoId": "promo001"
+    },
+    {
+      "id": "b91b",
+      "userId": "6f64",
+      "showtimeId": "43ed",
+      "seatTemplateIds": [
+        "st_c4_1_A2",
+        "st_c4_1_A1"
+      ],
+      "totalPrice": 104500,
+      "bookingTime": "2025-10-29T05:30:20.721Z",
+      "status": "confirmed",
+      "promoId": "promo001"
     }
   ],
   "banners": [
