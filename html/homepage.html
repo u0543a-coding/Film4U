@@ -8,22 +8,7 @@
 </head>
 <body class="body">
   <!-- header -->
-  <!-- Thanh điều hướng (navigation bar)-->
-  <nav class="navbar">
-    <div class="navbar-container">
-      <a href="#" class="navbar-logo">FILM4U</a>
-      <form class="navbar-search">
-        <input type="text" id="search-input" placeholder="Tìm phim, diễn viên...">
-        <button type="submit" class="search-btn">Tìm</button>
-      </form>
-      <ul class="navbar-links">
-        <li><a href="homepage.html" class="active">Trang chủ</a></li>
-        <li><a href="film.html">Phim</a></li>
-        <li><a href="promotion.html">Khuyến mãi</a></li>
-        <li><a href="#">Tài khoản</a></li>
-      </ul>
-    </div>
-  </nav>
+  <div id="header-placeholder"></div>
   <!-- !header -->
 
   <!-- body -->
@@ -36,6 +21,16 @@
     <button class="banner-btn next" onclick="changeImage(1)">❯</button>
   </div>
 
+    <!-- Lọc theo thể loại -->
+    <section class="genre-filter-section" id="genre-filter-section">
+        <div class="container">
+            <!-- <h3 class="section-subtitle">Chọn thể loại phim bạn muốn xem</h3> -->
+            <div class="genre-filter-container" id="genre-filter">
+                <!-- Các nút lọc sẽ được thêm bằng JavaScript -->
+            </div>
+        </div>
+    </section>
+
   <!-- Khu vực hiển thị kết quả tìm kiếm (ban đầu bị ẩn) -->
   <section id="search-results-section" class="movie-section" style="display: none;">
     <h3 id="search-results-title"></h3>
@@ -46,7 +41,7 @@
 
   <!-- Phim đang chiếu -->
   <section id="now-showing-section" class="movie-section">
-    <h3>Phim Đang Chiếu</h3>
+    <h3>PHIM ĐANG CHIẾU</h3>
     <div class="movie-grid" id="now-showing-grid">
       <!-- thông tin chiếu sẽ được chèn vào đây -->
     </div>
@@ -54,7 +49,7 @@
 
   <!-- Phim sắp chiếu -->
   <section id="coming-soon-section" class="movie-section">
-    <h3>Phim Sắp Chiếu</h3>
+    <h3>PHIM SẮP CHIẾU</h3>
     <div class="movie-grid" id="coming-soon-grid">
       <!-- thông tin chiếu sẽ được chèn vào đây -->
     </div>
@@ -62,38 +57,32 @@
   <!-- !body -->
 
   <!-- footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-col">
-        <h3>FILM4U</h3>
-        <p>FILM4U là nền tảng xem và chia sẻ phim trực tuyến, được cập nhật liên tục để người dùng có trải nghiệm tốt nhất.</p>
-        <p><b>Liên hệ chúng tôi qua:</b></p>
-        <p>Support24h@film4u.vn</p>
-        <p>Phường Phước Mỹ, TP. Đà Nẵng</p>
-      </div>
-      <div class="footer-col">
-        <h4>Giới thiệu</h4>
-        <ul>
-          <li><a href="#">Về chúng tôi</a></li>
-          <li><a href="#">Điều khoản sử dụng</a></li>
-          <li><a href="#">Chính sách bảo mật</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Hỗ trợ</h4>
-        <ul>
-          <li><a href="#">Câu hỏi thường gặp</a></li>
-          <li><a href="#">Hướng dẫn sử dụng</a></li>
-          <li><a href="#">Báo lỗi</a></li>
-          <li><a href="#">Góp ý & phản hồi</a></li>
-        </ul>
-      </div>
-    </div>
-    <hr>
-    <p class="footer-copy">© 2025 FILM4U. Tất cả các quyền được bảo lưu.</p>
-  </footer>
+  <div id="footer-placeholder"></div>
   <!-- !footer -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const accountLink = document.getElementById("accountLink");
+  const accountMenu = document.getElementById("accountMenu");
 
+  // Lấy user từ localStorage
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  if (loggedInUser) {
+    // Nếu đã đăng nhập → đổi thành tên user + nút đăng xuất
+    accountLink.textContent = `Xin chào, ${loggedInUser.fullName || loggedInUser.name || "User"}`;
+    accountMenu.innerHTML = `<li><a href="homepage.html" id="logoutBtn">Đăng xuất</a></li>`;
+
+    // Xử lý nút đăng xuất
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("loggedInUser");
+      alert("Đã đăng xuất!");
+      window.location.reload();
+    });
+  }
+});
+</script>
+  <script src="../js/api.js"></script>
   <script src='../js/homepage.js'></script>
+  <script src="../js/layout.js"></script>
 </body>
 </html>

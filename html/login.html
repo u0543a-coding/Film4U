@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập / Đăng ký</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container" id="login-container">
+            <form id="login-form">
+                <h2>Đăng nhập</h2>
+                <div class="input-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="input-group">
+                    <label for="login-password">Mật khẩu</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit">Đăng nhập</button>
+                <p class="message">Chưa có tài khoản? <a href="#" id="show-register">Đăng ký</a></p>
+                <p id="login-error-message" class="error-message"></p>
+            </form>
+        </div>
+
+        <div class="form-container" id="register-container" style="display: none;">
+            <form id="register-form">
+                <h2>Đăng ký</h2>
+                <div class="input-group">
+                    <label for="register-fullname">Họ và tên</label>
+                    <input type="text" id="register-fullname" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-password">Mật khẩu</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-confirm-password">Xác nhận mật khẩu</label>
+                    <input type="password" id="register-confirm-password" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-phone">Số điện thoại</label>
+                    <input type="tel" id="register-phone">
+                </div>
+                <button type="submit">Đăng ký</button>
+                <p class="message">Đã có tài khoản? <a href="#" id="show-login">Đăng nhập</a></p>
+                <p id="register-error-message" class="error-message"></p>
+                <p id="register-success-message" class="success-message"></p>
+            </form>
+        </div>
+    </div>
+    <script src="../js/api.js"></script>
+    <script src="../js/login.js"></script>
+</body>
+</html>

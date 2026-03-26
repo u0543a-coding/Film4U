@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film4U Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/_admin.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">Film4U <strong>Admin</strong></a>
+            <div class="navbar-user">
+                <div id="user-icon" class="user-icon">A</div>
+                <div id="user-menu" class="user-menu">
+                    <a href="#" id="logout-btn-dropdown">Đăng xuất</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="#" class="nav-item" data-section="movies"><i class="fas fa-film"></i> Quản lý Phim</a>
+                <a href="#" class="nav-item" data-section="showtimes"><i class="fas fa-calendar-alt"></i> Quản lý Lịch chiếu</a>
+                <a href="#" class="nav-item" data-section="cinemas"><i class="fas fa-university"></i> Quản lý Rạp</a>
+                <a href="#" class="nav-item" data-section="users"><i class="fas fa-users"></i> Quản lý Người dùng</a>
+                <a href="#" class="nav-item" data-section="banners"><i class="fas fa-images"></i> Quản lý Banner</a>
+                <a href="#" class="nav-item" data-section="settings"><i class="fas fa-cog"></i> Cài đặt</a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="content-section active">
+                <div class="section-header">
+                    <h2>Dashboard</h2>
+                </div>
+                <div class="stat-cards-container">
+                    <div class="stat-card">
+                        <div class="card-icon"><i class="fas fa-ticket-alt"></i></div>
+                        <div class="card-info">
+                            <p>Vé bán trong ngày</p>
+                            <span>1,234</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="card-icon"><i class="fas fa-dollar-sign"></i></div>
+                        <div class="card-info">
+                            <p>Doanh thu trong ngày</p>
+                            <span>123,456,789 ₫</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="card-icon"><i class="fas fa-user-plus"></i></div>
+                        <div class="card-info">
+                            <p>Người dùng mới</p>
+                            <span>56</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="card-icon"><i class="fas fa-video"></i></div>
+                        <div class="card-info">
+                            <p>Tổng số phim</p>
+                            <span id="total-movies-stat">...</span>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Placeholder for charts -->
+                <div class="charts-placeholder">Đây là khu vực cho các biểu đồ doanh thu và thống kê...</div>
+            </section>
+
+            <!-- Movie Management Section -->
+            <section id="movies-section" class="content-section">
+                <div class="section-header">
+                    <h2>Quản lý Phim</h2>
+                    <button id="add-movie-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Thêm Phim Mới</button>
+                </div>
+                <div id="movie-form-container" class="form-container" style="display: none;">
+                    <h3 id="form-title">Thêm Phim Mới</h3>
+                    <form id="movie-form"> ... </form> <!-- Form content is complex, keeping it collapsed for brevity -->
+                </div>
+                <div class="table-container">
+                    <table id="movies-table"> ... </table>
+                </div>
+            </section>
+
+            <!-- Showtime Management Section -->
+            <section id="showtimes-section" class="content-section">
+                <div class="section-header">
+                    <h2>Quản lý Lịch chiếu</h2>
+                     <button id="add-showtime-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Thêm Lịch chiếu</button>
+                </div>
+
+                <!-- Form for adding/editing a showtime -->
+                <div id="showtime-form-container" class="form-container" style="display: none;">
+                    <h3 id="showtime-form-title">Thêm Lịch chiếu Mới</h3>
+                    <form id="showtime-form">
+                        <input type="hidden" id="showtime-id" name="id">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="showtime-movie">Phim</label>
+                                <select id="showtime-movie" name="movieId" required></select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="showtime-cinema">Rạp</label>
+                                <select id="showtime-cinema" name="cinemaId" required></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="showtime-room">Phòng</label>
+                                <select id="showtime-room" name="roomId" required disabled></select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="showtime-date">Ngày chiếu</label>
+                                <input type="date" id="showtime-date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="showtime-start-time">Giờ bắt đầu</label>
+                                <input type="time" id="showtime-start-time" name="startTime" required>
+                            </div>
+                             <div class="form-group">
+                                <label for="showtime-price">Giá vé (VND)</label>
+                                <input type="number" id="showtime-price" name="price" required min="0">
+                            </div>
+                        </div>
+                        <div id="timeline-info" class="timeline-info"></div>
+                        <div id="conflict-warning" class="conflict-warning"></div>
+                        <div class="form-actions">
+                            <button type="submit" id="save-showtime-btn" class="btn btn-success">Lưu Lịch chiếu</button>
+                            <button type="button" id="cancel-showtime-btn" class="btn btn-secondary">Hủy</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Table for listing showtimes -->
+                <div id="showtimes-table-container" class="table-container">
+                    <table id="showtimes-table">
+                        <thead>
+                            <tr>
+                                <th>Phim</th>
+                                <th>Rạp</th>
+                                <th>Phòng</th>
+                                <th>Thời gian bắt đầu</th>
+                                <th>Giá vé</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="showtimes-table-body">
+                            <!-- Showtime rows will be injected here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Cinema Management Section -->
+            <section id="cinemas-section" class="content-section">
+                <div class="section-header">
+                    <h2>Quản lý Rạp</h2>
+                     <button class="btn btn-primary"><i class="fas fa-plus"></i> Thêm Rạp Mới</button>
+                </div>
+                <div class="table-container">
+                    <p>Bảng danh sách các rạp và phòng chiếu sẽ được hiển thị ở đây...</p>
+                </div>
+            </section>
+
+            <!-- User Management Section -->
+            <section id="users-section" class="content-section">
+                <div class="section-header">
+                    <h2>Quản lý Người dùng</h2>
+                </div>
+                <div class="table-container">
+                    <p>Bảng danh sách người dùng sẽ được hiển thị ở đây...</p>
+                </div>
+            </section>
+
+            <!-- Banner Management Section -->
+            <section id="banners-section" class="content-section">
+                <div class="section-header">
+                    <h2>Quản lý Banner</h2>
+                    <button class="btn btn-primary"><i class="fas fa-plus"></i> Thêm Banner Mới</button>
+                </div>
+                <div class="table-container">
+                    <p>Danh sách các banner và form thêm/sửa sẽ ở đây...</p>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="content-section">
+                <div class="section-header">
+                    <h2>Cài đặt</h2>
+                </div>
+                <div class="table-container">
+                    <p>Các cài đặt chung cho hệ thống sẽ ở đây...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="../js/api.js"></script>
+    <script src="../js/_admin.js"></script>
+</body>
+</html>
